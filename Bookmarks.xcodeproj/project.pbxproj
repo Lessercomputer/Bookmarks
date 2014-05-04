@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6104B31E1915CCDD00EB4B3C /* Nursery.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6158CE641915B21500BD8BA1 /* Nursery.framework */; };
+		61137F8D19166CE20083DC07 /* Nursery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6158CE5D1915AD5100BD8BA1 /* Nursery.framework */; };
+		61137F8E19166CE60083DC07 /* Nursery.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6158CE5D1915AD5100BD8BA1 /* Nursery.framework */; };
 		6158CD761915A90100BD8BA1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6158CD751915A90100BD8BA1 /* Cocoa.framework */; };
 		6158CD801915A90100BD8BA1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6158CD7E1915A90100BD8BA1 /* InfoPlist.strings */; };
 		6158CD821915A90100BD8BA1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CD811915A90100BD8BA1 /* main.m */; };
@@ -69,7 +70,6 @@
 		6158CE461915AB2300BD8BA1 /* ATBookmarksWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CE0F1915AB2300BD8BA1 /* ATBookmarksWindowController.m */; };
 		6158CE471915AB2300BD8BA1 /* ATBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CE111915AB2300BD8BA1 /* ATBrowser.m */; };
 		6158CE481915AB2300BD8BA1 /* ATBrowserMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CE131915AB2300BD8BA1 /* ATBrowserMatrix.m */; };
-		6158CE651915B21500BD8BA1 /* Nursery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6158CE641915B21500BD8BA1 /* Nursery.framework */; };
 		6158CE771915C00000BD8BA1 /* ATIDPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CE6F1915C00000BD8BA1 /* ATIDPool.m */; };
 		6158CE781915C00000BD8BA1 /* ATBase64Decoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CE721915C00000BD8BA1 /* ATBase64Decoder.m */; };
 		6158CE791915C00000BD8BA1 /* ATQuotedPrintableDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CE741915C00000BD8BA1 /* ATQuotedPrintableDecoder.m */; };
@@ -115,7 +115,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6104B31E1915CCDD00EB4B3C /* Nursery.framework in CopyFiles */,
+				61137F8E19166CE60083DC07 /* Nursery.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,7 +241,6 @@
 		6158CE121915AB2300BD8BA1 /* ATBrowserMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATBrowserMatrix.h; path = Bookmarks/ATBrowserMatrix.h; sourceTree = "<group>"; };
 		6158CE131915AB2300BD8BA1 /* ATBrowserMatrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATBrowserMatrix.m; path = Bookmarks/ATBrowserMatrix.m; sourceTree = "<group>"; };
 		6158CE571915AD4E00BD8BA1 /* Nursery.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Nursery.xcodeproj; path = ../Nursery/Nursery.xcodeproj; sourceTree = "<group>"; };
-		6158CE641915B21500BD8BA1 /* Nursery.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nursery.framework; path = ../../Library/Developer/Xcode/DerivedData/Build/Products/Debug/Nursery.framework; sourceTree = "<group>"; };
 		6158CE6F1915C00000BD8BA1 /* ATIDPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATIDPool.m; sourceTree = "<group>"; };
 		6158CE701915C00000BD8BA1 /* ATIDPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATIDPool.h; sourceTree = "<group>"; };
 		6158CE711915C00000BD8BA1 /* ATBase64Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATBase64Decoder.h; sourceTree = "<group>"; };
@@ -266,7 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6158CD761915A90100BD8BA1 /* Cocoa.framework in Frameworks */,
-				6158CE651915B21500BD8BA1 /* Nursery.framework in Frameworks */,
+				61137F8D19166CE20083DC07 /* Nursery.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,7 +306,6 @@
 			children = (
 				6158CD751915A90100BD8BA1 /* Cocoa.framework */,
 				6158CD971915A90200BD8BA1 /* XCTest.framework */,
-				6158CE641915B21500BD8BA1 /* Nursery.framework */,
 				6158CD771915A90100BD8BA1 /* Other Frameworks */,
 			);
 			name = Frameworks;
