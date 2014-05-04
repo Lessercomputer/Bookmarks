@@ -14,7 +14,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string></string>
 			<key>CFBundleTypeName</key>
-			<string>DocumentType</string>
+			<string>ATBookmarksDocumentInNursery</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
 				<string>????</string>
@@ -22,7 +22,19 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>NSDocumentClass</key>
-			<string>ATDocument</string>
+			<string>ATBookmarksDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>ATBookmarksWithNetwork</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>ATBookmarksDocument</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>NSDocumentClass</key>
+			<string>ATBookmarksDocument</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
@@ -48,7 +60,7 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2014年 Pedophilia. All rights reserved.</string>
 	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
+	<string>MainMenu.nib</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>
