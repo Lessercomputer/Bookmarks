@@ -43,11 +43,6 @@
 
 @implementation ATBookmarksWindowController (Initializing)
 
-+ (id)controllerWith:(ATBookmarks *)aBookmarks windowIndex:(NSUInteger)anIndex
-{
-	return [[[self alloc] initWithPresentation:[[[ATBookmarksPresentation alloc] initWithBookmarks:aBookmarks] autorelease] windowIndex:anIndex] autorelease];
-}
-
 + (id)controllerWithPresentation:(ATBookmarksPresentation *)aPresentation windowIndex:(NSUInteger)anIndex
 {
 	return [[[self alloc] initWithPresentation:aPresentation windowIndex:anIndex] autorelease];
@@ -141,6 +136,11 @@
 	[[ATInspectorWindowController folderInspectorWith:[ATEditor editorFor:[[self bookmarks] untitledFolder] on:bookmarksPresentation]] beginSheetOn:[self window]];
 }
 
+- (void)showNewWindow:(id)sender
+{
+    [self openWindowForCurrentBinder:sender];
+}
+
 - (IBAction)openWindowWithCurrentPresentation:(id)sender
 {
 	[[self document] openWindowWith:[self bookmarksPresentation]];
@@ -208,7 +208,7 @@
 
 @implementation ATBookmarksWindowController (Testing)
 
-- (BOOL)validateMenuItem:(id <NSMenuItem>)aMenuItem
+- (BOOL)validateMenuItem:(NSMenuItem *)aMenuItem
 {
 	SEL anAction = [aMenuItem action];
 	

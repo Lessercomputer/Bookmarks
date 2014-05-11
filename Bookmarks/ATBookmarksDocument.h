@@ -41,6 +41,7 @@
 
 @interface ATBookmarksDocument (Actions)
 
+- (IBAction)showRootWindow:(id)sender;
 - (IBAction)openWindow:(id)sender;
 
 - (IBAction)importFirefoxBookmarks:(id)sender;

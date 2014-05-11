@@ -14,14 +14,13 @@
     IBOutlet ATBookmarksBrowserController *browserController;
 	//ATBookmarks *bookmarks;
 	//id topLevelFolder;
-	unsigned windowIndex;
+	NSUInteger windowIndex;
 	BOOL ignoreWindowFrameChange;
 }
 @end
 
 @interface ATBookmarksWindowController (Initializing)
 
-+ (id)controllerWith:(ATBookmarks *)aBookmarks windowIndex:(NSUInteger)anIndex;
 + (id)controllerWithPresentation:(ATBookmarksPresentation *)aPresentation windowIndex:(NSUInteger)anIndex;
 
 - (id)initWithPresentation:(ATBookmarksPresentation *)aPresentation windowIndex:(NSUInteger)anIndex;
@@ -45,6 +44,8 @@
 - (IBAction)makeNewBookmark:(id)sender;
 - (IBAction)makeNewFolder:(id)sender;
 
+- (IBAction)showNewWindow:(id)sender;
+
 - (IBAction)openWindowWithCurrentPresentation:(id)sender;
 - (IBAction)openWindowForCurrentBinder:(id)sender;
 - (IBAction)openItem:(id)sender;
@@ -59,7 +60,7 @@
 
 @interface ATBookmarksWindowController (Testing)
 
-- (BOOL)validateMenuItem:(id <NSMenuItem>)aMenuItem;
+- (BOOL)validateMenuItem:(NSMenuItem *)aMenuItem;
 
 - (BOOL)ignoreWindowFrameChange;
 - (void)setIgnoreWindowFrameChange:(BOOL)aFlag;

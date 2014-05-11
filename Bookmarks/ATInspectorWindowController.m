@@ -5,12 +5,12 @@
 
 + (id)bookmarkInspectorWith:(ATEditor *)anEditor
 {
-	return [[[self alloc] initWith:anEditor windowNibName:@"ATBookmarkWindow"] autorelease];
+	return [[[self alloc] initWith:anEditor windowNibName:@"ATNewBookmarkWindow"] autorelease];
 }
 
 + (id)folderInspectorWith:(ATEditor *)anEditor;
 {
-	return [[[self alloc] initWith:anEditor windowNibName:@"ATBinderWindow"] autorelease];
+	return [[[self alloc] initWith:anEditor windowNibName:@"ATNewBinderWindow"] autorelease];
 }
 
 - (id)initWith:(ATEditor *)anEditor windowNibName:(NSString *)aName
@@ -44,15 +44,15 @@
 
 @implementation ATInspectorWindowController
 
-//- (void)windowDidLoad
-//{
-//    [super windowDidLoad];
-//
-//    NSLog(@"%@", [[self window] firstResponder]);
-//    NSLog(@"%@", [[self window] initialFirstResponder]);
-//    [[self window] makeFirstResponder:[[self window] initialFirstResponder]];
-//    NSLog(@"%@", [[self window] firstResponder]);
-//}
+- (void)windowDidLoad
+{
+    [super windowDidLoad];
+
+    NSLog(@"%@", [[self window] firstResponder]);
+    NSLog(@"%@", [[self window] initialFirstResponder]);
+    [[self window] makeFirstResponder:[[self window] initialFirstResponder]];
+    NSLog(@"%@", [[self window] firstResponder]);
+}
 
 - (IBAction)cancel:(id)sender
 {

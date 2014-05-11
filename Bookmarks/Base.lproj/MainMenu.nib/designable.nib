@@ -62,17 +62,19 @@
                 <menuItem title="ファイル" id="83">
                     <menu key="submenu" title="ファイル" id="81">
                         <items>
-                            <menuItem title="新規書類" keyEquivalent="n" id="82">
+                            <menuItem title="新規書類" keyEquivalent="N" id="82">
+                                <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                 <connections>
                                     <action selector="newDocument:" target="-1" id="194"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="新規ブックマーク..." keyEquivalent="B" id="212">
+                            <menuItem title="新規ブックマーク..." id="212">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="makeNewBookmark:" target="-1" id="214"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="新規フォルダ..." keyEquivalent="F" id="213">
+                            <menuItem title="新規フォルダ..." keyEquivalent="n" id="213">
                                 <connections>
                                     <action selector="makeNewFolder:" target="-1" id="215"/>
                                 </connections>
@@ -209,17 +211,15 @@ CA
                 <menuItem title="ウインドウ" id="19">
                     <menu key="submenu" title="ウインドウ" systemMenu="window" id="24">
                         <items>
-                            <menuItem title="新規ウインドウ（同一PM）" keyEquivalent="W" id="221">
+                            <menuItem title="ルートウインドウを表示" keyEquivalent="r" id="QAS-b3-fIt">
                                 <connections>
-                                    <action selector="openWindowWithCurrentPresentation:" target="-1" id="249"/>
+                                    <action selector="showRootWindow:" target="-1" id="PlF-eF-30m"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="新規ウインドウ（新規PM）" id="248">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="新規ウインドウ（新規PM、現在バインダー）" id="231">
+                            <menuItem title="新規ウインドウを表示" keyEquivalent="W" id="KV7-mP-8n7">
+                                <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                 <connections>
-                                    <action selector="openWindowForCurrentBinder:" target="-1" id="250"/>
+                                    <action selector="showNewWindow:" target="-1" id="ism-H3-Qkq"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="222">
@@ -249,6 +249,20 @@ CA
                 <menuItem title="デバッグ" id="217">
                     <menu key="submenu" title="デバッグ" id="218">
                         <items>
+                            <menuItem title="新規ウインドウ（同一PM）" id="221">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openWindowWithCurrentPresentation:" target="-1" id="249"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="新規ウインドウ（新規PM）" id="248">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="新規ウインドウ（新規PM、現在バインダー）" id="231">
+                                <connections>
+                                    <action selector="openWindowForCurrentBinder:" target="-1" id="250"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="選択項目のitemIDをログ" id="251">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>

@@ -251,10 +251,14 @@
 
 @implementation ATBookmarksDocument (Actions)
 
+- (IBAction)showRootWindow:(id)sender
+{
+    [self openWindow:sender];
+}
+
 - (IBAction)openWindow:(id)sender
 {
-	[self addWindowController:[ATBookmarksWindowController controllerWith:[self bookmarks] windowIndex:++windowIndex]];
-	[[[self windowControllers] lastObject] showWindow:sender];
+    [self openWindowFor:[[self bookmarks] root]];
 }
 
 //- (void)openWindowFor:(id)sender
