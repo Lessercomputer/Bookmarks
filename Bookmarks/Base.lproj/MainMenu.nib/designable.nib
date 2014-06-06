@@ -246,7 +246,7 @@ CA
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="デバッグ" id="217">
+                <menuItem title="デバッグ" tag="-1" id="217">
                     <menu key="submenu" title="デバッグ" id="218">
                         <items>
                             <menuItem title="新規ウインドウ（同一PM）" id="221">

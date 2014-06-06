@@ -83,6 +83,7 @@
 		6158CE8A1915C43500BD8BA1 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6158CE8C1915C43500BD8BA1 /* MainMenu.nib */; };
 		6158CE8D1915C44800BD8BA1 /* ATBookmarkInspectorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6158CE8F1915C44800BD8BA1 /* ATBookmarkInspectorWindow.xib */; };
 		6158CE981915C91600BD8BA1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6158CE9A1915C91600BD8BA1 /* Localizable.strings */; };
+		61D3A35719302ACA008A200C /* ATJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D3A35619302ACA008A200C /* ATJSONParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -259,6 +260,8 @@
 		6158CE8B1915C43500BD8BA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		6158CE8E1915C44800BD8BA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ATBookmarkInspectorWindow.xib; sourceTree = "<group>"; };
 		6158CE991915C91600BD8BA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		61D3A35519302ACA008A200C /* ATJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATJSONParser.h; sourceTree = "<group>"; };
+		61D3A35619302ACA008A200C /* ATJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATJSONParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -401,6 +404,8 @@
 				6158CE741915C00000BD8BA1 /* ATQuotedPrintableDecoder.m */,
 				6158CE751915C00000BD8BA1 /* ATBase64Processor.h */,
 				6158CE761915C00000BD8BA1 /* ATBase64Processor.m */,
+				61D3A35519302ACA008A200C /* ATJSONParser.h */,
+				61D3A35619302ACA008A200C /* ATJSONParser.m */,
 			);
 			name = Foundation;
 			sourceTree = "<group>";
@@ -677,6 +682,7 @@
 				6158CE291915AB2300BD8BA1 /* ATSubtreeEnumerator.m in Sources */,
 				6158CE471915AB2300BD8BA1 /* ATBrowser.m in Sources */,
 				6158CE451915AB2300BD8BA1 /* ATBookmarksUnarchiver.m in Sources */,
+				61D3A35719302ACA008A200C /* ATJSONParser.m in Sources */,
 				6158CE1E1915AB2300BD8BA1 /* ATItemWrapper.m in Sources */,
 				6158CE221915AB2300BD8BA1 /* ATMoveOperationItem.m in Sources */,
 				6158CD821915A90100BD8BA1 /* main.m in Sources */,

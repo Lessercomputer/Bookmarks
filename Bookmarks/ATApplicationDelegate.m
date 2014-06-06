@@ -2,6 +2,10 @@
 #import "ATNullBetweenNilTransformer.h"
 #import "ATBrowser.h"
 
+#ifndef DEBUG
+static NSInteger ATDebugMenuItemTag = -1;
+#endif
+
 @implementation ATApplicationDelegate
 
 - (void)awakeFromNib
@@ -9,6 +13,11 @@
 	[NSValueTransformer setValueTransformer:[[[ATNullBetweenNilTransformer alloc] init] autorelease]
                                 forName:@"ATNullBetweenNilTransformer"];
     [ATBrowser installHookMethods];
+    
+#ifndef DEBUG
+    NSMenu *aMainMenu = [[NSApplication sharedApplication] mainMenu];
+    [aMainMenu removeItem:[aMainMenu itemWithTag:ATDebugMenuItemTag]];
+#endif
 }
 
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender

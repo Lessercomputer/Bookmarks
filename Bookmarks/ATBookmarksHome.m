@@ -161,6 +161,7 @@
     [nursery close];
     [nursery release];
     nursery = [aNursery retain];
+    [nursery setBackups:YES];
     
     if ([[nursery playLot] root] != self)
     {

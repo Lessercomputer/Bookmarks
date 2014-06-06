@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "ATJSONParser.h"
 
 @interface BookmarksTests : XCTestCase
 
@@ -26,9 +27,22 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testParseExample1Json
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    NSString *anExampleFilepath = @"/Users/aki/Cocoa/Bookmarks/BookmarksTests/Examples/example-1.json";
+    ATJSONParser *aParser = [ATJSONParser parserWithString:[NSString stringWithContentsOfFile:anExampleFilepath encoding:NSUTF8StringEncoding error:NULL]];
+    id anObject = [aParser parse];
+    XCTAssertNotNil(anObject, @"");
+    XCTAssertTrue([(NSDictionary *)anObject count] > 0, @"");
+}
+
+- (void)testParseExample2Json
+{
+    NSString *anExampleFilepath = @"/Users/aki/Cocoa/Bookmarks/BookmarksTests/Examples/example-2.json";
+    ATJSONParser *aParser = [ATJSONParser parserWithString:[NSString stringWithContentsOfFile:anExampleFilepath encoding:NSUTF8StringEncoding error:NULL]];
+    id anObject = [aParser parse];
+    XCTAssertNotNil(anObject, @"");
+    XCTAssertTrue([(NSArray *)anObject count] > 0, @"");
 }
 
 @end
