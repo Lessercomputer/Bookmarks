@@ -45,4 +45,24 @@
     XCTAssertTrue([(NSArray *)anObject count] > 0, @"");
 }
 
+- (void)testParseFirefoxBookmarksJson
+{
+    NSString *aBookmarksJsonFilepath = @"/Users/aki/Cocoa/Bookmarks/BookmarksTests/Examples/Firefox_bookmarks-2014-05-17.json";
+    ATJSONParser *aParser = [ATJSONParser parserWithString:[NSString stringWithContentsOfFile:aBookmarksJsonFilepath encoding:NSUTF8StringEncoding error:NULL]];
+    NSDictionary *anObject = [aParser parse];
+    XCTAssertNotNil(anObject, @"");
+    XCTAssertTrue([anObject count] > 0, @"");
+    [anObject writeToFile:[aBookmarksJsonFilepath stringByAppendingPathExtension:@"plist"] atomically:YES];
+}
+
+- (void)testParseChromeBookmarksJson
+{
+    NSString *aBookmarksJsonFilepath = @"/Users/aki/Cocoa/Bookmarks/BookmarksTests/Examples/Chrome_Bookmarks";
+    ATJSONParser *aParser = [ATJSONParser parserWithString:[NSString stringWithContentsOfFile:aBookmarksJsonFilepath encoding:NSUTF8StringEncoding error:NULL]];
+    NSDictionary *anObject = [aParser parse];
+    XCTAssertNotNil(anObject, @"");
+    XCTAssertTrue([anObject count] > 0, @"");
+    [anObject writeToFile:[aBookmarksJsonFilepath stringByAppendingPathExtension:@"plist"] atomically:YES];
+}
+
 @end

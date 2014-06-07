@@ -104,6 +104,7 @@ static NSCharacterSet *ATJSONParserDigit1To9;
     if ([self scanBeginArray])
     {
         *anArray = [NSMutableArray array];
+        NSUInteger aLocation = [scanner scanLocation];
     
         [self parseValuesInto:*anArray];
         
@@ -215,6 +216,7 @@ static NSCharacterSet *ATJSONParserDigit1To9;
 - (BOOL)parseValueIntoArray:(NSMutableArray *)anArray
 {
     id aValue;
+    NSUInteger aLocation = [scanner scanLocation];
     
     if ([self parseValueInto:&aValue])
     {
@@ -315,13 +317,21 @@ static NSCharacterSet *ATJSONParserDigit1To9;
         return YES;
     else if ([scanner scanString:@"u" intoString:NULL])
     {
-        NSUInteger location = [scanner scanLocation];
+        NSUInteger aLocation = [scanner scanLocation];
         unsigned int aHexValue;
+        NSString *aString = [scanner string];
+        NSUInteger i = 0;
+
+        for (; i < 4 && aLocation + i < [[scanner string] length] && [ATJSONParserHexDig characterIsMember:[aString characterAtIndex:aLocation + i]]; i++)
+            ;
         
-        if ([scanner scanHexInt:&aHexValue] && [scanner scanLocation] == location + 4)
+        if (i == 4)
         {
+            NSString *a4Hexdig = [aString substringWithRange:NSMakeRange(aLocation, i)];
+            [[NSScanner scannerWithString:a4Hexdig] scanHexInt:&aHexValue];
             unichar aUnichar = (unichar)aHexValue;
             *aChars = [NSString stringWithCharacters:&aUnichar length:1];
+            [scanner setScanLocation:aLocation + 4];
             return YES;
         }
     }
