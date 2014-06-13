@@ -1,0 +1,30 @@
+
+/* Class = "NSWindow"; title = "情報"; ObjectID = "1"; */
+"1.title" = "情報";
+
+/* Class = "NSTextFieldCell"; title = "名前:"; ObjectID = "7"; */
+"7.title" = "名前:";
+
+/* Class = "NSTextFieldCell"; title = "URL:"; ObjectID = "11"; */
+"11.title" = "URL:";
+
+/* Class = "NSTextFieldCell"; title = "追加日時:"; ObjectID = "21"; */
+"21.title" = "追加日時:";
+
+/* Class = "NSTextFieldCell"; title = "コメント:"; ObjectID = "61"; */
+"61.title" = "コメント:";
+
+/* Class = "NSTextFieldCell"; title = "アイコン:"; ObjectID = "87"; */
+"87.title" = "アイコン:";
+
+/* Class = "NSTextFieldCell"; title = "最終訪問日時:"; ObjectID = "118"; */
+"118.title" = "最終訪問日時:";
+
+/* Class = "NSTextFieldCell"; title = "最終変更日時:"; ObjectID = "136"; */
+"136.title" = "最終変更日時:";
+
+/* Class = "NSButtonCell"; title = "キャンセル"; ObjectID = "162"; */
+"162.title" = "キャンセル";
+
+/* Class = "NSButtonCell"; title = "OK"; ObjectID = "166"; */
+"166.title" = "OK";

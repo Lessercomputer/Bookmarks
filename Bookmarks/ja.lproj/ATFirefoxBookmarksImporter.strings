@@ -1,0 +1,15 @@
+
+/* Class = "NSPanel"; title = "Firefoxブックマークのインポート"; ObjectID = "14"; */
+"14.title" = "Firefoxブックマークのインポート";
+
+/* Class = "NSTextFieldCell"; title = "System Font Text"; ObjectID = "37"; */
+"37.title" = "System Font Text";
+
+/* Class = "NSTextFieldCell"; title = "Small System Font Text"; ObjectID = "38"; */
+"38.title" = "Small System Font Text";
+
+/* Class = "NSButtonCell"; title = "中止"; ObjectID = "39"; */
+"39.title" = "中止";
+
+/* Class = "NSTextFieldCell"; title = "Small System Font Text"; ObjectID = "40"; */
+"40.title" = "Small System Font Text";

@@ -8,6 +8,8 @@
 
 #import <XCTest/XCTest.h>
 #import "ATJSONParser.h"
+#import "ATFirefoxBookmarksImporter.h"
+#import "ATChromeBookmarksImporter.h"
 
 @interface BookmarksTests : XCTestCase
 
@@ -45,7 +47,7 @@
     XCTAssertTrue([(NSArray *)anObject count] > 0, @"");
 }
 
-- (void)testParseFirefoxBookmarksJson
+- (void)testParseExampleFirefoxBookmarksJson
 {
     NSString *aBookmarksJsonFilepath = @"/Users/aki/Cocoa/Bookmarks/BookmarksTests/Examples/Firefox_bookmarks-2014-05-17.json";
     ATJSONParser *aParser = [ATJSONParser parserWithString:[NSString stringWithContentsOfFile:aBookmarksJsonFilepath encoding:NSUTF8StringEncoding error:NULL]];
@@ -55,7 +57,7 @@
     [anObject writeToFile:[aBookmarksJsonFilepath stringByAppendingPathExtension:@"plist"] atomically:YES];
 }
 
-- (void)testParseChromeBookmarksJson
+- (void)testParseExampleChromeBookmarksJson
 {
     NSString *aBookmarksJsonFilepath = @"/Users/aki/Cocoa/Bookmarks/BookmarksTests/Examples/Chrome_Bookmarks";
     ATJSONParser *aParser = [ATJSONParser parserWithString:[NSString stringWithContentsOfFile:aBookmarksJsonFilepath encoding:NSUTF8StringEncoding error:NULL]];
@@ -63,6 +65,26 @@
     XCTAssertNotNil(anObject, @"");
     XCTAssertTrue([anObject count] > 0, @"");
     [anObject writeToFile:[aBookmarksJsonFilepath stringByAppendingPathExtension:@"plist"] atomically:YES];
+}
+
+- (void)testGetUserLibraryDirectorPath
+{
+    NSString *aUserLibraryDirectoryPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
+    XCTAssertNotNil(aUserLibraryDirectoryPath, @"");
+}
+
+- (void)testGetFirefoxDefaultBookamrksFilepath
+{
+    ATFirefoxBookmarksImporter *anImporter = [[[ATFirefoxBookmarksImporter alloc] init] autorelease];
+    NSString *aDefaultBookmarksFilepath = [anImporter defaultBookmarksFilepath];
+    XCTAssertNotNil(aDefaultBookmarksFilepath, @"");
+}
+
+- (void)testGetChromeDefaultBookamrksFilepath
+{
+    ATChromeBookmarksImporter *anImporter = [[[ATChromeBookmarksImporter alloc] init] autorelease];
+    NSString *aDefaultBookmarksFilepath = [anImporter defaultBookmarksFilepath];
+    XCTAssertNotNil(aDefaultBookmarksFilepath, @"");
 }
 
 @end

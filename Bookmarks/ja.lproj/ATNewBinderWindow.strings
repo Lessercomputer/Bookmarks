@@ -1,0 +1,12 @@
+
+/* Class = "NSWindow"; title = "ウインドウ"; ObjectID = "5"; */
+"5.title" = "ウインドウ";
+
+/* Class = "NSButtonCell"; title = "OK"; ObjectID = "42"; */
+"42.title" = "OK";
+
+/* Class = "NSButtonCell"; title = "キャンセル"; ObjectID = "43"; */
+"43.title" = "キャンセル";
+
+/* Class = "NSTextFieldCell"; title = "名前:"; ObjectID = "45"; */
+"45.title" = "名前:";

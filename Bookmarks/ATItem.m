@@ -167,7 +167,7 @@
 
 - (void)setAddDate:(NSDate *)aDate
 {
-    NUSetIvar(&addDate, addDate);
+    NUSetIvar(&addDate, aDate);
     [[[self bell] playLot] markChangedObject:self];
 }
 

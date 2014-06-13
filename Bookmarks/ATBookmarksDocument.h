@@ -12,12 +12,13 @@
 @class NUMainBranchNursery;
 @class ATBookmarks;
 @class ATBookmarksPresentation;
-@class ATFirefoxBookmarksImporter;
+@class ATFirefoxHTMLBookmarksImporter;
 @class ATBinder;
 @class ATIDPool;
 @class ATBookmarksHome;
 @class ATInspectorWindowController;
 @class ATEditor;
+@class ATBookmarksImporter;
 
 @interface ATBookmarksDocument : NSDocument
 {
@@ -37,6 +38,8 @@
 - (NSDictionary *)windowSettings;
 - (NSDictionary *)windowSettingsForNursery;
 
+- (void)importBookmarksUsingImporter:(ATBookmarksImporter *)anImporter;
+
 @end
 
 @interface ATBookmarksDocument (Actions)
@@ -45,7 +48,11 @@
 - (IBAction)openWindow:(id)sender;
 
 - (IBAction)importFirefoxBookmarks:(id)sender;
-- (void)importerImportingFinished:(ATFirefoxBookmarksImporter *)anImporter;
+- (void)importerImportingFinished:(ATFirefoxHTMLBookmarksImporter *)anImporter;
+
+- (IBAction)importBookmarksFromSafari:(id)sender;
+- (IBAction)importBookmarksFromFirefox:(id)sender;
+- (IBAction)importBookmarksFromChrome:(id)sender;
 
 @end
 

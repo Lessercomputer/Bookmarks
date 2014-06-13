@@ -104,7 +104,6 @@ static NSCharacterSet *ATJSONParserDigit1To9;
     if ([self scanBeginArray])
     {
         *anArray = [NSMutableArray array];
-        NSUInteger aLocation = [scanner scanLocation];
     
         [self parseValuesInto:*anArray];
         
@@ -216,7 +215,6 @@ static NSCharacterSet *ATJSONParserDigit1To9;
 - (BOOL)parseValueIntoArray:(NSMutableArray *)anArray
 {
     id aValue;
-    NSUInteger aLocation = [scanner scanLocation];
     
     if ([self parseValueInto:&aValue])
     {

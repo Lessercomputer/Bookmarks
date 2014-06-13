@@ -20,6 +20,11 @@
     [self setKeys:[NSArray arrayWithObject:@"url"] triggerChangeNotificationsForDependentKey:@"urlString"];
 }
 
++ (id)bookmark
+{
+    return [[[self alloc] init] autorelease];
+}
+
 - (id)initWith:(NSDictionary *)aPropertyList
 {	
 	[super initWith:aPropertyList];

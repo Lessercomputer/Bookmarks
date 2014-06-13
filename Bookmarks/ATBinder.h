@@ -17,6 +17,12 @@
 
 @end
 
+@interface ATBinder (Initializing)
+
++ (id)binder;
+
+@end
+
 @interface ATBinder (Accessing)
 
 - (NSMutableArray *)children;

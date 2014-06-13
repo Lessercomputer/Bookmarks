@@ -1,0 +1,180 @@
+
+/* Class = "NSMenuItem"; title = "全てを手前に移動"; ObjectID = "5"; */
+"5.title" = "全てを手前に移動";
+
+/* Class = "NSMenuItem"; title = "ウインドウ"; ObjectID = "19"; */
+"19.title" = "ウインドウ";
+
+/* Class = "NSMenuItem"; title = "最小化"; ObjectID = "23"; */
+"23.title" = "最小化";
+
+/* Class = "NSMenu"; title = "ウインドウ"; ObjectID = "24"; */
+"24.title" = "ウインドウ";
+
+/* Class = "NSMenu"; title = "MainMenu"; ObjectID = "29"; */
+"29.title" = "MainMenu";
+
+/* Class = "NSMenuItem"; title = "Bookmarks"; ObjectID = "56"; */
+"56.title" = "Bookmarks";
+
+/* Class = "NSMenu"; title = "Bookmarks"; ObjectID = "57"; */
+"57.title" = "Bookmarks";
+
+/* Class = "NSMenuItem"; title = "Bookmarksについて"; ObjectID = "58"; */
+"58.title" = "Bookmarksについて";
+
+/* Class = "NSMenuItem"; title = "開く…"; ObjectID = "72"; */
+"72.title" = "開く…";
+
+/* Class = "NSMenuItem"; title = "閉じる"; ObjectID = "73"; */
+"73.title" = "閉じる";
+
+/* Class = "NSMenuItem"; title = "保存"; ObjectID = "75"; */
+"75.title" = "保存";
+
+/* Class = "NSMenuItem"; title = "別名で保存…"; ObjectID = "80"; */
+"80.title" = "別名で保存…";
+
+/* Class = "NSMenu"; title = "ファイル"; ObjectID = "81"; */
+"81.title" = "ファイル";
+
+/* Class = "NSMenuItem"; title = "新規書類"; ObjectID = "82"; */
+"82.title" = "新規書類";
+
+/* Class = "NSMenuItem"; title = "ファイル"; ObjectID = "83"; */
+"83.title" = "ファイル";
+
+/* Class = "NSMenuItem"; title = "ヘルプ"; ObjectID = "103"; */
+"103.title" = "ヘルプ";
+
+/* Class = "NSMenu"; title = "ヘルプ"; ObjectID = "106"; */
+"106.title" = "ヘルプ";
+
+/* Class = "NSMenuItem"; title = "Bookmarksヘルプ"; ObjectID = "111"; */
+"111.title" = "Bookmarksヘルプ";
+
+/* Class = "NSMenuItem"; title = "復帰"; ObjectID = "112"; */
+"112.title" = "復帰";
+
+/* Class = "NSMenuItem"; title = "最近開いたファイル"; ObjectID = "124"; */
+"124.title" = "最近開いたファイル";
+
+/* Class = "NSMenu"; title = "最近開いたファイル"; ObjectID = "125"; */
+"125.title" = "最近開いたファイル";
+
+/* Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "126"; */
+"126.title" = "Clear Menu";
+
+/* Class = "NSMenu"; title = "サービス"; ObjectID = "130"; */
+"130.title" = "サービス";
+
+/* Class = "NSMenuItem"; title = "サービス"; ObjectID = "131"; */
+"131.title" = "サービス";
+
+/* Class = "NSMenuItem"; title = "Bookmarksを隠す"; ObjectID = "134"; */
+"134.title" = "Bookmarksを隠す";
+
+/* Class = "NSMenuItem"; title = "Bookmarksを終了する"; ObjectID = "136"; */
+"136.title" = "Bookmarksを終了する";
+
+/* Class = "NSMenuItem"; title = "ほかのアプリケーションを隠す"; ObjectID = "145"; */
+"145.title" = "ほかのアプリケーションを隠す";
+
+/* Class = "NSMenuItem"; title = "全てのアプリケーションを表示する"; ObjectID = "150"; */
+"150.title" = "全てのアプリケーションを表示する";
+
+/* Class = "NSMenuItem"; title = "コピー"; ObjectID = "157"; */
+"157.title" = "コピー";
+
+/* Class = "NSMenuItem"; title = "Undo"; ObjectID = "158"; */
+"158.title" = "Undo";
+
+/* Class = "NSMenuItem"; title = "カット"; ObjectID = "160"; */
+"160.title" = "カット";
+
+/* Class = "NSMenuItem"; title = "編集"; ObjectID = "163"; */
+"163.title" = "編集";
+
+/* Class = "NSMenuItem"; title = "削除"; ObjectID = "164"; */
+"164.title" = "削除";
+
+/* Class = "NSMenu"; title = "編集"; ObjectID = "169"; */
+"169.title" = "編集";
+
+/* Class = "NSMenuItem"; title = "ペースト"; ObjectID = "171"; */
+"171.title" = "ペースト";
+
+/* Class = "NSMenuItem"; title = "全てを選択"; ObjectID = "172"; */
+"172.title" = "全てを選択";
+
+/* Class = "NSMenuItem"; title = "Redo"; ObjectID = "173"; */
+"173.title" = "Redo";
+
+/* Class = "NSMenuItem"; title = "拡大／縮小"; ObjectID = "203"; */
+"203.title" = "拡大／縮小";
+
+/* Class = "NSMenuItem"; title = "新規ブックマーク..."; ObjectID = "212"; */
+"212.title" = "新規ブックマーク...";
+
+/* Class = "NSMenuItem"; title = "新規フォルダ..."; ObjectID = "213"; */
+"213.title" = "新規フォルダ...";
+
+/* Class = "NSMenuItem"; title = "デバッグ"; ObjectID = "217"; */
+"217.title" = "デバッグ";
+
+/* Class = "NSMenu"; title = "デバッグ"; ObjectID = "218"; */
+"218.title" = "デバッグ";
+
+/* Class = "NSMenuItem"; title = "選択をログ"; ObjectID = "219"; */
+"219.title" = "選択をログ";
+
+/* Class = "NSMenuItem"; title = "新規ウインドウ（同一PM）"; ObjectID = "221"; */
+"221.title" = "新規ウインドウ（同一PM）";
+
+/* Class = "NSMenuItem"; title = "レスポンダーチェインをログ"; ObjectID = "224"; */
+"224.title" = "レスポンダーチェインをログ";
+
+/* Class = "NSMenuItem"; title = "現在のファーストレスポンダーをログ"; ObjectID = "226"; */
+"226.title" = "現在のファーストレスポンダーをログ";
+
+/* Class = "NSMenuItem"; title = "Firefoxのブックマークをインポート..."; ObjectID = "228"; */
+"228.title" = "Firefoxのブックマークをインポート...";
+
+/* Class = "NSMenuItem"; title = "新規ウインドウ（新規PM、現在バインダー）"; ObjectID = "231"; */
+"231.title" = "新規ウインドウ（新規PM、現在バインダー）";
+
+/* Class = "NSMenuItem"; title = "選択したフォルダ内のブックマークを全て開く"; ObjectID = "233"; */
+"233.title" = "選択したフォルダ内のブックマークを全て開く";
+
+/* Class = "NSMenuItem"; title = "選択したブックマークのアイコンを取得する..."; ObjectID = "235"; */
+"235.title" = "選択したブックマークのアイコンを取得する...";
+
+/* Class = "NSMenuItem"; title = "選択したブックマークを開く"; ObjectID = "238"; */
+"238.title" = "選択したブックマークを開く";
+
+/* Class = "NSMenuItem"; title = "選択したブックマークを新しいタブで開く"; ObjectID = "240"; */
+"240.title" = "選択したブックマークを新しいタブで開く";
+
+/* Class = "NSMenuItem"; title = "選択したバインダーを開く"; ObjectID = "244"; */
+"244.title" = "選択したバインダーを開く";
+
+/* Class = "NSMenuItem"; title = "新規ウインドウ（新規PM）"; ObjectID = "248"; */
+"248.title" = "新規ウインドウ（新規PM）";
+
+/* Class = "NSMenuItem"; title = "選択項目のitemIDをログ"; ObjectID = "251"; */
+"251.title" = "選択項目のitemIDをログ";
+
+/* Class = "NSMenuItem"; title = "重複するitemIDをログ"; ObjectID = "254"; */
+"254.title" = "重複するitemIDをログ";
+
+/* Class = "NSMenuItem"; title = "全てのitemIDをつけ直す"; ObjectID = "256"; */
+"256.title" = "全てのitemIDをつけ直す";
+
+/* Class = "NSMenuItem"; title = "情報を見る"; ObjectID = "258"; */
+"258.title" = "情報を見る";
+
+/* Class = "NSMenuItem"; title = "新規ウインドウを表示"; ObjectID = "KV7-mP-8n7"; */
+"KV7-mP-8n7.title" = "新規ウインドウを表示";
+
+/* Class = "NSMenuItem"; title = "ルートウインドウを表示"; ObjectID = "QAS-b3-fIt"; */
+"QAS-b3-fIt.title" = "ルートウインドウを表示";

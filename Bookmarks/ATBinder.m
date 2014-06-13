@@ -17,6 +17,11 @@
 
 @implementation ATBinder (Initializing)
 
++ (id)binder
+{
+    return [[[self alloc] init] autorelease];
+}
+
 - (id)initWith:(NSDictionary *)aPropertyList
 {
 	/*NSEnumerator *anEnumerator = [[aPropertyList objectForKey:@"children"] objectEnumerator];

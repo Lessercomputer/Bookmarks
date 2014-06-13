@@ -8,7 +8,7 @@
 
 #import "ATBookmarksDocument.h"
 #import "ATBookmarksWindowController.h"
-#import "ATFirefoxBookmarksImporter.h"
+#import "ATFirefoxHTMLBookmarksImporter.h"
 #import "ATBookmarks.h"
 #import "ATBookmarksHome.h"
 #import "ATBookmarksPresentation.h"
@@ -16,6 +16,10 @@
 #import <Nursery/NUMainBranchNursery.h>
 #import "ATInspectorWindowController.h"
 #import "ATItem.h"
+#import "ATBinder.h"
+#import "ATSafariBookmarksImporter.h"
+#import "ATFirefoxBookmarksImporter.h"
+#import "ATChromeBookmarksImporter.h"
 
 @implementation ATBookmarksDocument
 
@@ -234,6 +238,28 @@
     return aDictionary;
 }
 
+- (void)importBookmarksUsingImporter:(ATBookmarksImporter *)anImporter
+{
+    NSOpenPanel *anOpenPanel = [NSOpenPanel openPanel];
+    NSString *aBookmarksFilepath = [anImporter defaultBookmarksFilepath];
+    
+    [anOpenPanel setDirectoryURL:[NSURL fileURLWithPath:aBookmarksFilepath]];
+    
+    if ([[aBookmarksFilepath pathExtension] length])
+        [anOpenPanel setAllowedFileTypes:[NSArray arrayWithObject:[aBookmarksFilepath pathExtension]]];
+    
+    [anOpenPanel beginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton)
+        {
+            ATBinder *aBinder = [anImporter importBookmarksFromContentsOfFile:[[anOpenPanel URL] path]];
+            NSArray *anItem = [NSArray arrayWithObject:aBinder];
+            ATBinder *aRoot = [[self bookmarks] root];
+            [[self bookmarks] insertItems:anItem to:[aRoot count] of:aRoot contextInfo:nil];
+        }
+        [anOpenPanel orderOut:nil];
+    }];
+}
+
 - (void)dealloc
 {
 	NSLog(@"ATBookmarksDocument #dealloc");
@@ -273,15 +299,30 @@
 
 - (IBAction)importFirefoxBookmarks:(id)sender
 {
-	ATFirefoxBookmarksImporter *anImporter = [ATFirefoxBookmarksImporter importerWithDocument:self];
+	ATFirefoxHTMLBookmarksImporter *anImporter = [ATFirefoxHTMLBookmarksImporter importerWithDocument:self];
 
 	[importers addObject:anImporter];
 	[anImporter importInBackgroundFromFileSelectedByUser];
 }
 
-- (void)importerImportingFinished:(ATFirefoxBookmarksImporter *)anImporter
+- (void)importerImportingFinished:(ATFirefoxHTMLBookmarksImporter *)anImporter
 {
 	[importers removeObject:anImporter];
+}
+
+- (IBAction)importBookmarksFromSafari:(id)sender
+{
+    [self importBookmarksUsingImporter:[ATSafariBookmarksImporter importer]];
+}
+
+- (IBAction)importBookmarksFromFirefox:(id)sender
+{
+    [self importBookmarksUsingImporter:[ATFirefoxBookmarksImporter importer]];
+}
+
+- (IBAction)importBookmarksFromChrome:(id)sender
+{
+    [self importBookmarksUsingImporter:[ATChromeBookmarksImporter importer]];
 }
 
 @end
