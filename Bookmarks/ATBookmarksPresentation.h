@@ -92,6 +92,8 @@ extern NSString *ATBookmarksPresentationDidChangeNotification;
 - (BOOL)openURLsIn:(NSArray *)aURLs;
 - (BOOL)openURLsIn:(NSArray *)aURLs withNewTabs:(BOOL)aNewTabFlag;
 
+- (BOOL)openURLsWithFirefox:(NSArray *)aURLs;
+
 @end
 
 @interface ATBookmarksPresentation (Testing)
@@ -130,6 +132,7 @@ extern NSString *ATBookmarksPresentationDidChangeNotification;
 
 - (IBAction)openItemsInSelectedFolder:(id)sender;
 - (IBAction)openSelectedItemsWithoutFolders:(id)sender;
+- (IBAction)openSelectedItemsWithFirefoxWithoutFolders:(id)sender;
 - (IBAction)openSelectedItemsWithoutFoldersWithNewTabs:(id)sender;
 - (void)runAppleScriptNamed:(NSString *)aScriptName handlerName:(NSString *)aHandlerName argment:(NSAppleEventDescriptor *)anArgment;
 - (void)runAppleScriptNamed:(NSString *)aScriptName handlerName:(NSString *)aHandlerName argments:(NSAppleEventDescriptor *)anArgments;

@@ -25,7 +25,7 @@
 
 + (id)bookmark;
 
-+ (id)newWithName:(NSString *)aName urlString:(NSString *)aURLString;
++ (id)bookmarkWithName:(NSString *)aName urlString:(NSString *)aURLString;
 - (id)initWithName:(NSString *)aName urlString:(NSString *)aURLString;
 
 @end

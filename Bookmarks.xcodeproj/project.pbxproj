@@ -13,6 +13,7 @@
 		611FA3661943439500D416B3 /* ATSafariBookmarksImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 611FA3651943439500D416B3 /* ATSafariBookmarksImporter.m */; };
 		611FA369194348C900D416B3 /* ATBookmarksImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 611FA368194348C900D416B3 /* ATBookmarksImporter.m */; };
 		611FA36C194349B600D416B3 /* ATFirefoxBookmarksImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 611FA36B194349B600D416B3 /* ATFirefoxBookmarksImporter.m */; };
+		612ED5DF1951C53700218D5D /* openURLsInFirefox.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 612ED5DE1951C53700218D5D /* openURLsInFirefox.scpt */; };
 		6158CD761915A90100BD8BA1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6158CD751915A90100BD8BA1 /* Cocoa.framework */; };
 		6158CD801915A90100BD8BA1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6158CD7E1915A90100BD8BA1 /* InfoPlist.strings */; };
 		6158CD821915A90100BD8BA1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CD811915A90100BD8BA1 /* main.m */; };
@@ -147,6 +148,7 @@
 		611FA368194348C900D416B3 /* ATBookmarksImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATBookmarksImporter.m; sourceTree = "<group>"; };
 		611FA36A194349B600D416B3 /* ATFirefoxBookmarksImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATFirefoxBookmarksImporter.h; sourceTree = "<group>"; };
 		611FA36B194349B600D416B3 /* ATFirefoxBookmarksImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATFirefoxBookmarksImporter.m; sourceTree = "<group>"; };
+		612ED5DE1951C53700218D5D /* openURLsInFirefox.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; path = openURLsInFirefox.scpt; sourceTree = "<group>"; };
 		6158CD721915A90100BD8BA1 /* Bookmarks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookmarks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6158CD751915A90100BD8BA1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6158CD781915A90100BD8BA1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -369,6 +371,7 @@
 				6158CE9A1915C91600BD8BA1 /* Localizable.strings */,
 				6158CDEF1915AB2300BD8BA1 /* ATBookmarks.sdef */,
 				6158CDE01915AB2300BD8BA1 /* openURLsInSafari.scpt */,
+				612ED5DE1951C53700218D5D /* openURLsInFirefox.scpt */,
 				6158CD901915A90200BD8BA1 /* Images.xcassets */,
 				6158CD7C1915A90100BD8BA1 /* Supporting Files */,
 			);
@@ -683,6 +686,7 @@
 				6158CD861915A90200BD8BA1 /* Credits.rtf in Resources */,
 				6158CE361915AB2300BD8BA1 /* ATBookmarks.sdef in Resources */,
 				6158CE2E1915AB2300BD8BA1 /* openURLsInSafari.scpt in Resources */,
+				612ED5DF1951C53700218D5D /* openURLsInFirefox.scpt in Resources */,
 				6158CE8D1915C44800BD8BA1 /* ATBookmarkInspectorWindow.xib in Resources */,
 				6158CE871915C42D00BD8BA1 /* ATWebIconLoaderWindow.nib in Resources */,
 				6158CE981915C91600BD8BA1 /* Localizable.strings in Resources */,

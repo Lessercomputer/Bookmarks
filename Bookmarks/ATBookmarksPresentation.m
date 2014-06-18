@@ -245,6 +245,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 	[aMenu insertItemWithTitle:NSLocalizedString(@"Open Bookmarks Of Selected Folder", nil) action:@selector(openItemsInSelectedFolder:) keyEquivalent:@"" atIndex:0];
 	[aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookmarks", nil) action:@selector(openSelectedItemsWithoutFolders:) keyEquivalent:@"" atIndex:1];
 	[aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookmarks With New Tabs", nil) action:@selector(openSelectedItemsWithoutFoldersWithNewTabs:) keyEquivalent:@"" atIndex:2];
+    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookarmks with Firefox", nil) action:@selector(openSelectedItemsWithFirefoxWithoutFolders:) keyEquivalent:@"" atIndex:3];
 	
 	return aMenu;
 }
@@ -304,6 +305,21 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 	}
 	
 	[self runAppleScriptNamed:@"openURLsInSafari" handlerName:(aNewTabFlag ? @"openURLsInSafariWithNewTabs" : @"openURLsInSafari") argment:aListOfURL];
+	
+	return YES;
+}
+
+- (BOOL)openURLsWithFirefox:(NSArray *)aURLs
+{
+    int i = 0;
+	NSAppleEventDescriptor *aListOfURL = [NSAppleEventDescriptor listDescriptor];
+    
+	for (; i < [aURLs count] ; i++)
+	{
+		[aListOfURL insertDescriptor:[NSAppleEventDescriptor descriptorWithString:[[aURLs objectAtIndex:i] absoluteString]] atIndex:i + 1];
+	}
+	
+	[self runAppleScriptNamed:@"openURLsInFirefox" handlerName:@"openURLsInFirefox" argment:aListOfURL];
 	
 	return YES;
 }
@@ -394,7 +410,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
     return [[self selectionIndexesInColumn:[self lastColumn]] count] ? YES : NO;
 }
 
-- (BOOL)validateMenuItem:(id <NSMenuItem>)aMenuItem
+- (BOOL)validateMenuItem:(NSMenuItem *)aMenuItem
 {
 	SEL anAction = [aMenuItem action];
 	
@@ -416,7 +432,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 			return YES;
 	else if (anAction == @selector(openItemsInSelectedFolder:))
 		return YES;
-	else if ((anAction == @selector(openSelectedItemsWithoutFolders:)) || (anAction == @selector(openSelectedItemsWithoutFoldersWithNewTabs:)))
+	else if ((anAction == @selector(openSelectedItemsWithoutFolders:)) || (anAction == @selector(openSelectedItemsWithoutFoldersWithNewTabs:)) || (anAction == @selector(openSelectedItemsWithFirefoxWithoutFolders:)))
 		return [self anyBookmarkWithURLIsSelected];
 	else
 		return NO;
@@ -457,6 +473,11 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 		[self open:[[self selections] lastObject]];
 	else
 		[self openURLsIn:[self arrayWithURLsOfSelectedBookmarkItems]];
+}
+
+- (IBAction)openSelectedItemsWithFirefoxWithoutFolders:(id)sender
+{
+    [self openURLsWithFirefox:[self arrayWithURLsOfSelectedBookmarkItems]];
 }
 
 - (IBAction)openSelectedItemsWithoutFoldersWithNewTabs:(id)sender

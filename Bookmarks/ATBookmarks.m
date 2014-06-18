@@ -751,7 +751,7 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 		
 		if ([aBookmarkType isEqualToString:@"WebBookmarkTypeLeaf"])
 		{
-			ATBookmark *aBookmark = [ATBookmark newWithName:[[aBookmarkDictionary objectForKey:@"URIDictionary"] objectForKey:@"title"] urlString:[aBookmarkDictionary objectForKey:@"URLString"]];
+			ATBookmark *aBookmark = [ATBookmark bookmarkWithName:[[aBookmarkDictionary objectForKey:@"URIDictionary"] objectForKey:@"title"] urlString:[aBookmarkDictionary objectForKey:@"URLString"]];
 			
 			[anItems addObject:aBookmark];
 		}
@@ -829,7 +829,7 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 
 - (NSArray *)itemsFrom:(NSPasteboard *)aPasteboard
 {
-	NSString *anAvailableType = [aPasteboard availableTypeFromArray:[NSArray arrayWithObjects:ATBookmarksItemsPropertyListRepresentaionPasteBoardType, @"BookmarkDictionaryListPboardType", @"WebURLsWithTitlesPboardType", nil]];
+	NSString *anAvailableType = [aPasteboard availableTypeFromArray:[NSArray arrayWithObjects:ATBookmarksItemsPropertyListRepresentaionPasteBoardType, @"BookmarkDictionaryListPboardType", @"WebURLsWithTitlesPboardType", @"public.url", nil]];
 	
 	if ([anAvailableType isEqualToString:ATBookmarksItemsPropertyListRepresentaionPasteBoardType])
 	{
@@ -874,11 +874,19 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 		
 		while (aURLString = [aURLsEnumerator nextObject])
 		{
-			[anItems addObject:[ATBookmark newWithName:[aTitlesEnumerator nextObject] urlString:aURLString]];
+			[anItems addObject:[ATBookmark bookmarkWithName:[aTitlesEnumerator nextObject] urlString:aURLString]];
 		}
 		
 		return anItems;
 	}
+    else if ([anAvailableType isEqualToString:@"public.url"])
+    {
+        NSString *aUrlString = [aPasteboard stringForType:@"public.url"];
+        NSString *aUrlName = [aPasteboard stringForType:@"public.url-name"];
+        ATBookmark *aBookmark = [ATBookmark bookmarkWithName:aUrlName urlString:aUrlString];
+        
+        return @[aBookmark];
+    }
 	else
 		return nil;
 }
@@ -915,7 +923,7 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 
 - (NSArray *)pasteBoardTypes
 {
-	return [NSArray arrayWithObjects:ATBookmarksItemIDsPasteBoardType, ATBookmarksItemsPropertyListRepresentaionPasteBoardType, @"BookmarkDictionaryListPboardType", @"WebURLsWithTitlesPboardType", nil];
+	return [NSArray arrayWithObjects:ATBookmarksItemIDsPasteBoardType, ATBookmarksItemsPropertyListRepresentaionPasteBoardType, @"BookmarkDictionaryListPboardType", @"WebURLsWithTitlesPboardType", @"public.url", nil];
 }
 
 - (NSDragOperation)validateDrop:(id <NSDraggingInfo>)anInfo on:(id)anItem
