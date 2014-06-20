@@ -88,11 +88,14 @@ extern NSString *ATBookmarksPresentationDidChangeNotification;
 - (NSArray *)arrayWithURLsOfSelectedBookmarkItems;
 - (NSArray *)arrayWithURLsOf:(NSArray *)anItems;
 - (void)open:(id)anItem;
-- (BOOL)openItemsInSelectedFolder;
-- (BOOL)openURLsIn:(NSArray *)aURLs;
-- (BOOL)openURLsIn:(NSArray *)aURLs withNewTabs:(BOOL)aNewTabFlag;
+- (BOOL)openBookmarksInSelectedBinderWithSafari;
+- (BOOL)openURLsInSafari:(NSArray *)aURLs;
+- (BOOL)openURLsInSafari:(NSArray *)aURLs withNewTabs:(BOOL)aNewTabFlag;
 
-- (BOOL)openURLsWithFirefox:(NSArray *)aURLs;
+- (BOOL)openURLsInChrome:(NSArray *)aURLs;
+- (BOOL)openURLsInChrome:(NSArray *)aURLs withNewTabs:(BOOL)aNewTabFlag;
+
+- (BOOL)openURLsInFirefoxWithNewTabs:(NSArray *)aURLs;
 
 @end
 
@@ -119,7 +122,7 @@ extern NSString *ATBookmarksPresentationDidChangeNotification;
 
 - (BOOL)lastBinderHasSelection;
 
-- (BOOL)validateMenuItem:(id <NSMenuItem>)aMenuItem;
+- (BOOL)validateMenuItem:(NSMenuItem *)aMenuItem;
 
 @end
 
@@ -130,10 +133,17 @@ extern NSString *ATBookmarksPresentationDidChangeNotification;
 - (IBAction)paste:(id)sender;
 - (IBAction)delete:(id)sender;
 
-- (IBAction)openItemsInSelectedFolder:(id)sender;
-- (IBAction)openSelectedItemsWithoutFolders:(id)sender;
-- (IBAction)openSelectedItemsWithFirefoxWithoutFolders:(id)sender;
-- (IBAction)openSelectedItemsWithoutFoldersWithNewTabs:(id)sender;
+- (IBAction)openBookmarksInSelectedBinderWithSafari:(id)sender;
+- (IBAction)openSelectedBookmarksWithSafari:(id)sender;
+- (IBAction)openSelectedBookmarksWithSafariWithNewTabs:(id)sender;
+
+- (IBAction)openBookmarksInSelectedBinderWithChrome:(id)sender;
+- (IBAction)openSelectedBookmarksWithChrome:(id)sender;
+- (IBAction)openSelectedBookmarksWithChromeWithNewTabs:(id)sender;
+
+- (IBAction)openBookmarksInSelectedBinderWithFirefox:(id)sender;
+- (IBAction)openSelectedBookmarksWithFirefoxWithNewTabs:(id)sender;
+
 - (void)runAppleScriptNamed:(NSString *)aScriptName handlerName:(NSString *)aHandlerName argment:(NSAppleEventDescriptor *)anArgment;
 - (void)runAppleScriptNamed:(NSString *)aScriptName handlerName:(NSString *)aHandlerName argments:(NSAppleEventDescriptor *)anArgments;
 

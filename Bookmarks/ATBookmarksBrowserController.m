@@ -26,6 +26,7 @@
     [self setNextResponder:[[self view] nextResponder]];
     [[self view] setNextResponder:self];
     [[self browser] setMatrixClass:[ATBrowserMatrix class]];
+//    [(NSBrowser *)[self view] setBackgroundColor:[NSColor clearColor]];
 }
 
 - (NSBrowser *)browser

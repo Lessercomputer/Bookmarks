@@ -36,6 +36,11 @@
 	
 	[presentationController setContent:[self bookmarksPresentation]];
 	//[[bookmarksView tableColumnWithIdentifier:@"name"] setDataCell:aCell];
+    [[self window] setAlphaValue:0.9];
+    //[[self window] setStyleMask:NSResizableWindowMask | NSTitledWindowMask];
+    //[[self window] setBackgroundColor:[NSColor clearColor]];
+    //[[self window] setOpaque:NO];
+    
 	[self addObserverForWindow];
 }
 

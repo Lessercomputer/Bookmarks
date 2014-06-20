@@ -242,10 +242,16 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 {
 	NSMenu *aMenu = [[[NSMenu alloc] initWithTitle:@"bookmarkMenu"] autorelease];
 	
-	[aMenu insertItemWithTitle:NSLocalizedString(@"Open Bookmarks Of Selected Folder", nil) action:@selector(openItemsInSelectedFolder:) keyEquivalent:@"" atIndex:0];
-	[aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookmarks", nil) action:@selector(openSelectedItemsWithoutFolders:) keyEquivalent:@"" atIndex:1];
-	[aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookmarks With New Tabs", nil) action:@selector(openSelectedItemsWithoutFoldersWithNewTabs:) keyEquivalent:@"" atIndex:2];
-    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookarmks with Firefox", nil) action:@selector(openSelectedItemsWithFirefoxWithoutFolders:) keyEquivalent:@"" atIndex:3];
+	[aMenu insertItemWithTitle:NSLocalizedString(@"Open Bookmarks Of Selected Binder With Safari", nil) action:@selector(openBookmarksInSelectedBinderWithSafari:) keyEquivalent:@"" atIndex:0];
+	[aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookmarks With Safari", nil) action:@selector(openSelectedBookmarksWithSafari:) keyEquivalent:@"" atIndex:1];
+	[aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookmarks With Safari With New Tabs", nil) action:@selector(openSelectedBookmarksWithSafariWithNewTabs:) keyEquivalent:@"" atIndex:2];
+    
+    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Bookmarks Of Selected Binder With Chrome", nil) action:@selector(openBookmarksInSelectedBinderWithChrome:) keyEquivalent:@"" atIndex:3];
+    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookmarks With Chrome", nil) action:@selector(openSelectedBookmarksWithChrome:) keyEquivalent:@"" atIndex:4];
+    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookmarks With Chrome With New Tabs", nil) action:@selector(openSelectedBookmarksWithChromeWithNewTabs:) keyEquivalent:@"" atIndex:5];
+    
+    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Bookmarks Of Selected Binder With Firefox", nil) action:@selector(openBookmarksInSelectedBinderWithFirefox:) keyEquivalent:@"" atIndex:6];
+    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookarmks With Firefox With New Tabs", nil) action:@selector(openSelectedBookmarksWithFirefoxWithNewTabs:) keyEquivalent:@"" atIndex:7];
 	
 	return aMenu;
 }
@@ -267,8 +273,8 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 	
 	while (anItem = [anEnumeratorOfSelectedItems nextObject])
 	{
-		if ([anItem isBookmark] && [anItem url])
-			[aURLs addObject:[anItem url]];
+		if ([anItem isBookmark] && [(ATBookmark *)anItem url])
+			[aURLs addObject:[(ATBookmark *)anItem url]];
 	}
 	
 	return aURLs;
@@ -281,20 +287,20 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 	if ([anItem isFolder])
 		;
 	else if ([anItem isBookmark] && [anItem url])
-		[self openURLsIn:[self arrayWithURLsOf:[NSArray arrayWithObject:anItem]]];//[self runAppleScriptNamed:@"openURLInSafari" handlerName:@"openURLInSafari" argment:[NSAppleEventDescriptor descriptorWithString:[anItem urlString]]];
+		[self openURLsInSafari:[self arrayWithURLsOf:[NSArray arrayWithObject:anItem]]];//[self runAppleScriptNamed:@"openURLInSafari" handlerName:@"openURLInSafari" argment:[NSAppleEventDescriptor descriptorWithString:[anItem urlString]]];
 }
 
-- (BOOL)openItemsInSelectedFolder
+- (BOOL)openBookmarksInSelectedBinderWithSafari
 {
-    return [self openURLsIn:[self arrayWithURLsOf:[[self selectedBinder] children]]];
+    return [self openURLsInSafari:[self arrayWithURLsOf:[[self selectedBinder] children]]];
 }
 
-- (BOOL)openURLsIn:(NSArray *)aURLs
+- (BOOL)openURLsInSafari:(NSArray *)aURLs
 {
-	return [self openURLsIn:aURLs withNewTabs:NO];
+	return [self openURLsInSafari:aURLs withNewTabs:NO];
 }
 
-- (BOOL)openURLsIn:(NSArray *)aURLs withNewTabs:(BOOL)aNewTabFlag
+- (BOOL)openURLsInSafari:(NSArray *)aURLs withNewTabs:(BOOL)aNewTabFlag
 {
 	int i = 0;
 	NSAppleEventDescriptor *aListOfURL = [NSAppleEventDescriptor listDescriptor];
@@ -304,12 +310,32 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 		[aListOfURL insertDescriptor:[NSAppleEventDescriptor descriptorWithString:[[aURLs objectAtIndex:i] absoluteString]] atIndex:i + 1];
 	}
 	
-	[self runAppleScriptNamed:@"openURLsInSafari" handlerName:(aNewTabFlag ? @"openURLsInSafariWithNewTabs" : @"openURLsInSafari") argment:aListOfURL];
+	[self runAppleScriptNamed:@"openURLsWithSafari" handlerName:(aNewTabFlag ? @"openURLsInSafariWithNewTabs" : @"openURLsInSafari") argment:aListOfURL];
 	
 	return YES;
 }
 
-- (BOOL)openURLsWithFirefox:(NSArray *)aURLs
+- (BOOL)openURLsInChrome:(NSArray *)aURLs
+{
+	return [self openURLsInChrome:aURLs withNewTabs:NO];
+}
+
+- (BOOL)openURLsInChrome:(NSArray *)aURLs withNewTabs:(BOOL)aNewTabFlag
+{
+	int i = 0;
+	NSAppleEventDescriptor *aListOfURL = [NSAppleEventDescriptor listDescriptor];
+    
+	for (; i < [aURLs count] ; i++)
+	{
+		[aListOfURL insertDescriptor:[NSAppleEventDescriptor descriptorWithString:[[aURLs objectAtIndex:i] absoluteString]] atIndex:i + 1];
+	}
+	
+	[self runAppleScriptNamed:@"openURLsWithChrome" handlerName:(aNewTabFlag ? @"openURLsInChromeWithNewTabs" : @"openURLsInChrome") argment:aListOfURL];
+	
+	return YES;
+}
+
+- (BOOL)openURLsInFirefoxWithNewTabs:(NSArray *)aURLs
 {
     int i = 0;
 	NSAppleEventDescriptor *aListOfURL = [NSAppleEventDescriptor listDescriptor];
@@ -319,7 +345,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 		[aListOfURL insertDescriptor:[NSAppleEventDescriptor descriptorWithString:[[aURLs objectAtIndex:i] absoluteString]] atIndex:i + 1];
 	}
 	
-	[self runAppleScriptNamed:@"openURLsInFirefox" handlerName:@"openURLsInFirefox" argment:aListOfURL];
+	[self runAppleScriptNamed:@"openURLsWithFirefox" handlerName:@"openURLsInFirefoxWithNewTabs" argment:aListOfURL];
 	
 	return YES;
 }
@@ -430,9 +456,15 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
         return YES;
 	else if (anAction == @selector(logSelections:))
 			return YES;
-	else if (anAction == @selector(openItemsInSelectedFolder:))
+	else if ((anAction == @selector(openBookmarksInSelectedBinderWithSafari:))
+             || (anAction == @selector(openBookmarksInSelectedBinderWithChrome:))
+             || (anAction == @selector(openBookmarksInSelectedBinderWithFirefox:)))
 		return YES;
-	else if ((anAction == @selector(openSelectedItemsWithoutFolders:)) || (anAction == @selector(openSelectedItemsWithoutFoldersWithNewTabs:)) || (anAction == @selector(openSelectedItemsWithFirefoxWithoutFolders:)))
+	else if ((anAction == @selector(openSelectedBookmarksWithSafari:))
+             || (anAction == @selector(openSelectedBookmarksWithSafariWithNewTabs:))
+             || (anAction == @selector(openSelectedBookmarksWithChrome:))
+             || (anAction == @selector(openSelectedBookmarksWithChromeWithNewTabs:))
+             || (anAction == @selector(openSelectedBookmarksWithFirefoxWithNewTabs:)))
 		return [self anyBookmarkWithURLIsSelected];
 	else
 		return NO;
@@ -462,27 +494,47 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 	[self removeSelections];
 }
 
-- (IBAction)openItemsInSelectedFolder:(id)sender
+- (IBAction)openBookmarksInSelectedBinderWithSafari:(id)sender
 {
-	[self openItemsInSelectedFolder];
+	[self openBookmarksInSelectedBinderWithSafari];
 }
 
-- (IBAction)openSelectedItemsWithoutFolders:(id)sender
+- (IBAction)openSelectedBookmarksWithSafari:(id)sender
 {
 	if ([[self selections] count] == 1 && [[[self selections] lastObject] isBookmark])
 		[self open:[[self selections] lastObject]];
 	else
-		[self openURLsIn:[self arrayWithURLsOfSelectedBookmarkItems]];
+		[self openURLsInSafari:[self arrayWithURLsOfSelectedBookmarkItems]];
 }
 
-- (IBAction)openSelectedItemsWithFirefoxWithoutFolders:(id)sender
+- (IBAction)openSelectedBookmarksWithSafariWithNewTabs:(id)sender
 {
-    [self openURLsWithFirefox:[self arrayWithURLsOfSelectedBookmarkItems]];
+	[self openURLsInSafari:[self arrayWithURLsOfSelectedBookmarkItems] withNewTabs:YES];
 }
 
-- (IBAction)openSelectedItemsWithoutFoldersWithNewTabs:(id)sender
+- (IBAction)openBookmarksInSelectedBinderWithChrome:(id)sender
 {
-	[self openURLsIn:[self arrayWithURLsOfSelectedBookmarkItems] withNewTabs:YES];
+    [self openURLsInChrome:[self arrayWithURLsOf:[[self selectedBinder] children]]];
+}
+
+- (IBAction)openSelectedBookmarksWithChrome:(id)sender
+{
+    [self openURLsInChrome:[self arrayWithURLsOfSelectedBookmarkItems]];
+}
+
+- (IBAction)openSelectedBookmarksWithChromeWithNewTabs:(id)sender
+{
+    [self openURLsInChrome:[self arrayWithURLsOfSelectedBookmarkItems] withNewTabs:YES];
+}
+
+- (IBAction)openBookmarksInSelectedBinderWithFirefox:(id)sender
+{
+    [self openURLsInFirefoxWithNewTabs:[self arrayWithURLsOf:[[self selectedBinder] children]]];
+}
+
+- (IBAction)openSelectedBookmarksWithFirefoxWithNewTabs:(id)sender
+{
+    [self openURLsInFirefoxWithNewTabs:[self arrayWithURLsOfSelectedBookmarkItems]];
 }
 
 - (void)runAppleScriptNamed:(NSString *)aScriptName handlerName:(NSString *)aHandlerName argment:(NSAppleEventDescriptor *)anArgment
