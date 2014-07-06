@@ -20,6 +20,9 @@
 #import "ATSafariBookmarksImporter.h"
 #import "ATFirefoxBookmarksImporter.h"
 #import "ATChromeBookmarksImporter.h"
+#import "ATDocumentPreferences.h"
+#import "ATDocumentPreferencesWindowController.h"
+#import "ATWebIconLoaderWindowController.h"
 
 @implementation ATBookmarksDocument
 
@@ -35,7 +38,7 @@
 
 - (BOOL)writeSafelyToURL:(NSURL *)anAbsoluteURL ofType:(NSString *)aTypeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError **)outError
 {
-    if ([aTypeName isEqualToString:@"ATBookmarksDocumentInNursery"])
+    if ([aTypeName isEqualToString:@"BookmarksDocumentInNursery"])
     {
         if (![[self nursery] filePath])
             [[self nursery] setFilePath:[anAbsoluteURL path]];
@@ -55,7 +58,7 @@
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError
 {
-    if ([typeName isEqualToString:@"ATBookmarksDocumentInNursery"])
+    if ([typeName isEqualToString:@"BookmarksDocumentInNursery"])
     {
         NUMainBranchNursery *aNursery = [NUMainBranchNursery nurseryWithContentsOfFile:[url path]];
         id aNurseryRoot = [[aNursery playLot] root];
@@ -106,9 +109,19 @@
 - (BOOL)revertToContentsOfURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {
 	BOOL aReverted = [super revertToContentsOfURL:absoluteURL ofType:typeName error:outError];
-	
-	[[self windowControllers] makeObjectsPerformSelector:@selector(setBookmarks:) withObject:[self bookmarks]];
-	
+	   
+    NSArray *anOldWindowControllers = [[[self windowControllers] copy] autorelease];
+    
+    if (aReverted)
+        [self cancelWebIconLoaderIfNeeded];
+    
+    [anOldWindowControllers enumerateObjectsUsingBlock:^(NSWindowController *aWindowController, NSUInteger idx, BOOL *stop) {
+        [self removeWindowController:aWindowController];
+    }];
+    
+    [self makeWindowControllers];
+    [self showWindows];
+
 	return aReverted;
 }
 
@@ -121,7 +134,7 @@
     NSDictionary *aWindowSettingsForNursery = nil;
     
     if ([aRoot isKindOfClass:[NSDictionary class]])
-        aWindowSettingsForNursery = [aRoot objectForKey:@"windowSettings"];
+        aWindowSettingsForNursery = [(NSDictionary *)aRoot objectForKey:@"windowSettings"];
     else
         aWindowSettingsForNursery = [aRoot windowSettings];
 
@@ -131,7 +144,7 @@
         
         [aWindowFramesAndPresentations enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(NSDictionary *aDictionary, NSUInteger idx, BOOL *stop)
         {
-            ATBookmarksWindowController *aWindowController = [ATBookmarksWindowController controllerWithPresentation:[aDictionary objectForKey:@"presentation"] windowIndex:++windowIndex];
+            ATBookmarksWindowController *aWindowController = [ATBookmarksWindowController controllerWithPresentation:[aDictionary objectForKey:@"presentation"] windowIndex:++windowIndex home:[self bookmarksHome]];
             [aWindowController setShouldCascadeWindows:NO];
             [[aWindowController window] setFrameFromString:[aDictionary objectForKey:@"frame"]];
             [self addWindowController:aWindowController];
@@ -140,7 +153,7 @@
     }
     else
     {
-        ATBookmarksWindowController *aWindowController = [ATBookmarksWindowController controllerWithPresentation:[[self bookmarksHome] newBookmarksPresentation] windowIndex:++windowIndex];
+        ATBookmarksWindowController *aWindowController = [ATBookmarksWindowController controllerWithPresentation:[[self bookmarksHome] newBookmarksPresentation] windowIndex:++windowIndex home:[self bookmarksHome]];
         
         if (savedWindowFrame)
         {
@@ -166,7 +179,7 @@
 
 - (void)openWindowWith:(ATBookmarksPresentation *)aPresentation
 {
-	[self addWindowController:[ATBookmarksWindowController controllerWithPresentation:aPresentation windowIndex:++windowIndex]];
+	[self addWindowController:[ATBookmarksWindowController controllerWithPresentation:aPresentation windowIndex:++windowIndex home:[self bookmarksHome]]];
 	[[[self windowControllers] lastObject] showWindow:nil];
 }
 
@@ -175,12 +188,14 @@
     ATBookmarksPresentation *aPresentation = [[self bookmarksHome] newBookmarksPresentation];
 
 	[aPresentation setRoot:aBinder];
-	[self addWindowController:[ATBookmarksWindowController controllerWithPresentation:aPresentation windowIndex:++windowIndex]];
+	[self addWindowController:[ATBookmarksWindowController controllerWithPresentation:aPresentation windowIndex:++windowIndex home:[self bookmarksHome]]];
 	[[[self windowControllers] lastObject] showWindow:nil];
 }
 
-- (void)openInspectorWindowFor:(NSArray *)anEditors
+- (void)openInspectorWindowFor:(NSArray *)anEditors bookmarksWindowController:(ATBookmarksWindowController *)aBookmarksWindowController
 {
+    __block NSPoint aTopLeft = NSZeroPoint;
+    
     [anEditors enumerateObjectsUsingBlock:^(ATEditor *anEditor, NSUInteger idx, BOOL *stop) {
         
         ATInspectorWindowController *anInspectorWindowController = [self inspectorWindowControllerForEditor:anEditor];
@@ -191,6 +206,15 @@
             
             anInspectorWindowController = [[[ATInspectorWindowController alloc] initWith:anEditor windowNibName:aWindowNibName] autorelease];
             [self addWindowController:anInspectorWindowController];
+            
+            if (NSEqualPoints(aTopLeft, NSZeroPoint))
+            {
+                aTopLeft = [[aBookmarksWindowController window] frame].origin;
+                aTopLeft.y += [[aBookmarksWindowController window] frame].size.height;
+            }
+            
+            aTopLeft = [[anInspectorWindowController window] cascadeTopLeftFromPoint:aTopLeft];
+            [[anInspectorWindowController window] setFrameTopLeftPoint:aTopLeft];
         }
         
         [anInspectorWindowController showWindow:nil];
@@ -260,6 +284,58 @@
     }];
 }
 
+- (void)preferencesDidChangeNotification:(NSNotification *)aNotification
+{
+    [self updateChangeCount:NSChangeDone];
+}
+
+- (void)shouldCloseWindowController:(NSWindowController *)aWindowController delegate:(id)aDelegate shouldCloseSelector:(SEL)aShouldCloseSelector contextInfo:(void *)aContextInfo
+{
+    if ([self bookmarksWindowCount] == 1 && [aWindowController isKindOfClass:[ATBookmarksWindowController class]])
+    {
+        [aWindowController setShouldCloseDocument:YES];
+        __block void *aContextInfoInBlock = aContextInfo;
+        __block id aSelfInBlock = self;
+        
+        void (^aBlock)(BOOL) = ^(BOOL aCanCloseDocument) {
+            NSInvocation *anInvocation = [NSInvocation invocationWithMethodSignature:[aDelegate methodSignatureForSelector:aShouldCloseSelector]];
+            [anInvocation setSelector:aShouldCloseSelector];
+            [anInvocation setArgument:&aSelfInBlock atIndex:2];
+            [anInvocation setArgument:&aCanCloseDocument atIndex:3];
+            [anInvocation setArgument:&aContextInfoInBlock atIndex:4];
+            [anInvocation invokeWithTarget:aDelegate];
+            [aWindowController setShouldCloseDocument:NO];
+        };
+        
+        [self canCloseDocumentWithDelegate:self shouldCloseSelector:@selector(document:shouldClose:contextInfo:) contextInfo:[aBlock copy]];
+    }
+    else
+        [super shouldCloseWindowController:aWindowController delegate:aDelegate shouldCloseSelector:aShouldCloseSelector contextInfo:aContextInfo];
+}
+
+- (void)document:(NSDocument *)aDocument shouldClose:(BOOL)aShouldClose  contextInfo:(void  *)aContextInfo
+{
+    void (^aBlock)(BOOL) = aContextInfo;
+    aBlock(aShouldClose);
+    
+    [aBlock release];
+}
+
+- (void)close
+{
+    [self cancelWebIconLoaderIfNeeded];
+    
+    [super close];
+}
+
+- (void)cancelWebIconLoaderIfNeeded
+{
+    [[self windowControllers] enumerateObjectsUsingBlock:^(NSWindowController *aWindowController, NSUInteger idx, BOOL *stop) {
+        if ([aWindowController isKindOfClass:[ATWebIconLoaderWindowController class]])
+            [[(ATWebIconLoaderWindowController *)aWindowController model] cancel];
+    }];
+}
+
 - (void)dealloc
 {
 	NSLog(@"ATBookmarksDocument #dealloc");
@@ -285,6 +361,31 @@
 - (IBAction)openWindow:(id)sender
 {
     [self openWindowFor:[[self bookmarks] root]];
+}
+
+- (void)showDocumentPreferences:(id)sender
+{
+    __block ATDocumentPreferencesWindowController *aWindowController = nil;
+    
+    [[self orderedWindows] enumerateObjectsUsingBlock:^(NSWindow *aWindow, NSUInteger idx, BOOL *stop) {
+        if ([[[aWindow windowController] class] isEqual:[ATDocumentPreferencesWindowController class]])
+        {
+            aWindowController = [aWindow windowController];
+            *stop = YES;
+        }
+    }];
+     
+    if (!aWindowController)
+    {
+        aWindowController = [ATDocumentPreferencesWindowController windowControllerWithPreferences:[[self bookmarksHome] preferences]];
+        [self addWindowController:aWindowController];
+        NSWindow *aBookmarksWindow = [self mostFrontBookmarksWindow];
+        NSPoint aTopLeft = [aBookmarksWindow frame].origin;
+        aTopLeft.y += [aBookmarksWindow frame].size.height;
+        [[aWindowController window] setFrameTopLeftPoint:[aBookmarksWindow cascadeTopLeftFromPoint:aTopLeft]];
+    }
+    
+    [aWindowController showWindow:nil];
 }
 
 //- (void)openWindowFor:(id)sender
@@ -353,12 +454,18 @@
 
 - (void)setBookmarksHome:(ATBookmarksHome *)aBookmarksHome
 {
+    if (bookmarksHome)
+        [[NSNotificationCenter defaultCenter] removeObserver:[bookmarksHome preferences]];
+    
     [[bookmarksHome nursery] close];
     [bookmarksHome release];
     bookmarksHome = [aBookmarksHome retain];
     
     [[bookmarksHome bookmarks] setDocument:self];
     [self setUndoManager:[[self bookmarks] undoManager]];
+    
+    if (bookmarksHome)
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesDidChangeNotification:) name:ATDocumentPreferencesDidChangeNotification object:[bookmarksHome preferences]];
 }
 
 - (NSArray *)orderedWindows
@@ -386,9 +493,35 @@
 	return anOrderedWindows;
 }
 
+- (NSWindow *)mostFrontBookmarksWindow
+{
+    __block NSWindow *aBookmarksWindow = nil;
+    
+    [[self orderedWindows] enumerateObjectsUsingBlock:^(NSWindow *aWindow, NSUInteger idx, BOOL *stop) {
+        if ([[aWindow windowController] isKindOfClass:[ATBookmarksWindowController class]])
+        {
+            aBookmarksWindow = aWindow;
+            *stop = YES;
+        }
+    }];
+    
+    return aBookmarksWindow;
+}
+
+- (NSUInteger)bookmarksWindowCount
+{
+    __block NSUInteger aBookmarkWindowCount = 0;
+    
+    [[self windowControllers] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isKindOfClass:[ATBookmarksWindowController class]])
+            aBookmarkWindowCount++;
+    }];
+    
+    return aBookmarkWindowCount;
+}
 - (NSWindow *)windowForSheet
 {
-	return [[self orderedWindows] objectAtIndex:0];
+	return [self mostFrontBookmarksWindow];
 }
 
 @end

@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <Nursery/Nursery.h>
 
+@class ATBookmarksHome;
 @class ATBookmarks;
 @class ATBinder;
 @class ATBinderPath;
@@ -23,11 +24,11 @@
 extern NSString *ATBookmarksPresentationSelectionDidChangeNotification;
 extern NSString *ATBookmarksPresentationDidChangeNotification;
 
-@interface ATBookmarksPresentation : NSObject
+@interface ATBookmarksPresentation : NSObject <NSWindowDelegate>
 {
     NUBell *bell;
 	NSNumber *presentationID;
-	ATBookmarks *bookmarks;
+	ATBookmarksHome *bookmarksHome;
 	ATBinder *root;
 	NSArray *selections;
 	NSArray *selectionIndexPaths;
@@ -42,7 +43,7 @@ extern NSString *ATBookmarksPresentationDidChangeNotification;
     NSInteger countOfDraggingEntered;
 }
 
-- (id)initWithBookmarks:(ATBookmarks *)aBookmarks;
+- (id)initWithBookmarksHome:(ATBookmarksHome *)aBookmarksHome;
 
 @end
 
@@ -55,7 +56,9 @@ extern NSString *ATBookmarksPresentationDidChangeNotification;
 - (void)setPresentationID:(NSNumber *)aNumber;
 - (NSNumber *)presentationID;
 
-- (void)setBookmarks:(ATBookmarks *)aBookmarks;
+- (void)setBookmarksHome:(ATBookmarksHome *)aBookmarksHome;
+- (ATBookmarksHome *)bookmarksHome;
+
 - (ATBookmarks *)bookmarks;
 
 - (ATBinder *)root;

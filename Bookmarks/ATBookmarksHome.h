@@ -12,6 +12,7 @@
 @class ATBookmarks;
 @class ATBookmarksPresentation;
 @class ATIDPool;
+@class ATDocumentPreferences;
 
 @interface ATBookmarksHome : NSObject
 {
@@ -20,6 +21,7 @@
     ATIDPool *bookmarksPresentationIDPool;
     NSMutableArray *bookmarksPresentations;
     NSDictionary *windowSettings;
+    ATDocumentPreferences *preferences;
     NUMainBranchNursery *nursery;
 }
 
@@ -45,6 +47,8 @@
 - (NSMutableArray *)bookmarksPresentations;
 - (NSDictionary *)windowSettings;
 - (void)setWindowSettings:(NSDictionary *)aDictionary;
+
+- (ATDocumentPreferences *)preferences;
 
 @end
 

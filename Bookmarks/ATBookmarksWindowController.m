@@ -8,6 +8,8 @@
 #import "ATBookmarksDocument.h"
 #import "ATEditor.h"
 #import "ATItem.h"
+#import "ATBookmarksHome.h"
+#import "ATDocumentPreferences.h"
 
 @implementation ATBookmarksWindowController
 
@@ -36,24 +38,31 @@
 	
 	[presentationController setContent:[self bookmarksPresentation]];
 	//[[bookmarksView tableColumnWithIdentifier:@"name"] setDataCell:aCell];
-    [[self window] setAlphaValue:0.9];
+    [[self window] setAlphaValue:[[bookmarksHome preferences] windowAlphaValue]];
     //[[self window] setStyleMask:NSResizableWindowMask | NSTitledWindowMask];
     //[[self window] setBackgroundColor:[NSColor clearColor]];
     //[[self window] setOpaque:NO];
     
-	[self addObserverForWindow];
+//	[self addObserverForWindow];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(documentPreferencesWindowAlphaValueDidChange:) name:ATDocumentPreferencesDidChangeWindowAlphaValueNotification object:[bookmarksHome preferences]];
+}
+
+- (void)documentPreferencesWindowAlphaValueDidChange:(NSNotification *)aNotification
+{
+    [[self window] setAlphaValue:[[bookmarksHome preferences] windowAlphaValue]];
 }
 
 @end
 
 @implementation ATBookmarksWindowController (Initializing)
 
-+ (id)controllerWithPresentation:(ATBookmarksPresentation *)aPresentation windowIndex:(NSUInteger)anIndex
++ (id)controllerWithPresentation:(ATBookmarksPresentation *)aPresentation windowIndex:(NSUInteger)anIndex home:(ATBookmarksHome *)aHome
 {
-	return [[[self alloc] initWithPresentation:aPresentation windowIndex:anIndex] autorelease];
+	return [[[self alloc] initWithPresentation:aPresentation windowIndex:anIndex home:aHome] autorelease];
 }
 
-- (id)initWithPresentation:(ATBookmarksPresentation *)aPresentation windowIndex:(NSUInteger)anIndex
+- (id)initWithPresentation:(ATBookmarksPresentation *)aPresentation windowIndex:(NSUInteger)anIndex home:(ATBookmarksHome *)aHome
 {
 	[super initWithWindowNibName:@"ATBookmarksWindow"];
 	
@@ -62,6 +71,8 @@
 	
 	windowIndex = anIndex;
 	
+    bookmarksHome = [aHome retain];
+    
 	return self;
 }
 
@@ -72,7 +83,10 @@
 	[self setBookmarksPresentation:nil];
     //[browserController release];
 	//[self setBookmarks:nil];
-	
+	[bookmarksHome release];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
 	[super dealloc];
 }
 
@@ -195,7 +209,7 @@
 
 - (IBAction)openSelectedBinder:(id)sender
 {
-	[[self document] openWindowFor:[self bookmarksPresentation]];
+	[(ATBookmarksDocument *)[self document] openWindowFor:[[self bookmarksPresentation] selectedBinder]];
 }
 
 //- (IBAction)openBookmark:(id)sender
@@ -206,7 +220,7 @@
 - (IBAction)showItemInfo:(id)sender
 {
     NSArray *anEditors = [[self bookmarksPresentation] editorsForSelections];
-    [(ATBookmarksDocument *)[self document] openInspectorWindowFor:anEditors];
+    [(ATBookmarksDocument *)[self document] openInspectorWindowFor:anEditors bookmarksWindowController:self];
 }
 
 @end

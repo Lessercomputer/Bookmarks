@@ -3,6 +3,7 @@
 #import <Cocoa/Cocoa.h>
 
 @class ATBookmarks;
+@class ATBookmarksHome;
 @class ATBookmarksPresentation;
 @class ATBookmarksBrowserController;
 
@@ -14,6 +15,7 @@
     IBOutlet ATBookmarksBrowserController *browserController;
 	//ATBookmarks *bookmarks;
 	//id topLevelFolder;
+    ATBookmarksHome *bookmarksHome;
 	NSUInteger windowIndex;
 	BOOL ignoreWindowFrameChange;
 }
@@ -21,9 +23,9 @@
 
 @interface ATBookmarksWindowController (Initializing)
 
-+ (id)controllerWithPresentation:(ATBookmarksPresentation *)aPresentation windowIndex:(NSUInteger)anIndex;
++ (id)controllerWithPresentation:(ATBookmarksPresentation *)aPresentation windowIndex:(NSUInteger)anIndex home:(ATBookmarksHome *)aHome;
 
-- (id)initWithPresentation:(ATBookmarksPresentation *)aPresentation windowIndex:(NSUInteger)anIndex;
+- (id)initWithPresentation:(ATBookmarksPresentation *)aPresentation windowIndex:(NSUInteger)anIndex home:(ATBookmarksHome *)aHome;
 
 @end
 

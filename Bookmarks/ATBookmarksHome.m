@@ -11,6 +11,7 @@
 #import "ATBookmarks.h"
 #import "ATBookmarksPresentation.h"
 #import "ATIDPool.h"
+#import "ATDocumentPreferences.h"
 
 @implementation ATBookmarksHome
 
@@ -27,6 +28,7 @@
     bookmarksPresentationIDPool = [[ATIDPool idPool] retain];
     bookmarksPresentations = [[NSMutableArray array] retain];
     bookmarks = [ATBookmarks new];
+    preferences = [ATDocumentPreferences new];
     
     return self;
 }
@@ -38,6 +40,7 @@
     [bookmarksPresentationIDPool release];
     [bookmarksPresentations release];
     [windowSettings release];
+    [preferences release];
     [nursery close];
     [nursery release];
     
@@ -46,7 +49,7 @@
 
 - (ATBookmarksPresentation *)newBookmarksPresentation
 {
-    ATBookmarksPresentation *aPresentation = [[[ATBookmarksPresentation alloc] initWithBookmarks:[self bookmarks]] autorelease];
+    ATBookmarksPresentation *aPresentation = [[[ATBookmarksPresentation alloc] initWithBookmarksHome:self] autorelease];
     
     [aPresentation setPresentationID:[self newBookmarksPresentationID]];
     [[self bookmarksPresentations] addObject:aPresentation];
@@ -76,6 +79,7 @@
     [aCharacter addOOPIvarWithName:@"bookmarks"];
     [aCharacter addOOPIvarWithName:@"bookmarksPresentationIDPool"];
     [aCharacter addOOPIvarWithName:@"windowSettings"];
+    [aCharacter addOOPIvarWithName:@"preferences"];
 }
 
 - (void)encodeWithAliaser:(NUAliaser *)aChildminder
@@ -83,6 +87,7 @@
     [aChildminder encodeObject:bookmarks];
     [aChildminder encodeObject:bookmarksPresentationIDPool];
     [aChildminder encodeObject:windowSettings];
+    [aChildminder encodeObject:preferences];
 }
 
 - (id)initWithAliaser:(NUAliaser *)aChildminder
@@ -92,6 +97,7 @@
     NUSetIvar(&bookmarks, [aChildminder decodeObject]);
     NUSetIvar(&bookmarksPresentationIDPool, [aChildminder decodeObject]);
     NUSetIvar(&windowSettings, [aChildminder decodeObject]);
+    NUSetIvar(&preferences, [aChildminder decodeObject]);
     
     return self;
 }
@@ -150,6 +156,11 @@
 {
     NUSetIvar(&windowSettings, aDictionary);
     [[self playLot] markChangedObject:self];
+}
+
+- (ATDocumentPreferences *)preferences
+{
+    return NUGetIvar(&preferences);
 }
 
 @end

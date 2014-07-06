@@ -9,12 +9,12 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>nbk</string>
+				<string>bkmn</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string></string>
 			<key>CFBundleTypeName</key>
-			<string>ATBookmarksDocumentInNursery</string>
+			<string>BookmarksDocumentInNursery</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
 				<string>????</string>
@@ -27,10 +27,10 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>ATBookmarksWithNetwork</string>
+				<string>bkmp</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>ATBookmarksDocument</string>
+			<string>BookmarksDocumentInPlist</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>NSDocumentClass</key>

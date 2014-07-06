@@ -30,11 +30,19 @@
     webView = [[WebView alloc] initWithFrame:NSZeroRect frameName:nil groupName:nil];
     [webView setFrameLoadDelegate:self];
     
+#ifdef DEBUG
+    NSLog(@"%@", [NSThread currentThread]);
+#endif
+    
 	return self;
 }
 
 - (void)dealloc
 {
+#ifdef DEBUG
+    NSLog(@"%@", [NSThread currentThread]);
+#endif
+    
 	[items release];
 	items = nil;
 	[self setCurrentIconImage:nil forURL:nil];
@@ -55,6 +63,10 @@
 
 - (void)cancel
 {
+#ifdef DEBUG
+    NSLog(@"%@", [NSThread currentThread]);
+#endif
+    
 	inCancel = YES;
 	[webView stopLoading:nil];
     [webView setFrameLoadDelegate:nil];
@@ -63,6 +75,10 @@
 
 - (void)loadNext
 {
+#ifdef DEBUG
+    NSLog(@"%@", [NSThread currentThread]);
+#endif
+    
 	if (inCancel)
 		return;
     
@@ -85,6 +101,10 @@
 
 - (NSUInteger)nextBookmarkIndex
 {
+#ifdef DEBUG
+    NSLog(@"%@", [NSThread currentThread]);
+#endif
+    
     for (NSUInteger i = currentIndex; i < [items count]; i++)
     {
         if ([[items objectAtIndex:i] url]) return i;
@@ -114,6 +134,10 @@
 
 - (void)setCurrentIconImage:(NSImage *)anImage forURL:(NSString *)aURLString
 {
+#ifdef DEBUG
+    NSLog(@"%@", [NSThread currentThread]);
+#endif
+    
     if (aURLString && ![[[items objectAtIndex:currentIndex] urlString] isEqualToString:aURLString]) return;
     
     [self willChangeValueForKey:@"currentIconImage"];
@@ -138,6 +162,9 @@
 {
 	if ([sender mainFrame] == frame)
 	{
+#ifdef DEBUG
+        NSLog(@"%@", [NSThread currentThread]);
+#endif
         [urlToFaviconDictionary setObject:image forKey:[sender mainFrameURL]];
 		[self setCurrentIconImage:image forURL:[sender mainFrameURL]];
 	}
@@ -147,6 +174,9 @@
 {
 	if ([sender mainFrame] == frame)
 	{
+#ifdef DEBUG
+        NSLog(@"%@", [NSThread currentThread]);
+#endif
 		[self setTitle:aTitle];
 	}
 }
@@ -155,12 +185,18 @@
 {
 	if ([sender mainFrame] == frame)
 	{
+#ifdef DEBUG
+        NSLog(@"%@", [NSThread currentThread]);
+#endif
         [self performSelector:@selector(pageLoadFinished:) withObject:nil afterDelay:0.5];
 	}
 }
 
 - (void)pageLoadFinished:(id)sender
 {
+#ifdef DEBUG
+    NSLog(@"%@", [NSThread currentThread]);
+#endif
     [sender stopLoading:nil];
     
     if (![self currentIconImage] && [sender mainFrameIcon])
@@ -177,6 +213,9 @@
 {
 	if ([sender mainFrame] == frame)
     {
+#ifdef DEBUG
+        NSLog(@"%@", [NSThread currentThread]);
+#endif
         currentIndex++;
 		[self loadNext];
     }
@@ -186,6 +225,9 @@
 {
 	if ([sender mainFrame] == frame)
 	{
+#ifdef DEBUG
+        NSLog(@"%@", [NSThread currentThread]);
+#endif
         currentIndex++;
 		[self loadNext];
     }
@@ -193,11 +235,17 @@
 
 - (id <ATWebIconLoaderDelegate> )delegate
 {
+#ifdef DEBUG
+    NSLog(@"%@", [NSThread currentThread]);
+#endif
     return delegate;
 }
 
 - (void)setDelegate:(id <ATWebIconLoaderDelegate> )aDelegate
 {
+#ifdef DEBUG
+    NSLog(@"%@", [NSThread currentThread]);
+#endif
     delegate = aDelegate;
 }
 

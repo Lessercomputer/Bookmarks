@@ -7,6 +7,7 @@
 //
 
 #import "ATBookmarksPresentation.h"
+#import "ATBookmarksHome.h"
 #import "ATBookmarks.h"
 #import "ATBinderPath.h"
 #import "ATEditor.h"
@@ -21,6 +22,9 @@
 #import "ATItemWrapper.h"
 #import "ATBinderWrapper.h"
 #import "ATBookmarksEnumerator.h"
+#import "ATDocumentPreferences.h"
+#import "ATMenuItemDescription.h"
+#import "ATBookmarksDocument.h"
 
 NSString *ATBookmarksPresentationSelectionDidChangeNotification = @"ATBookmarksPresentationSelectionDidChangeNotification";
 NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentationDidChangeNotification";
@@ -29,14 +33,14 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 
 - (id)init
 {
-	return [self initWithBookmarks:nil];
+	return [self initWithBookmarksHome:nil];
 }
 
-- (id)initWithBookmarks:(ATBookmarks *)aBookmarks
+- (id)initWithBookmarksHome:(ATBookmarksHome *)aBookmarksHome
 {
 	[super init];
 	
-	[self setBookmarks:aBookmarks];
+	[self setBookmarksHome:aBookmarksHome];
 
 	return self;
 }
@@ -46,7 +50,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 	NSLog(@"ATBookmarksPresentaion #dealloc");
 
     [self setBinderWrappers:nil];
-	[self setBookmarks:nil];
+	[self setBookmarksHome:nil];
 	[self setRoot:nil];
 	[self setPresentationID:nil];
 	
@@ -65,7 +69,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 + (void)defineCharacter:(NUCharacter *)aCharacter on:(NUPlayLot *)aPlayLot
 {
 	[aCharacter addOOPIvarWithName:@"presentationID"];
-    [aCharacter addOOPIvarWithName:@"bookmarks"];
+    [aCharacter addOOPIvarWithName:@"bookmarksHome"];
 	[aCharacter addOOPIvarWithName:@"root"];
     [aCharacter addOOPIvarWithName:@"selectionForBinders"];
 }
@@ -73,7 +77,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 - (void)encodeWithAliaser:(NUAliaser *)aChildminder
 {
     [aChildminder encodeObject:presentationID];
-    [aChildminder encodeObject:bookmarks];
+    [aChildminder encodeObject:bookmarksHome];
     [aChildminder encodeObject:root];
     [aChildminder encodeObject:binderWrappers];
 }
@@ -84,7 +88,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
     
     NUSetIvar(&presentationID, [aChildminder decodeObject]);
 //    NUSetIvar(&bookmarks, [aChildminder decodeObjectReally]);
-    [self setBookmarks:[aChildminder decodeObject]];
+    [self setBookmarksHome:[aChildminder decodeObject]];
 //    NUSetIvar(&root, [aChildminder decodeObject]);
     [self setRoot:[aChildminder decodeObjectReally]];
     NUSetIvar(&binderWrappers, [aChildminder decodeObject]);
@@ -116,47 +120,51 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
     return NUGetIvar(&presentationID);
 }
 
-- (void)setBookmarks:(ATBookmarks *)aBookmarks
+- (void)setBookmarksHome:(ATBookmarksHome *)aBookmarksHome
 {	
-    if (bookmarks == aBookmarks) return;
+    if (bookmarksHome == aBookmarksHome) return;
 
-    if (bookmarks && ![bookmarks isBell])
+    if (bookmarksHome && ![bookmarksHome isBell])
     {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:ATBookmarksDidInsertNotification object:bookmarks];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:ATBookmarksDidMoveNotification object:bookmarks];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:ATBookmarksDidMoveOrInsertNotification object:bookmarks];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:ATBookmarksDidRemoveNotification object:bookmarks];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:ATBookmarksDidChangeNotification object:bookmarks];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:ATBookmarksDidOpenFolderNotification object:bookmarks];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:ATBookmarksDidCloseFolderNotification object:bookmarks];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:ATBookmarksWillEditItemNotification object:bookmarks];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:ATBookmarksDidEditItemNotification object:bookmarks];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:ATBookmarksDidInsertNotification object:[aBookmarksHome bookmarks]];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:ATBookmarksDidMoveNotification object:[aBookmarksHome bookmarks]];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:ATBookmarksDidMoveOrInsertNotification object:[aBookmarksHome bookmarks]];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:ATBookmarksDidRemoveNotification object:[aBookmarksHome bookmarks]];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:ATBookmarksDidChangeNotification object:[aBookmarksHome bookmarks]];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:ATBookmarksDidOpenFolderNotification object:[aBookmarksHome bookmarks]];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:ATBookmarksDidCloseFolderNotification object:[aBookmarksHome bookmarks]];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:ATBookmarksWillEditItemNotification object:[aBookmarksHome bookmarks]];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:ATBookmarksDidEditItemNotification object:[aBookmarksHome bookmarks]];
     }
     
-    if (aBookmarks && ![aBookmarks isBell])
+    if (aBookmarksHome && ![aBookmarksHome isBell])
     {
-        [self setRoot:[aBookmarks root]];
-        [self setCountOfItems:[aBookmarks count]];
+        [self setRoot:[[aBookmarksHome bookmarks] root]];
+        [self setCountOfItems:[[aBookmarksHome bookmarks] count]];
 
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bookmarksItemsDidInsert:) name:ATBookmarksDidInsertNotification object:aBookmarks];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bookmarksItemsDidMove:) name:ATBookmarksDidMoveNotification object:aBookmarks];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bookmarksItemsDidRemove:) name:ATBookmarksDidRemoveNotification object:aBookmarks];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bookmarksDidChange:) name:ATBookmarksDidChangeNotification object:aBookmarks];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bookmarksFolderDidOpenOrClose:) name:ATBookmarksDidOpenFolderNotification object:aBookmarks];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bookmarksFolderDidOpenOrClose:) name:ATBookmarksDidCloseFolderNotification object:aBookmarks];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bookmarksWillOrDidEditItem:) name:ATBookmarksWillEditItemNotification object:aBookmarks];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bookmarksWillOrDidEditItem:) name:ATBookmarksDidEditItemNotification object:aBookmarks];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bookmarksItemsDidInsert:) name:ATBookmarksDidInsertNotification object:[aBookmarksHome bookmarks]];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bookmarksItemsDidMove:) name:ATBookmarksDidMoveNotification object:[aBookmarksHome bookmarks]];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bookmarksItemsDidRemove:) name:ATBookmarksDidRemoveNotification object:[aBookmarksHome bookmarks]];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bookmarksDidChange:) name:ATBookmarksDidChangeNotification object:[aBookmarksHome bookmarks]];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bookmarksFolderDidOpenOrClose:) name:ATBookmarksDidOpenFolderNotification object:[aBookmarksHome bookmarks]];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bookmarksFolderDidOpenOrClose:) name:ATBookmarksDidCloseFolderNotification object:[aBookmarksHome bookmarks]];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bookmarksWillOrDidEditItem:) name:ATBookmarksWillEditItemNotification object:[aBookmarksHome bookmarks]];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bookmarksWillOrDidEditItem:) name:ATBookmarksDidEditItemNotification object:[aBookmarksHome bookmarks]];
     }
     
-    [bookmarks autorelease];
-    bookmarks = [aBookmarks retain];
+    [bookmarksHome autorelease];
+    bookmarksHome = [aBookmarksHome retain];
+}
+
+- (ATBookmarksHome *)bookmarksHome
+{
+    if ([bookmarksHome isBell]) [self setBookmarksHome:[(NUBell *)bookmarksHome object]];
+    return bookmarksHome;
 }
 
 - (ATBookmarks *)bookmarks
 {
-    if ([bookmarks isBell]) [self setBookmarks:[(NUBell *)bookmarks object]];
-    
-	return bookmarks;
+	return [[self bookmarksHome] bookmarks];
 }
 
 - (ATBinder *)root
@@ -242,17 +250,25 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 {
 	NSMenu *aMenu = [[[NSMenu alloc] initWithTitle:@"bookmarkMenu"] autorelease];
 	
-	[aMenu insertItemWithTitle:NSLocalizedString(@"Open Bookmarks Of Selected Binder With Safari", nil) action:@selector(openBookmarksInSelectedBinderWithSafari:) keyEquivalent:@"" atIndex:0];
-	[aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookmarks With Safari", nil) action:@selector(openSelectedBookmarksWithSafari:) keyEquivalent:@"" atIndex:1];
-	[aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookmarks With Safari With New Tabs", nil) action:@selector(openSelectedBookmarksWithSafariWithNewTabs:) keyEquivalent:@"" atIndex:2];
-    
-    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Bookmarks Of Selected Binder With Chrome", nil) action:@selector(openBookmarksInSelectedBinderWithChrome:) keyEquivalent:@"" atIndex:3];
-    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookmarks With Chrome", nil) action:@selector(openSelectedBookmarksWithChrome:) keyEquivalent:@"" atIndex:4];
-    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookmarks With Chrome With New Tabs", nil) action:@selector(openSelectedBookmarksWithChromeWithNewTabs:) keyEquivalent:@"" atIndex:5];
-    
-    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Bookmarks Of Selected Binder With Firefox", nil) action:@selector(openBookmarksInSelectedBinderWithFirefox:) keyEquivalent:@"" atIndex:6];
-    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookarmks With Firefox With New Tabs", nil) action:@selector(openSelectedBookmarksWithFirefoxWithNewTabs:) keyEquivalent:@"" atIndex:7];
+//	[aMenu insertItemWithTitle:NSLocalizedString(@"Open Bookmarks Of Selected Binder With Safari", nil) action:@selector(openBookmarksInSelectedBinderWithSafari:) keyEquivalent:@"" atIndex:0];
+//	[aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookmarks With Safari", nil) action:@selector(openSelectedBookmarksWithSafari:) keyEquivalent:@"" atIndex:1];
+//	[aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookmarks With Safari With New Tabs", nil) action:@selector(openSelectedBookmarksWithSafariWithNewTabs:) keyEquivalent:@"" atIndex:2];
+//    
+//    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Bookmarks Of Selected Binder With Chrome", nil) action:@selector(openBookmarksInSelectedBinderWithChrome:) keyEquivalent:@"" atIndex:3];
+//    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookmarks With Chrome", nil) action:@selector(openSelectedBookmarksWithChrome:) keyEquivalent:@"" atIndex:4];
+//    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookmarks With Chrome With New Tabs", nil) action:@selector(openSelectedBookmarksWithChromeWithNewTabs:) keyEquivalent:@"" atIndex:5];
+//    
+//    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Bookmarks Of Selected Binder With Firefox", nil) action:@selector(openBookmarksInSelectedBinderWithFirefox:) keyEquivalent:@"" atIndex:6];
+//    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookarmks With Firefox With New Tabs", nil) action:@selector(openSelectedBookmarksWithFirefoxWithNewTabs:) keyEquivalent:@"" atIndex:7];
 	
+    __block NSUInteger aMenuItemIndex = 0;
+    
+    [[[[self bookmarksHome] preferences] menuItemDescriptionsForOpenBookmarksWith] enumerateObjectsUsingBlock:^(ATMenuItemDescription *aMenuItemDescription, NSUInteger idx, BOOL *stop) {
+        
+        if ([aMenuItemDescription isEnabled])
+            [aMenu insertItemWithTitle:[aMenuItemDescription localizedTitle] action:[aMenuItemDescription selector] keyEquivalent:@"" atIndex:aMenuItemIndex++];
+    }];
+    
 	return aMenu;
 }
 
@@ -287,7 +303,20 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 	if ([anItem isFolder])
 		;
 	else if ([anItem isBookmark] && [anItem url])
-		[self openURLsInSafari:[self arrayWithURLsOf:[NSArray arrayWithObject:anItem]]];//[self runAppleScriptNamed:@"openURLInSafari" handlerName:@"openURLInSafari" argment:[NSAppleEventDescriptor descriptorWithString:[anItem urlString]]];
+    {
+        SEL anAction = [[[[self bookmarksHome] preferences] menuItemDescriptionWhenDoubleClick] selector];
+        NSArray *aURLs = [self arrayWithURLsOf:[NSArray arrayWithObject:anItem]];
+        if (anAction == @selector(openSelectedBookmarksWithSafari:))
+            [self openURLsInSafari:aURLs];
+        else if (anAction == @selector(openSelectedBookmarksWithSafariWithNewTabs:))
+            [self openURLsInSafari:aURLs withNewTabs:YES];
+        else if (anAction == @selector(openSelectedBookmarksWithChrome:))
+            [self openURLsInChrome:aURLs];
+        else if (anAction == @selector(openSelectedBookmarksWithChromeWithNewTabs:))
+            [self openURLsInChrome:aURLs withNewTabs:YES];
+        else if (anAction == @selector(openSelectedBookmarksWithFirefoxWithNewTabs:))
+            [self openURLsInFirefoxWithNewTabs:aURLs];
+    }
 }
 
 - (BOOL)openBookmarksInSelectedBinderWithSafari

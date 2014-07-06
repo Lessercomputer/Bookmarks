@@ -47,8 +47,12 @@
 
 - (void)setModel:(ATWebIconLoader *)aModel
 {
+    [controller setContent:nil];
+    [model setDelegate:nil];
+    
     [model release];
     model = [aModel retain];
+    
     [model setDelegate:self];
     [controller setContent:aModel];
 }

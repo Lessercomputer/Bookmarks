@@ -19,6 +19,7 @@
 @class ATInspectorWindowController;
 @class ATEditor;
 @class ATBookmarksImporter;
+@class ATBookmarksWindowController;
 
 @interface ATBookmarksDocument : NSDocument
 {
@@ -31,7 +32,7 @@
 
 - (void)openWindowWith:(ATBookmarksPresentation *)aPresentation;
 - (void)openWindowFor:(ATBinder *)aBinder;
-- (void)openInspectorWindowFor:(NSArray *)anEditors;
+- (void)openInspectorWindowFor:(NSArray *)anEditors bookmarksWindowController:(ATBookmarksWindowController *)aBookmarksWindowController;
 
 - (ATInspectorWindowController *)inspectorWindowControllerForEditor:(ATEditor *)anEditor;
 
@@ -40,12 +41,18 @@
 
 - (void)importBookmarksUsingImporter:(ATBookmarksImporter *)anImporter;
 
+- (void)preferencesDidChangeNotification:(NSNotification *)aNotification;
+
+- (void)cancelWebIconLoaderIfNeeded;
+
 @end
 
 @interface ATBookmarksDocument (Actions)
 
 - (IBAction)showRootWindow:(id)sender;
 - (IBAction)openWindow:(id)sender;
+
+- (IBAction)showDocumentPreferences:(id)sender;
 
 - (IBAction)importFirefoxBookmarks:(id)sender;
 - (void)importerImportingFinished:(ATFirefoxHTMLBookmarksImporter *)anImporter;
@@ -71,6 +78,8 @@
 - (void)setBookmarksPresentationIDPool:(ATIDPool *)aPool;
 
 - (NSArray *)orderedWindows;
+- (NSWindow *)mostFrontBookmarksWindow;
+- (NSUInteger)bookmarksWindowCount;
 
 @end
 
