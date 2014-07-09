@@ -43,6 +43,8 @@
 
 - (NSIndexSet *)indexesOf:(NSArray *)anItems;
 
+- (NSIndexSet *)allIndexesOfItem:(ATItem *)anItem;
+
 - (id)itemFor:(NSUInteger)anID;
 
 @end

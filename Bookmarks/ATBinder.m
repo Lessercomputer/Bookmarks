@@ -208,6 +208,13 @@
 	return anIndexes;
 }
 
+- (NSIndexSet *)allIndexesOfItem:(ATItem *)anItem
+{
+    return [[self children] indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        return [anItem isEqualTo:obj];
+    }];
+}
+
 - (id)itemFor:(NSUInteger)anID
 {
 	if ([super itemFor:anID])

@@ -57,6 +57,7 @@
     {
         //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentationDidChange:) name:ATBookmarksDidChangeNotification object:bookmarksPresentaion];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentationDidChange:) name:ATBookmarksPresentationDidChangeNotification object:bookmarksPresentaion];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bookmarksDidEditItem:) name:ATBookmarksDidEditItemNotification object:bookmarksPresentaion];
     }
 }
 
@@ -66,14 +67,30 @@
     [self updateBrowser:aRootChanged];
 }
 
+- (void)bookmarksDidEditItem:(NSNotification *)aNotification
+{
+    ATItem *anItem = [aNotification userInfo][@"item"];
+    NSArray *aBinders = [anItem binders];
+    
+    for (NSUInteger i = 0; i < [[self bookmarksPresentation] binderCount]; i++)
+    {
+        ATBinder *aBinder = [[self bookmarksPresentation] binderAt:i];
+        
+        if ([aBinders containsObject:aBinder])
+            [browser reloadDataForRowIndexes:[aBinder allIndexesOfItem:anItem] inColumn:i];
+    }
+}
+
 - (void)updateBrowser:(BOOL)aRootChanged
 {
     //[[self browser] loadColumnZero];
     
     if (![self updatingIsEnabled]) return;
     
+#ifdef DEBUG
     NSLog(@"updateBrowser: aRootChanged = %@", aRootChanged ? @"YES" : @"NO");
-
+#endif
+    
     [self disableUpdating];
     
     ATBookmarksPresentation *aPresentaion = [self bookmarksPresentation];

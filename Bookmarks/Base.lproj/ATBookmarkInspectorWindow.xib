@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
@@ -15,14 +15,14 @@
         <window title="情報" allowsToolTipsWhenApplicationIsInactive="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="1">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="480" height="290"/>
+            <rect key="contentRect" x="196" y="240" width="480" height="248"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="2">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="290"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="248"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6">
-                        <rect key="frame" x="70" y="253" width="36" height="17"/>
+                        <rect key="frame" x="70" y="211" width="36" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="32" id="13"/>
@@ -34,7 +34,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="10">
-                        <rect key="frame" x="70" y="228" width="36" height="17"/>
+                        <rect key="frame" x="70" y="186" width="36" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="URL:" id="11">
                             <font key="font" metaFont="system"/>
@@ -42,8 +42,8 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="86">
-                        <rect key="frame" x="44" y="203" width="61" height="17"/>
+                    <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="86">
+                        <rect key="frame" x="44" y="161" width="61" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="アイコン:" id="87">
                             <font key="font" metaFont="system"/>
@@ -51,8 +51,8 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="20">
-                        <rect key="frame" x="44" y="170" width="61" height="17"/>
+                    <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="20">
+                        <rect key="frame" x="44" y="128" width="61" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="追加日時:" id="21">
                             <font key="font" metaFont="system"/>
@@ -60,8 +60,8 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="34">
-                        <rect key="frame" x="111" y="248" width="357" height="22"/>
+                    <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="34">
+                        <rect key="frame" x="111" y="206" width="357" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="357" id="226"/>
@@ -78,10 +78,11 @@
                                     <string key="NSValueTransformerName">ATNullBetweenNilTransformer</string>
                                 </dictionary>
                             </binding>
+                            <outlet property="nextKeyView" destination="43" id="DrP-d7-vqW"/>
                         </connections>
                     </textField>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="43">
-                        <rect key="frame" x="111" y="223" width="357" height="22"/>
+                    <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="43">
+                        <rect key="frame" x="111" y="181" width="357" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="45">
                             <font key="font" metaFont="system"/>
@@ -95,11 +96,11 @@
                                     <string key="NSValueTransformerName">ATNullBetweenNilTransformer</string>
                                 </dictionary>
                             </binding>
-                            <outlet property="nextKeyView" destination="65" id="306"/>
+                            <outlet property="nextKeyView" destination="242" id="Kre-8n-uei"/>
                         </connections>
                     </textField>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="60">
-                        <rect key="frame" x="37" y="95" width="61" height="17"/>
+                    <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="60">
+                        <rect key="frame" x="37" y="100" width="61" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="コメント:" id="61">
                             <font key="font" metaFont="system"/>
@@ -107,14 +108,14 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64">
-                        <rect key="frame" x="111" y="56" width="357" height="56"/>
+                    <scrollView ambiguous="YES" misplaced="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64">
+                        <rect key="frame" x="111" y="61" width="357" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <clipView key="contentView" id="a7W-2b-OU6">
+                        <clipView key="contentView" ambiguous="YES" misplaced="YES" id="a7W-2b-OU6">
                             <rect key="frame" x="1" y="1" width="340" height="54"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView importsGraphics="NO" richText="NO" findStyle="panel" continuousSpellChecking="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="65">
+                                <textView ambiguous="YES" importsGraphics="NO" richText="NO" findStyle="panel" continuousSpellChecking="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="65">
                                     <rect key="frame" x="0.0" y="0.0" width="340" height="54"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -144,11 +145,11 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <connections>
-                            <outlet property="nextKeyView" destination="34" id="221"/>
+                            <outlet property="nextKeyView" destination="34" id="Vc7-m3-fsS"/>
                         </connections>
                     </scrollView>
-                    <imageView translatesAutoresizingMaskIntoConstraints="NO" id="77">
-                        <rect key="frame" x="108" y="191" width="32" height="32"/>
+                    <imageView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="77">
+                        <rect key="frame" x="108" y="149" width="32" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="26" id="205"/>
@@ -163,25 +164,7 @@
                             </binding>
                         </connections>
                     </imageView>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="117">
-                        <rect key="frame" x="18" y="145" width="87" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="最終訪問日時:" id="118">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="135">
-                        <rect key="frame" x="18" y="120" width="87" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="最終変更日時:" id="136">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="161">
+                    <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="161">
                         <rect key="frame" x="269" y="13" width="105" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="キャンセル" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="162">
@@ -193,7 +176,7 @@
                             <outlet property="nextKeyView" destination="165" id="222"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="165">
+                    <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="165">
                         <rect key="frame" x="374" y="13" width="100" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
@@ -211,8 +194,8 @@ DQ
                             <outlet property="nextKeyView" destination="161" id="223"/>
                         </connections>
                     </button>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="242">
-                        <rect key="frame" x="111" y="167" width="169" height="22"/>
+                    <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="242">
+                        <rect key="frame" x="111" y="125" width="169" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="169" id="260"/>
@@ -229,40 +212,7 @@ DQ
                                     <string key="NSValueTransformerName">ATNullBetweenNilTransformer</string>
                                 </dictionary>
                             </binding>
-                        </connections>
-                    </textField>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="262">
-                        <rect key="frame" x="111" y="142" width="169" height="22"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="264">
-                            <dateFormatter key="formatter" dateStyle="short" timeStyle="short" id="265"/>
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                        <connections>
-                            <binding destination="3" name="value" keyPath="selection.value.lastVisitDate" id="281">
-                                <dictionary key="options">
-                                    <string key="NSValueTransformerName">ATNullBetweenNilTransformer</string>
-                                </dictionary>
-                            </binding>
-                        </connections>
-                    </textField>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="274">
-                        <rect key="frame" x="111" y="117" width="169" height="22"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="275">
-                            <dateFormatter key="formatter" dateStyle="short" timeStyle="short" id="276"/>
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                        <connections>
-                            <binding destination="3" name="value" keyPath="selection.value.lastModifiedDate" id="282">
-                                <dictionary key="options">
-                                    <string key="NSValueTransformerName">ATNullBetweenNilTransformer</string>
-                                </dictionary>
-                            </binding>
+                            <outlet property="nextKeyView" destination="65" id="sQD-8p-sTE"/>
                         </connections>
                     </textField>
                 </subviews>
@@ -275,20 +225,15 @@ DQ
                     <constraint firstItem="43" firstAttribute="top" secondItem="10" secondAttribute="top" id="52"/>
                     <constraint firstItem="86" firstAttribute="top" secondItem="10" secondAttribute="bottom" constant="8" symbolic="YES" id="93"/>
                     <constraint firstItem="20" firstAttribute="leading" secondItem="86" secondAttribute="leading" id="126"/>
-                    <constraint firstItem="135" firstAttribute="top" secondItem="117" secondAttribute="bottom" constant="8" symbolic="YES" id="142"/>
                     <constraint firstItem="6" firstAttribute="top" secondItem="2" secondAttribute="top" constant="20" symbolic="YES" id="145"/>
                     <constraint firstItem="6" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="72" id="146"/>
                     <constraint firstItem="60" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="39" id="147"/>
-                    <constraint firstItem="135" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" symbolic="YES" id="148"/>
-                    <constraint firstItem="117" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" symbolic="YES" id="149"/>
                     <constraint firstItem="34" firstAttribute="top" secondItem="2" secondAttribute="top" constant="20" symbolic="YES" id="152"/>
-                    <constraint firstItem="60" firstAttribute="top" secondItem="135" secondAttribute="bottom" constant="8" symbolic="YES" id="155"/>
                     <constraint firstItem="64" firstAttribute="trailing" secondItem="43" secondAttribute="trailing" id="158"/>
                     <constraint firstItem="165" firstAttribute="trailing" secondItem="64" secondAttribute="trailing" id="173"/>
                     <constraint firstItem="165" firstAttribute="leading" secondItem="161" secondAttribute="trailing" constant="12" symbolic="YES" id="178"/>
                     <constraint firstAttribute="bottom" secondItem="165" secondAttribute="bottom" constant="20" symbolic="YES" id="187"/>
                     <constraint firstAttribute="bottom" secondItem="161" secondAttribute="bottom" constant="20" symbolic="YES" id="191"/>
-                    <constraint firstItem="64" firstAttribute="leading" secondItem="135" secondAttribute="trailing" constant="8" symbolic="YES" id="192"/>
                     <constraint firstItem="64" firstAttribute="top" secondItem="60" secondAttribute="top" id="193"/>
                     <constraint firstItem="77" firstAttribute="top" secondItem="86" secondAttribute="top" id="201"/>
                     <constraint firstItem="77" firstAttribute="leading" secondItem="86" secondAttribute="trailing" constant="8" symbolic="YES" id="202"/>
@@ -296,15 +241,7 @@ DQ
                     <constraint firstItem="20" firstAttribute="centerY" secondItem="242" secondAttribute="centerY" id="256"/>
                     <constraint firstItem="242" firstAttribute="leading" secondItem="20" secondAttribute="trailing" constant="8" symbolic="YES" id="258"/>
                     <constraint firstItem="242" firstAttribute="top" secondItem="2" secondAttribute="top" constant="101" id="259"/>
-                    <constraint firstItem="262" firstAttribute="trailing" secondItem="242" secondAttribute="trailing" id="268"/>
-                    <constraint firstItem="262" firstAttribute="leading" secondItem="242" secondAttribute="leading" id="269"/>
-                    <constraint firstItem="262" firstAttribute="leading" secondItem="117" secondAttribute="trailing" constant="8" symbolic="YES" id="270"/>
-                    <constraint firstItem="117" firstAttribute="top" secondItem="20" secondAttribute="bottom" constant="8" symbolic="YES" id="271"/>
                     <constraint firstAttribute="bottom" secondItem="64" secondAttribute="bottom" constant="56" id="272"/>
-                    <constraint firstItem="117" firstAttribute="centerY" secondItem="262" secondAttribute="centerY" id="273"/>
-                    <constraint firstItem="274" firstAttribute="trailing" secondItem="262" secondAttribute="trailing" id="278"/>
-                    <constraint firstItem="274" firstAttribute="leading" secondItem="135" secondAttribute="trailing" constant="8" symbolic="YES" id="279"/>
-                    <constraint firstItem="274" firstAttribute="centerY" secondItem="135" secondAttribute="centerY" id="280"/>
                 </constraints>
             </view>
             <connections>
