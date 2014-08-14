@@ -67,7 +67,7 @@
 	aMarkup = [scanner scanMarkup];//ƒRƒƒ“ƒg‚ğ“Ç‚İ”ò‚Î‚·
 	aMarkup = [scanner scanMarkup];//META‚ğ“Ç‚İ”ò‚Î‚·
 	
-	netscapeBookmarkFile1Element = [[ATElement alloc] initWithName:@"netscape-bookmark-file-1" documentEntity:self scanner:scanner];
+	netscapeBookmarkFile1Element = (ATNETSCAPEBookmarkFile1Element *)[[ATElement alloc] initWithName:@"netscape-bookmark-file-1" documentEntity:self scanner:scanner];
 	
 	return [netscapeBookmarkFile1Element parse];
 }

@@ -7,10 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ATContent.h"
 
 @class ATProcessIndicator;
 
-@interface ATDeclaredContent : NSObject
+@interface ATDeclaredContent : NSObject <ATContent>
 {
 	NSString *content;
 }

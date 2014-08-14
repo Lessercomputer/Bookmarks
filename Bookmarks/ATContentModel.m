@@ -8,6 +8,7 @@
 
 #import "ATContentModel.h"
 #import "ATModelGroup.h"
+#import "ATProcessIndicator.h"
 
 
 @implementation ATContentModel

@@ -14,7 +14,6 @@ static NSCharacterSet *numberCharacterSet;
 static NSCharacterSet *nameCharacterSet;
 
 static NSCharacterSet *dataCharacterSet;
-static NSCharacterSet *dedicatedDataCharacterSet;
 static NSCharacterSet *SGMLCharacterSet;
 static NSCharacterSet *SGMLCharacterSetExceptingHyphen;
 
@@ -87,7 +86,7 @@ static NSDictionary *characterReferenceDictionary;
 
 - (ATMarkup *)scanStartTagFor:(NSString *)aName
 {
-	unsigned aPrevLoc = [scanner scanLocation];
+	NSUInteger aPrevLoc = [scanner scanLocation];
 	ATMarkup *aMarkup = [self scanStartTag];
 	
 	if (aMarkup && [aMarkup nameIs:aName])
@@ -105,7 +104,7 @@ static NSDictionary *characterReferenceDictionary;
 
 - (ATMarkup *)scanEndTagFor:(NSString *)aName
 {
-	unsigned aPrevLoc = [scanner scanLocation];
+	NSUInteger aPrevLoc = [scanner scanLocation];
 	ATMarkup *aMarkup = [self scanEndTag];
 	
 	if (aMarkup && [aMarkup nameIs:aName])
@@ -123,7 +122,7 @@ static NSDictionary *characterReferenceDictionary;
 
 - (ATMarkup *)scanMarkupFor:(NSString *)aName
 {
-	unsigned aPrevLoc = [scanner scanLocation];
+	NSUInteger aPrevLoc = [scanner scanLocation];
 	ATMarkup *aMarkup = [self scanMarkup];
 	
 	if (aMarkup && [aMarkup nameIs:aName])
@@ -189,7 +188,7 @@ static NSDictionary *characterReferenceDictionary;
 
 - (ATMarkup *)scanStartTag
 {
-	unsigned aPrevLoc = [scanner scanLocation];
+	NSUInteger aPrevLoc = [scanner scanLocation];
 	BOOL aScanningSucceed = NO;
 	ATMarkup *aMarkup = nil;
 	
@@ -297,7 +296,7 @@ static NSDictionary *characterReferenceDictionary;
 {
 	NSString *aReturningName = nil;
 	NSString *aReturningAttribute = nil;
-	unsigned aPrevLoc = [scanner scanLocation];
+	NSUInteger aPrevLoc = [scanner scanLocation];
 	BOOL aWhitespacesSkipped = NO;
 	
 	aWhitespacesSkipped = [scanner scanCharactersFromSet:[NSCharacterSet whitespaceCharacterSet] intoString:nil];
@@ -322,7 +321,7 @@ static NSDictionary *characterReferenceDictionary;
 {
 	if (![scanner isAtEnd] && [nameStartCharacterSet characterIsMember:[self currentCharacter]])
 	{
-		unsigned aLoc = [scanner scanLocation];
+		NSUInteger aLoc = [scanner scanLocation];
 		
 		[scanner scanCharactersFromSet:nameCharacterSet intoString:nil];
 		
@@ -369,7 +368,7 @@ static NSDictionary *characterReferenceDictionary;
 
 - (NSString *)scanCharacterReference
 {
-	unsigned aPrevLoc = [scanner scanLocation];
+	NSUInteger aPrevLoc = [scanner scanLocation];
 	NSString *aName = nil;
 	
 	if (([scanner scanString:@"&#" intoString:nil] || [scanner scanString:@"&" intoString:nil]) && ((aName = [self scanName]) || (aName = [self scanNumber])) && [scanner scanString:@";" intoString:nil])

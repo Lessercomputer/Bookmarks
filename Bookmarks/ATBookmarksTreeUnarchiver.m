@@ -11,6 +11,7 @@
 #import "ATBinder.h"
 #import "ATBookmarksTreeEnumerator.h"
 #import "ATBookmarks.h"
+#import "ATBookmark.h"
 
 
 @implementation ATBookmarksTreeUnarchiver
@@ -20,7 +21,7 @@
 	[super init];
 	
 	archive = [anArchive retain];
-	root = [ATBinder newWith:[anArchive objectForKey:@"root"]];
+	root = [ATBinder newWith:anArchive[@"root"]];
 	currentBinder = root;
 	itemsDictionary = [[NSMutableDictionary dictionaryWithObject:root forKey:[root numberWithItemID]] retain];
 	
@@ -45,7 +46,7 @@
 {
 	ATIDPool *anIDPool = [[[ATIDPool alloc] initWith:[archive objectForKey:@"idPool"]] autorelease];
 	ATBookmarksTreeEnumerator *anEnumerator = [[[ATBookmarksTreeEnumerator alloc] initWithRoot:[archive objectForKey:@"root"] delegate:self upSelector:@selector(enumeratorGoUp)] autorelease];
-	ATBinder *anItemDictionary = nil;
+	NSDictionary *anItemDictionary = nil;
 	
 	while (anItemDictionary = [anEnumerator nextObject])
 	{
@@ -55,11 +56,11 @@
 		{
 			anItem = [[ATBinder newWith:anItemDictionary] autorelease];
 			[currentBinder add:anItem];
-			currentBinder = anItem;
+			currentBinder = (ATBinder *)anItem;
 		}
 		else
 		{
-			anItem = [[ATBookmark newWith:anItemDictionary] autorelease];
+			anItem = (ATItem *)[[ATBookmark newWith:anItemDictionary] autorelease];
 			[currentBinder add:anItem];
 		}
 		
@@ -71,7 +72,7 @@
 
 - (void)enumeratorGoUp
 {
-	currentBinder = [currentBinder parent];
+	currentBinder = [[currentBinder binders] firstObject];
 }
 
 @end

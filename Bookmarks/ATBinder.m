@@ -110,7 +110,7 @@
 
 - (NSUInteger)countOfDescendant
 {
-	unsigned aCountOfDescendant = [self count];
+	NSUInteger aCountOfDescendant = [self count];
 	NSEnumerator *anEnumerator = [[self children] objectEnumerator];
 	id anItem = nil;
 	
@@ -128,7 +128,7 @@
 	return [[self children] objectAtIndex:anIndex];
 }
 
-- (id)descendantAt:(unsigned *)anIndexRef
+- (id)descendantAt:(NSUInteger *)anIndexRef
 {
 	NSEnumerator *anEnumerator = [[self children] objectEnumerator];
 	ATItem *aChild = nil, *aDescendant = nil;
@@ -147,7 +147,7 @@
 			
 			if ([aChild isFolder])
 			{
-				aDescendant = [aChild descendantAt:anIndexRef];
+				aDescendant = [(ATBinder *)aChild descendantAt:anIndexRef];
 			
 				if (aDescendant)
 					aDescendantFound = YES;
@@ -366,14 +366,12 @@
 
 - (void)add:(id)anItem
 {
-	[anItem setParent:self];
 	[anItem addBinder:self];
 	[[self children] addObject:anItem];
 }
 
 - (void)insert:(id)anItem at:(NSUInteger)anIndex
 {
-	[anItem setParent:self];
 	[anItem addBinder:self];
 	[[self children] insertObject:anItem atIndex:anIndex];
 }
@@ -387,7 +385,6 @@
 
 - (void)remove:(id)anItem
 {
-	[anItem setParent:nil];
 	[anItem removeBinder:self];
 	[[self children] removeObject:anItem];
 }

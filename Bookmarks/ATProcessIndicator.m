@@ -7,7 +7,8 @@
 //
 
 #import "ATProcessIndicator.h"
-
+#import "ATContentModel.h"
+#import "ATElementToken.h"
 
 @implementation ATProcessIndicator
 

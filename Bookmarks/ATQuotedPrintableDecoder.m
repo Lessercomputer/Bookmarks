@@ -272,8 +272,8 @@
 
 - (void)removeTransportPadding
 {
-	int i = [outputData length] - 1;
-	unsigned aTransportPaddingCount = 0;
+	NSInteger i = [outputData length] - 1;
+	NSUInteger aTransportPaddingCount = 0;
 	
 	for ( ; i > 0 && [self transportPaddingIsAt:i] ; i--)
 	{

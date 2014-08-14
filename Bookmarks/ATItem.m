@@ -119,22 +119,9 @@
 	return [NSNumber numberWithUnsignedInteger:[self itemID]];
 }
 
-- (ATBinder *)parent
-{
-	return [self isRoot] ? nil : parent;
-}
-
 - (NSMutableArray *)binders
 {
     return NUGetIvar(&binders);
-}
-
-- (ATBookmarks *)bookmarks
-{
-	if ([self isRoot])
-		return (ATBookmarks *)parent;
-	else
-		return [[self parent] bookmarks];
 }
 
 - (void)setName:(NSString *)aName
@@ -169,43 +156,6 @@
 {
     NUSetIvar(&addDate, aDate);
     [[[self bell] playLot] markChangedObject:self];
-}
-
-- (NSUInteger)index
-{
-	return [[self parent] indexOf:self];
-}
-
-- (ATBinder *)root
-{
-	id anItem = self;
-	
-	while (![anItem isRoot])
-	{
-		anItem = [anItem parent];
-	}
-	
-	return anItem;
-}
-
-- (NSIndexPath *)indexPath
-{
-	if ([self isRoot])
-		return nil;
-	else
-	{
-		NSIndexPath *anIndexPath = [[self parent] indexPath];
-		
-		if (anIndexPath)
-			return [anIndexPath indexPathByAddingIndex:[self index]];
-		else
-			return [NSIndexPath indexPathWithIndex:[self index]];
-	}
-}
-
-- (void)writeIndexPathOn:(NSMutableArray *)anArray
-{
-	[anArray addObject:[self indexPath]];
 }
 
 - (id)itemFor:(NSUInteger)anID
@@ -261,28 +211,6 @@
 
 @implementation ATItem (Modifying)
 
-- (NSUInteger)moveTo:(NSUInteger)anIndex of:(ATBinder *)aDestination from:(ATBinder *)aSource on:(ATBookmarks *)aBookmarks
-{
-	NSUndoManager *anUndoManager = [aBookmarks undoManager];
-	unsigned aFixedIndex = anIndex, anIndexToUndoOrRedo = [aSource indexOf:self];
-	
-	if ([aSource isEqual:aDestination])
-	{
-		if (anIndexToUndoOrRedo < anIndex)//現在位置よりも後ろに移動
-			aFixedIndex = anIndex - 1;
-		else if (anIndex < anIndexToUndoOrRedo)//現在位置よりも前に移動
-			anIndexToUndoOrRedo += 1;
-	}
-
-	[self retain];
-	[[anUndoManager prepareWithInvocationTarget:self] moveTo:anIndexToUndoOrRedo of:aSource from:aDestination on:aBookmarks];
-	[aSource remove:self];
-	[aDestination insert:self at:aFixedIndex];
-	[self release];
-	
-	return aFixedIndex;
-}
-
 @end
 
 @implementation ATItem (Testing)
@@ -295,12 +223,6 @@
 - (BOOL)isFolder
 {
 	return NO;
-}
-
-- (BOOL)isRoot
-{
-	//return [self parent] ? NO : YES;
-	return [parent isKindOfClass:[ATBookmarks class]] || !parent;
 }
 
 - (BOOL)hasItemID
@@ -318,52 +240,11 @@
 	return [aBinder indexOf:self] == NSNotFound;
 }
 
-- (BOOL)isDescendantOf:(ATBinder *)aFolder
-{
-	ATBinder *aParent = [self parent];
-	
-	while (aParent && ![aParent isEqual:aFolder])
-	{
-		aParent = [aParent parent];
-	}
-	
-	return aParent ? YES : NO;
-}
-
-- (BOOL)isDescendantIn:(NSArray *)anItems
-{
-	NSEnumerator *anEnumerator = [anItems objectEnumerator];
-	id anItem = nil;
-	BOOL anIsDescendant = NO;
-	
-	while (!anIsDescendant && (anItem = [anEnumerator nextObject]))
-	{
-		anIsDescendant = [self isDescendantOf:anItem];
-	}
-	
-	return anIsDescendant;
-}
-
-- (BOOL)eachAncestorsIsOpen
-{
-	return [self isRoot] || ([[self parent] isOpen] && [[self parent] eachAncestorsIsOpen]);
-}
-
 - (NSComparisonResult)compareItemID:(ATItem *)anAnotherItem
 {
 	if ([self itemID] < [anAnotherItem itemID])
 		return NSOrderedAscending;
 	else if ([self itemID] > [anAnotherItem itemID])
-		return NSOrderedDescending;
-	else
-		return NSOrderedSame;
-}
-
-- (NSComparisonResult)compareIndex:(ATItem *)anAnotherItem	
-{
-	if ([self index] < [anAnotherItem index])
-		return NSOrderedAscending;
-	else if ([self index] > [anAnotherItem index])
 		return NSOrderedDescending;
 	else
 		return NSOrderedSame;
@@ -435,89 +316,6 @@
 
 @implementation ATItem (Selecting)
 
-+ (NSArray *)minimum:(NSArray *)anItems
-{
-	NSEnumerator *enumerator = [anItems objectEnumerator];
-	id item  = nil;
-	NSMutableArray *minimumItems = [NSMutableArray array];
-
-	while (item  = [enumerator nextObject])
-	{
-		if (![item isDescendantIn:anItems])
-			[minimumItems addObject:item];
-	}
-	
-	return minimumItems;
-}
-
-+ (NSArray *)categorizeByParentAndIndex:(NSArray *)anItems
-{
-	NSArray *aCategorizedByParentItems = [self categorizeByParent:[self minimum:anItems]];
-	NSEnumerator *anEnum = [aCategorizedByParentItems objectEnumerator];
-	id anItem = nil;
-	NSMutableArray *aCategorizedByParentAndIndexItems = [NSMutableArray array];
-
-	while (anItem = [anEnum nextObject])
-	{
-		[aCategorizedByParentAndIndexItems addObject:[self categorizeByIndex:anItems]];
-	}
-	
-	return aCategorizedByParentAndIndexItems;
-}
-
-+ (NSArray *)categorizeByParent:(NSArray *)anItems
-{
-	NSMutableDictionary *aCategorizedDict = [NSMutableDictionary dictionary];
-	NSEnumerator *anEnum = [anItems objectEnumerator];
-	id anItem = nil;
-
-	while (anItem = [anEnum nextObject])
-	{
-		NSNumber *anItemID = [NSNumber numberWithUnsignedInteger:[anItem itemID]];
-		NSMutableArray *aCategorizedItems = [aCategorizedDict objectForKey:anItemID];
-
-		if (!aCategorizedItems)
-		{
-			aCategorizedItems = [NSMutableArray array];
-			[aCategorizedDict setObject:aCategorizedItems forKey:anItemID];
-		}
-
-		[aCategorizedItems addObject:anItem];
-	}
-	
-	return [aCategorizedDict allValues];
-}
-
-+ (NSArray *)categorizeByIndex:(NSArray *)anItems
-{
-	NSMutableArray *aCategorizedItems = [NSMutableArray array];
-	unsigned i = 0;
-
-	while (i < [anItems count])
-	{
-		BOOL indexContinued = YES;
-		id aFirstItem = [anItems objectAtIndex:i];
-		unsigned anIndex = [aFirstItem index];
-
-		[aCategorizedItems addObject:[NSMutableArray array]];
-		[[aCategorizedItems lastObject] addObject:aFirstItem];
-
-		for (++i ; i < [anItems count] && indexContinued ; i++)
-		{
-			id aNextItem = [anItems objectAtIndex:i];
-
-			indexContinued = (++anIndex == [aNextItem index]);
-
-			if (indexContinued)
-				[[aCategorizedItems lastObject] addObject:aNextItem];
-			else
-				i--;
-		}
-	}
-	
-	return aCategorizedItems;
-}
-
 + (NSArray *)bindersIn:(NSArray *)anItems
 {
 	NSMutableArray *aBinders = [NSMutableArray array];
@@ -541,11 +339,6 @@
 {
 	itemID = anID;
     [[[self bell] playLot] markChangedObject:self];
-}
-
-- (void)setParent:(ATBinder *)aFolder;
-{
-	parent = aFolder;
 }
 
 - (void)addBinder:(ATBinder *)aBinder
@@ -577,8 +370,6 @@
 	*ioValue = aNewValue;
 	return YES;
 }
-
-
 
 - (BOOL)validateEdited:(NSDictionary *)aValue
 {
@@ -629,12 +420,5 @@
 @end
 
 @implementation ATItem (ScriptingSupport)
-
-- (NSScriptObjectSpecifier *)objectSpecifier
-{
-	NSScriptObjectSpecifier *aSpecifier = [[self bookmarks] objectSpecifier];
-	
-	return [[[NSUniqueIDSpecifier alloc] initWithContainerClassDescription:[aSpecifier keyClassDescription] containerSpecifier:aSpecifier key:@"bookmarkItems" uniqueID:[self numberWithItemID]] autorelease];
-}
 
 @end

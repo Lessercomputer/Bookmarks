@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ATContent.h"
 
 @class ATContentModel;
 
@@ -15,7 +16,7 @@
 	NSString *elementType;
 	BOOL startTagMinimization;
 	BOOL endTagMinimization;
-	id content;
+	id <ATContent> content;
 }
 
 + (id)elementDeclarationWithElementType:(NSString *)aType content:(id)aContent;

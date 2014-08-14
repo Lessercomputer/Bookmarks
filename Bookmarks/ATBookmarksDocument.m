@@ -73,7 +73,7 @@
         }
         else if ([aNurseryRoot isKindOfClass:[NSDictionary class]])
         {
-            [[self bookmarksHome] setBookmarks:[aNurseryRoot objectForKey:@"Bookmarks"]];
+            [[self bookmarksHome] setBookmarks:aNurseryRoot[@"Bookmarks"]];
             [[self bookmarksHome] setNursery:aNursery];
             [[[self bookmarksHome] bookmarks] setDocument:self];
             [self setUndoManager:[[self bookmarks] undoManager]];
@@ -101,7 +101,7 @@
 	NSDictionary *aPlist = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:NSPropertyListImmutable format:nil errorDescription:nil];
 	
 	[self setBookmarks:[ATBookmarks bookmarksWithArchive:aPlist]];
-	savedWindowFrame = [[[aPlist objectForKey:@"windowSettings"] objectForKey:@"savedWindowFrame"] copy];
+	savedWindowFrame = [aPlist[@"windowSettings"][@"savedWindowFrame"] copy];
 	
 	return [self bookmarks] ? YES : NO;
 }

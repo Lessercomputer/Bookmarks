@@ -7,6 +7,7 @@
 //
 
 #import "NSObject+NSBrowserTableViewDragDrop.h"
+#import "ATBrowser.h"
 
 @implementation NSObject (NSBrowserTableViewDragDrop)
 

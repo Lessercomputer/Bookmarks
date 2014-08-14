@@ -12,9 +12,7 @@
 @class ATBookmarksHome;
 @class ATBookmarks;
 @class ATBinder;
-@class ATBinderPath;
 @class ATEditor;
-@class ATSelectionInBinder;
 @class ATItemWrapper;
 @class ATBinderWrapper;
 @class ATBookmarksInsertOperation;
@@ -65,13 +63,9 @@ extern NSString *ATBookmarksPresentationDidChangeNotification;
 - (void)setRoot:(ATBinder *)aRoot;
 
 - (NSArray *)selections;
-- (void)setSelections:(NSArray *)aSelections;
 
 - (NSArray *)selectedItems;
 - (NSArray *)selectedBookmarks;
-
-- (NSArray *)selectionIndexPaths;
-- (void)setSelectionIndexPaths:(NSArray *)anIndexPaths;
 
 - (NSIndexSet *)selectionIndexes;
 - (NSIndexSet *)selectionIndexesInSelectedColumn;
@@ -80,9 +74,6 @@ extern NSString *ATBookmarksPresentationDidChangeNotification;
 - (void)setCountOfItems:(NSUInteger)aCount;
 
 - (NSMenu *)menuForEvent:(NSEvent *)theEvent;
-
-- (NSMutableArray *)binders;
-- (NSInteger)binderCount;
 
 @end
 
@@ -172,7 +163,7 @@ extern NSString *ATBookmarksPresentationDidChangeNotification;
 
 - (void)add:(id)anItem;
 - (void)addItems:(NSArray *)anItems;
-- (void)preferredInsertDestination:(ATBinder **)aDestinationBinder index:(unsigned *)anIndex;
+- (void)preferredInsertDestination:(ATBinder **)aDestinationBinder index:(NSUInteger *)anIndex;
 - (void)removeSelections;
 
 @end
@@ -206,9 +197,6 @@ extern NSString *ATBookmarksPresentationDidChangeNotification;
 
 @interface ATBookmarksPresentation (BrowserDelegate)
 
-- (BOOL)browser:(NSBrowser *)sender canDragRowsWithIndexes:(NSIndexSet *)aDraggingRows inColumn:(int)aDraggingColumn;
-- (BOOL)browser:(NSBrowser *)sender writeRowsWithIndexes:(NSIndexSet *)aDraggingRows inColumn:(int)aDraggingColumn toPasteboard:(NSPasteboard *)aDragPboard;
-
 @end
 
 @interface ATBookmarksPresentation (Browser)
@@ -223,7 +211,7 @@ extern NSString *ATBookmarksPresentationDidChangeNotification;
 - (BOOL)acceptDrop:(id <NSDraggingInfo>)anInfo on:(id)anItem contextInfo:(id)aContextInfo;
 - (BOOL)acceptDrop:(id <NSDraggingInfo>)anInfo to:(id)anItem at:(NSUInteger)anIndex contextInfo:(id)aContextInfo;
 
-- (void)postDidChangeNotification:(BOOL)aRootChanged;
+- (void)postDidChangeNotification:(NSNumber *)aRootChanged;
 
 - (NSInteger)lastColumn;
 - (NSInteger)selectedColumn;

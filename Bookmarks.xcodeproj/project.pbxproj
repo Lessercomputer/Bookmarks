@@ -45,18 +45,14 @@
 		6158CE231915AB2300BD8BA1 /* ATNetscapeBookmarkFile1DocumentEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CDCB1915AB2300BD8BA1 /* ATNetscapeBookmarkFile1DocumentEntity.m */; };
 		6158CE241915AB2300BD8BA1 /* ATNetscapeBookmarkFile1Scanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CDCD1915AB2300BD8BA1 /* ATNetscapeBookmarkFile1Scanner.m */; };
 		6158CE251915AB2300BD8BA1 /* ATNullBetweenNilTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CDCF1915AB2300BD8BA1 /* ATNullBetweenNilTransformer.m */; };
-		6158CE261915AB2300BD8BA1 /* ATOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CDD11915AB2300BD8BA1 /* ATOutlineView.m */; };
 		6158CE271915AB2300BD8BA1 /* ATProcessIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CDD31915AB2300BD8BA1 /* ATProcessIndicator.m */; };
-		6158CE281915AB2300BD8BA1 /* ATSelectionInBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CDD51915AB2300BD8BA1 /* ATSelectionInBinder.m */; };
 		6158CE291915AB2300BD8BA1 /* ATSubtreeEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CDD71915AB2300BD8BA1 /* ATSubtreeEnumerator.m */; };
 		6158CE2A1915AB2300BD8BA1 /* ATWebIconLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CDD91915AB2300BD8BA1 /* ATWebIconLoader.m */; };
 		6158CE2B1915AB2300BD8BA1 /* ATWebIconLoaderWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CDDB1915AB2300BD8BA1 /* ATWebIconLoaderWindowController.m */; };
-		6158CE2C1915AB2300BD8BA1 /* ImageAndTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CDDD1915AB2300BD8BA1 /* ImageAndTextCell.m */; };
 		6158CE2D1915AB2300BD8BA1 /* NSObject+NSBrowserTableViewDragDrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CDDF1915AB2300BD8BA1 /* NSObject+NSBrowserTableViewDragDrop.m */; };
 		6158CE2E1915AB2300BD8BA1 /* openURLsWithSafari.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 6158CDE01915AB2300BD8BA1 /* openURLsWithSafari.scpt */; };
 		6158CE2F1915AB2300BD8BA1 /* ATApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CDE21915AB2300BD8BA1 /* ATApplicationDelegate.m */; };
 		6158CE301915AB2300BD8BA1 /* ATBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CDE41915AB2300BD8BA1 /* ATBinder.m */; };
-		6158CE311915AB2300BD8BA1 /* ATBinderPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CDE61915AB2300BD8BA1 /* ATBinderPath.m */; };
 		6158CE321915AB2300BD8BA1 /* ATBinderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CDE81915AB2300BD8BA1 /* ATBinderWrapper.m */; };
 		6158CE331915AB2300BD8BA1 /* ATBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CDEA1915AB2300BD8BA1 /* ATBookmark.m */; };
 		6158CE341915AB2300BD8BA1 /* ATBookmarkItemsMoveOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CDEC1915AB2300BD8BA1 /* ATBookmarkItemsMoveOperation.m */; };
@@ -79,7 +75,6 @@
 		6158CE451915AB2300BD8BA1 /* ATBookmarksUnarchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CE0D1915AB2300BD8BA1 /* ATBookmarksUnarchiver.m */; };
 		6158CE461915AB2300BD8BA1 /* ATBookmarksWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CE0F1915AB2300BD8BA1 /* ATBookmarksWindowController.m */; };
 		6158CE471915AB2300BD8BA1 /* ATBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CE111915AB2300BD8BA1 /* ATBrowser.m */; };
-		6158CE481915AB2300BD8BA1 /* ATBrowserMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CE131915AB2300BD8BA1 /* ATBrowserMatrix.m */; };
 		6158CE771915C00000BD8BA1 /* ATIDPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CE6F1915C00000BD8BA1 /* ATIDPool.m */; };
 		6158CE781915C00000BD8BA1 /* ATBase64Decoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CE721915C00000BD8BA1 /* ATBase64Decoder.m */; };
 		6158CE791915C00000BD8BA1 /* ATQuotedPrintableDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CE741915C00000BD8BA1 /* ATQuotedPrintableDecoder.m */; };
@@ -93,7 +88,6 @@
 		6158CE8D1915C44800BD8BA1 /* ATBookmarkInspectorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6158CE8F1915C44800BD8BA1 /* ATBookmarkInspectorWindow.xib */; };
 		6158CE981915C91600BD8BA1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6158CE9A1915C91600BD8BA1 /* Localizable.strings */; };
 		616468601943EDC100D9D50C /* ATChromeBookmarksImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6164685F1943EDC100D9D50C /* ATChromeBookmarksImporter.m */; };
-		618ED4C3196845F9002CE28D /* Bookmarks-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 618ED4C2196845F9002CE28D /* Bookmarks-Info.plist */; };
 		619C7179195DC19C00E8B6BD /* ATDocumentPreferencesPresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 619C7178195DC19C00E8B6BD /* ATDocumentPreferencesPresentation.m */; };
 		61D3A35719302ACA008A200C /* ATJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D3A35619302ACA008A200C /* ATJSONParser.m */; };
 /* End PBXBuildFile section */
@@ -145,7 +139,7 @@
 		611FA35B19433D4900D416B3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ATBinderInspectorWindow.strings; sourceTree = "<group>"; };
 		611FA35C19433D4900D416B3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ATWebIconLoaderWindow.strings; sourceTree = "<group>"; };
 		611FA35D19433D4900D416B3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ATFirefoxBookmarksImporter.strings; sourceTree = "<group>"; };
-		611FA35E19433D4900D416B3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		611FA35E19433D4900D416B3 /* ja */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		611FA35F19433D4900D416B3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		611FA36019433D4900D416B3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/Credits.rtf; sourceTree = "<group>"; };
 		611FA36119433D4900D416B3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -210,20 +204,14 @@
 		6158CDCD1915AB2300BD8BA1 /* ATNetscapeBookmarkFile1Scanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATNetscapeBookmarkFile1Scanner.m; sourceTree = "<group>"; };
 		6158CDCE1915AB2300BD8BA1 /* ATNullBetweenNilTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATNullBetweenNilTransformer.h; path = Bookmarks/ATNullBetweenNilTransformer.h; sourceTree = "<group>"; };
 		6158CDCF1915AB2300BD8BA1 /* ATNullBetweenNilTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATNullBetweenNilTransformer.m; path = Bookmarks/ATNullBetweenNilTransformer.m; sourceTree = "<group>"; };
-		6158CDD01915AB2300BD8BA1 /* ATOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATOutlineView.h; path = Bookmarks/ATOutlineView.h; sourceTree = "<group>"; };
-		6158CDD11915AB2300BD8BA1 /* ATOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATOutlineView.m; path = Bookmarks/ATOutlineView.m; sourceTree = "<group>"; };
 		6158CDD21915AB2300BD8BA1 /* ATProcessIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATProcessIndicator.h; sourceTree = "<group>"; };
 		6158CDD31915AB2300BD8BA1 /* ATProcessIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATProcessIndicator.m; sourceTree = "<group>"; };
-		6158CDD41915AB2300BD8BA1 /* ATSelectionInBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSelectionInBinder.h; sourceTree = "<group>"; };
-		6158CDD51915AB2300BD8BA1 /* ATSelectionInBinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSelectionInBinder.m; sourceTree = "<group>"; };
 		6158CDD61915AB2300BD8BA1 /* ATSubtreeEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSubtreeEnumerator.h; sourceTree = "<group>"; };
 		6158CDD71915AB2300BD8BA1 /* ATSubtreeEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSubtreeEnumerator.m; sourceTree = "<group>"; };
 		6158CDD81915AB2300BD8BA1 /* ATWebIconLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATWebIconLoader.h; sourceTree = "<group>"; };
 		6158CDD91915AB2300BD8BA1 /* ATWebIconLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATWebIconLoader.m; sourceTree = "<group>"; };
 		6158CDDA1915AB2300BD8BA1 /* ATWebIconLoaderWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATWebIconLoaderWindowController.h; path = Bookmarks/ATWebIconLoaderWindowController.h; sourceTree = "<group>"; };
 		6158CDDB1915AB2300BD8BA1 /* ATWebIconLoaderWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATWebIconLoaderWindowController.m; path = Bookmarks/ATWebIconLoaderWindowController.m; sourceTree = "<group>"; };
-		6158CDDC1915AB2300BD8BA1 /* ImageAndTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageAndTextCell.h; path = Bookmarks/ImageAndTextCell.h; sourceTree = "<group>"; };
-		6158CDDD1915AB2300BD8BA1 /* ImageAndTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageAndTextCell.m; path = Bookmarks/ImageAndTextCell.m; sourceTree = "<group>"; };
 		6158CDDE1915AB2300BD8BA1 /* NSObject+NSBrowserTableViewDragDrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+NSBrowserTableViewDragDrop.h"; path = "Bookmarks/NSObject+NSBrowserTableViewDragDrop.h"; sourceTree = "<group>"; };
 		6158CDDF1915AB2300BD8BA1 /* NSObject+NSBrowserTableViewDragDrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+NSBrowserTableViewDragDrop.m"; path = "Bookmarks/NSObject+NSBrowserTableViewDragDrop.m"; sourceTree = "<group>"; };
 		6158CDE01915AB2300BD8BA1 /* openURLsWithSafari.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; path = openURLsWithSafari.scpt; sourceTree = "<group>"; };
@@ -231,8 +219,6 @@
 		6158CDE21915AB2300BD8BA1 /* ATApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATApplicationDelegate.m; sourceTree = "<group>"; };
 		6158CDE31915AB2300BD8BA1 /* ATBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATBinder.h; sourceTree = "<group>"; };
 		6158CDE41915AB2300BD8BA1 /* ATBinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATBinder.m; sourceTree = "<group>"; };
-		6158CDE51915AB2300BD8BA1 /* ATBinderPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATBinderPath.h; sourceTree = "<group>"; };
-		6158CDE61915AB2300BD8BA1 /* ATBinderPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATBinderPath.m; sourceTree = "<group>"; };
 		6158CDE71915AB2300BD8BA1 /* ATBinderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATBinderWrapper.h; sourceTree = "<group>"; };
 		6158CDE81915AB2300BD8BA1 /* ATBinderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATBinderWrapper.m; sourceTree = "<group>"; };
 		6158CDE91915AB2300BD8BA1 /* ATBookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATBookmark.h; sourceTree = "<group>"; };
@@ -276,8 +262,6 @@
 		6158CE0F1915AB2300BD8BA1 /* ATBookmarksWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATBookmarksWindowController.m; path = Bookmarks/ATBookmarksWindowController.m; sourceTree = "<group>"; };
 		6158CE101915AB2300BD8BA1 /* ATBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATBrowser.h; path = Bookmarks/ATBrowser.h; sourceTree = "<group>"; };
 		6158CE111915AB2300BD8BA1 /* ATBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATBrowser.m; path = Bookmarks/ATBrowser.m; sourceTree = "<group>"; };
-		6158CE121915AB2300BD8BA1 /* ATBrowserMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATBrowserMatrix.h; path = Bookmarks/ATBrowserMatrix.h; sourceTree = "<group>"; };
-		6158CE131915AB2300BD8BA1 /* ATBrowserMatrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATBrowserMatrix.m; path = Bookmarks/ATBrowserMatrix.m; sourceTree = "<group>"; };
 		6158CE571915AD4E00BD8BA1 /* Nursery.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Nursery.xcodeproj; path = ../Nursery/Nursery.xcodeproj; sourceTree = "<group>"; };
 		6158CE6F1915C00000BD8BA1 /* ATIDPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATIDPool.m; sourceTree = "<group>"; };
 		6158CE701915C00000BD8BA1 /* ATIDPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATIDPool.h; sourceTree = "<group>"; };
@@ -299,6 +283,7 @@
 		618ED4C2196845F9002CE28D /* Bookmarks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Bookmarks-Info.plist"; sourceTree = "<group>"; };
 		619C7177195DC19C00E8B6BD /* ATDocumentPreferencesPresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATDocumentPreferencesPresentation.h; sourceTree = "<group>"; };
 		619C7178195DC19C00E8B6BD /* ATDocumentPreferencesPresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATDocumentPreferencesPresentation.m; sourceTree = "<group>"; };
+		61B0DA26199CFB4A00D4FFA6 /* ATContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATContent.h; sourceTree = "<group>"; };
 		61D3A35519302ACA008A200C /* ATJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATJSONParser.h; sourceTree = "<group>"; };
 		61D3A35619302ACA008A200C /* ATJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATJSONParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -480,6 +465,7 @@
 		6158CE911915C49F00BD8BA1 /* NETSCAPE-Bookmark-file-1 */ = {
 			isa = PBXGroup;
 			children = (
+				61B0DA26199CFB4A00D4FFA6 /* ATContent.h */,
 				6158CDAC1915AB2300BD8BA1 /* ATContentModel.h */,
 				6158CDAD1915AB2300BD8BA1 /* ATContentModel.m */,
 				6158CDAE1915AB2300BD8BA1 /* ATDeclaredContent.h */,
@@ -530,10 +516,6 @@
 				6158CDC11915AB2300BD8BA1 /* ATItemWrapper.m */,
 				6158CDE71915AB2300BD8BA1 /* ATBinderWrapper.h */,
 				6158CDE81915AB2300BD8BA1 /* ATBinderWrapper.m */,
-				6158CDD41915AB2300BD8BA1 /* ATSelectionInBinder.h */,
-				6158CDD51915AB2300BD8BA1 /* ATSelectionInBinder.m */,
-				6158CDE51915AB2300BD8BA1 /* ATBinderPath.h */,
-				6158CDE61915AB2300BD8BA1 /* ATBinderPath.m */,
 				619C7177195DC19C00E8B6BD /* ATDocumentPreferencesPresentation.h */,
 				619C7178195DC19C00E8B6BD /* ATDocumentPreferencesPresentation.m */,
 			);
@@ -599,18 +581,12 @@
 				612ED5FC1955BC4F00218D5D /* ATDocumentPreferencesWindowController.m */,
 				6158CE101915AB2300BD8BA1 /* ATBrowser.h */,
 				6158CE111915AB2300BD8BA1 /* ATBrowser.m */,
-				6158CE121915AB2300BD8BA1 /* ATBrowserMatrix.h */,
-				6158CE131915AB2300BD8BA1 /* ATBrowserMatrix.m */,
 				6158CDBC1915AB2300BD8BA1 /* ATInspectorWindowController.h */,
 				6158CDBD1915AB2300BD8BA1 /* ATInspectorWindowController.m */,
 				6158CDCE1915AB2300BD8BA1 /* ATNullBetweenNilTransformer.h */,
 				6158CDCF1915AB2300BD8BA1 /* ATNullBetweenNilTransformer.m */,
-				6158CDD01915AB2300BD8BA1 /* ATOutlineView.h */,
-				6158CDD11915AB2300BD8BA1 /* ATOutlineView.m */,
 				6158CDDA1915AB2300BD8BA1 /* ATWebIconLoaderWindowController.h */,
 				6158CDDB1915AB2300BD8BA1 /* ATWebIconLoaderWindowController.m */,
-				6158CDDC1915AB2300BD8BA1 /* ImageAndTextCell.h */,
-				6158CDDD1915AB2300BD8BA1 /* ImageAndTextCell.m */,
 				6158CDDE1915AB2300BD8BA1 /* NSObject+NSBrowserTableViewDragDrop.h */,
 				6158CDDF1915AB2300BD8BA1 /* NSObject+NSBrowserTableViewDragDrop.m */,
 			);
@@ -734,7 +710,6 @@
 				612ED5E419526CA900218D5D /* openURLsWithChrome.scpt in Resources */,
 				6158CE871915C42D00BD8BA1 /* ATWebIconLoaderWindow.nib in Resources */,
 				6158CE981915C91600BD8BA1 /* Localizable.strings in Resources */,
-				618ED4C3196845F9002CE28D /* Bookmarks-Info.plist in Resources */,
 				6158CE7E1915C40D00BD8BA1 /* ATBookmarksWindow.nib in Resources */,
 				6158CE811915C41700BD8BA1 /* ATNewBookmarkWindow.nib in Resources */,
 				6158CE841915C42300BD8BA1 /* ATFirefoxBookmarksImporter.nib in Resources */,
@@ -766,7 +741,6 @@
 				6158CE1E1915AB2300BD8BA1 /* ATItemWrapper.m in Sources */,
 				6158CE221915AB2300BD8BA1 /* ATMoveOperationItem.m in Sources */,
 				6158CD821915A90100BD8BA1 /* main.m in Sources */,
-				6158CE481915AB2300BD8BA1 /* ATBrowserMatrix.m in Sources */,
 				612ED5FD1955BC4F00218D5D /* ATDocumentPreferencesWindowController.m in Sources */,
 				6158CE421915AB2300BD8BA1 /* ATBookmarksRemoveOperation.m in Sources */,
 				6158CE3C1915AB2300BD8BA1 /* ATBookmarksInsertOperation.m in Sources */,
@@ -774,11 +748,9 @@
 				6158CE141915AB2300BD8BA1 /* ATContentModel.m in Sources */,
 				6158CE1A1915AB2300BD8BA1 /* ATElementToken.m in Sources */,
 				6158CE781915C00000BD8BA1 /* ATBase64Decoder.m in Sources */,
-				6158CE311915AB2300BD8BA1 /* ATBinderPath.m in Sources */,
 				6158CE1D1915AB2300BD8BA1 /* ATItem.m in Sources */,
 				6158CE301915AB2300BD8BA1 /* ATBinder.m in Sources */,
 				6158CE151915AB2300BD8BA1 /* ATDeclaredContent.m in Sources */,
-				6158CE261915AB2300BD8BA1 /* ATOutlineView.m in Sources */,
 				6158CE251915AB2300BD8BA1 /* ATNullBetweenNilTransformer.m in Sources */,
 				6158CE271915AB2300BD8BA1 /* ATProcessIndicator.m in Sources */,
 				6158CE401915AB2300BD8BA1 /* ATBookmarksOperation.m in Sources */,
@@ -799,8 +771,6 @@
 				6158CE411915AB2300BD8BA1 /* ATBookmarksPresentation.m in Sources */,
 				6158CE791915C00000BD8BA1 /* ATQuotedPrintableDecoder.m in Sources */,
 				6158CE3D1915AB2300BD8BA1 /* ATBookmarksItemsArchiver.m in Sources */,
-				6158CE2C1915AB2300BD8BA1 /* ImageAndTextCell.m in Sources */,
-				6158CE281915AB2300BD8BA1 /* ATSelectionInBinder.m in Sources */,
 				611FA3661943439500D416B3 /* ATSafariBookmarksImporter.m in Sources */,
 				6158CE771915C00000BD8BA1 /* ATIDPool.m in Sources */,
 				612ED5F71955B49E00218D5D /* ATDocumentPreferences.m in Sources */,
@@ -1047,6 +1017,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bookmarks/Bookmarks-Prefix.pch";
+				GCC_WARN_UNDECLARED_SELECTOR = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -1069,6 +1040,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bookmarks/Bookmarks-Prefix.pch";
+				GCC_WARN_UNDECLARED_SELECTOR = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,

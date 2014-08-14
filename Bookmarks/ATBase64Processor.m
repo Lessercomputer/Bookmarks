@@ -70,10 +70,10 @@ NSString *ATBase64ProcessFaildNotification = @"ATBase64ProcessFaildNotification"
 		[self processWithLimit:[[aSchedule objectForKey:@"limit"] doubleValue]];
 		
 		if ([self isAtEnd])
-			[[NSNotificationCenter defaultCenter] postNotificationName:ATBase64ProcessDidEndNotification object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedInt:location],@"location", [NSNumber numberWithUnsignedInt:[inputData length]],@"length", outputData,@"data", nil]];
+			[[NSNotificationCenter defaultCenter] postNotificationName:ATBase64ProcessDidEndNotification object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedInt:location],@"location", [NSNumber numberWithUnsignedInteger:[inputData length]],@"length", outputData,@"data", nil]];
 		else
 		{
-			[[NSNotificationCenter defaultCenter] postNotificationName:ATBase64InProcessNotification object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedInt:location],@"location", [NSNumber numberWithUnsignedInt:[inputData length]],@"length", nil]];
+			[[NSNotificationCenter defaultCenter] postNotificationName:ATBase64InProcessNotification object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedInt:location],@"location", [NSNumber numberWithUnsignedInteger:[inputData length]],@"length", nil]];
 			[self performSelector:@selector(processWithScheduled:) withObject:aSchedule afterDelay:[[aSchedule objectForKey:@"interval"] doubleValue]];
 		}
 	}

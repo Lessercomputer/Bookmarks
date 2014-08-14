@@ -13,8 +13,6 @@
 	IBOutlet ATBookmarksPresentation *bookmarksPresentation;
 	IBOutlet NSObjectController *presentationController;
     IBOutlet ATBookmarksBrowserController *browserController;
-	//ATBookmarks *bookmarks;
-	//id topLevelFolder;
     ATBookmarksHome *bookmarksHome;
 	NSUInteger windowIndex;
 	BOOL ignoreWindowFrameChange;
@@ -31,7 +29,6 @@
 
 @interface ATBookmarksWindowController (Accessing)
 
-- (void)setBookmarks:(ATBookmarks *)aBookmarks;
 - (ATBookmarks *)bookmarks;
 
 - (void)setBookmarksPresentation:(ATBookmarksPresentation *)aPresentation;
@@ -55,8 +52,6 @@
 - (IBAction)loadWebIconOfSelectedItems:(id)sender;
 
 - (IBAction)openSelectedBinder:(id)sender;
-
-- (IBAction)openBookmark:(id)sender;
 
 @end
 

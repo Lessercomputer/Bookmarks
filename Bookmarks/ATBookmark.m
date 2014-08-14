@@ -15,9 +15,14 @@
 
 @implementation ATBookmark (Initializing)
 
-+ (void)initialize
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)aKey
 {
-    [self setKeys:[NSArray arrayWithObject:@"url"] triggerChangeNotificationsForDependentKey:@"urlString"];
+    NSSet *aKeyPaths = [super keyPathsForValuesAffectingValueForKey:aKey];
+    
+    if ([aKey isEqualToString:@"urlString"])
+        aKeyPaths = [aKeyPaths setByAddingObjectsFromArray:@[@"url"]];
+    
+    return aKeyPaths;
 }
 
 + (id)bookmark

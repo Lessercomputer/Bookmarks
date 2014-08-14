@@ -7,7 +7,7 @@
 //
 
 #import "ATDeclaredContent.h"
-
+#import "ATProcessIndicator.h"
 
 @implementation ATDeclaredContent
 

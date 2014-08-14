@@ -26,8 +26,8 @@ NSString *ATBase64DecoderInvalidDataException = @"ATBase64DecoderInvalidDataExce
 - (void)processNext
 {
 	unsigned char aBase64String[4], aValues[3];
-	unsigned aLengthOfString = [self nextString:aBase64String];
-	unsigned aPadCount = 0;
+	NSUInteger aLengthOfString = [self nextString:aBase64String];
+	NSUInteger aPadCount = 0;
 	
 	if (aLengthOfString == 4)
 	{
@@ -76,7 +76,7 @@ NSString *ATBase64DecoderInvalidDataException = @"ATBase64DecoderInvalidDataExce
 			(aCharacter == '='));
 }
 	
-- (BOOL)isValid:(unsigned char *)aString pad:(int *)aPadCount
+- (BOOL)isValid:(unsigned char *)aString pad:(NSUInteger *)aPadCount
 {
 	if (aString[0] != '=' && aString[1] != '=' && aString[2] != '=' && aString[3] != '=')
 	{

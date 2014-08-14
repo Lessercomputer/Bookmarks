@@ -77,7 +77,7 @@
 				[visitedItems addObject:anItem];
 				
 				if ([anItem isFolder])
-					[enumerators addObject:[anItem objectEnumerator]];
+					[enumerators addObject:[(ATBinder *)anItem objectEnumerator]];
 					
 				[itemsPlist setObject:[anItem propertyListRepresentation] forKey:[[anItem numberWithItemID] stringValue]];
 			}

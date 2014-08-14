@@ -13,6 +13,8 @@
 #import "ATElementToken.h"
 #import "ATNetscapeBookmarkFile1Scanner.h"
 #import "ATSubtreeEnumerator.h"
+#import "ATDTD.h"
+#import "ATDeclaredContent.h"
 
 @implementation ATElement
 
@@ -99,11 +101,11 @@
 		id aSubIndicator = nil;
 		NSAutoreleasePool *aPool = [[NSAutoreleasePool alloc] init];
 		
-		while (aSubIndicator = [anIndicator nextIndicator])
+		while ((aSubIndicator = [anIndicator nextIndicator]))
 		{
 			if ([aSubIndicator isElementTokenIndicator])
 			{
-				ATElementToken *aChildElement = [ATElement elementWithName:[aSubIndicator elementName] documentEntity:documentEntity scanner:scanner]; 
+				ATElement *aChildElement = [ATElement elementWithName:[aSubIndicator elementName] documentEntity:documentEntity scanner:scanner]; 
 				
 				if ([aChildElement parse])
 				{

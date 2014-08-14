@@ -9,13 +9,11 @@
 #import "ATBookmarksPresentation.h"
 #import "ATBookmarksHome.h"
 #import "ATBookmarks.h"
-#import "ATBinderPath.h"
 #import "ATEditor.h"
 #import "ATItem.h"
 #import "ATBinder.h"
 #import "ATBookmarksItemsArchiver.h"
 #import <Carbon/Carbon.h>
-#import "ATSelectionInBinder.h"
 #import "ATBookmarksInsertOperation.h"
 #import "ATBookmarksMoveOperation.h"
 #import "ATBookmarksRemoveOperation.h"
@@ -214,16 +212,6 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
     }];
     
     return aSelectedBookmarks;
-}
-
-- (NSArray *)selectionIndexPaths
-{
-	return [self bookmarks] ? [[self bookmarks] indexPathsFrom:[self selections]] : [NSArray array];
-}
-
-- (void)setSelectionIndexPaths:(NSArray *)anIndexPaths
-{
-	[self setSelections:[[self bookmarks] itemsBy:anIndexPaths]];
 }
 
 - (NSIndexSet *)selectionIndexes
@@ -431,7 +419,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 	
 	while (!anAnyBookmarkWithURLIsSelected && (anItem = [aSelectionEnumerator nextObject]))
 	{
-		if ([anItem isBookmark] && [anItem url])
+		if ([anItem isBookmark] && [(ATBookmark *)anItem url])
 			anAnyBookmarkWithURLIsSelected = YES;
 	}
 	
@@ -604,7 +592,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 				
                 if (![anAppleScript executeAppleEvent:anEvent error:&anErrors])
                 {
-					NSLog([anErrors description]);
+					NSLog(@"%@", [anErrors description]);
                 }
 				
                 [anAppleScript release];
@@ -676,7 +664,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 - (void)paste
 {
 	ATBinder *aDestination = nil;
-	unsigned anIndex = 0;
+	NSUInteger anIndex = 0;
 	
 	[self preferredInsertDestination:&aDestination index:&anIndex];
 	[[self bookmarks] pasteTo:aDestination at:anIndex contextInfo:[self presentationID]];
@@ -690,14 +678,14 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 - (void)addItems:(NSArray *)anItems
 {
 	ATBinder *aDestination = nil;
-	unsigned anIndex = 0;
+	NSUInteger anIndex = 0;
 	
 	[self preferredInsertDestination:&aDestination index:&anIndex];
 	
     [[self bookmarks] insertItems:anItems to:anIndex of:aDestination contextInfo:[self presentationID]];
 }
 
-- (void)preferredInsertDestination:(ATBinder **)aDestinationBinder index:(unsigned *)anIndex
+- (void)preferredInsertDestination:(ATBinder **)aDestinationBinder index:(NSUInteger *)anIndex
 {
 	if (![[self selections] count] || [[self selections] count] > 1)
 	{
@@ -710,8 +698,8 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 			
 		if ([aSelectedItem isFolder])
 		{
-			*aDestinationBinder = aSelectedItem;
-			*anIndex = [aSelectedItem count];
+			*aDestinationBinder = (ATBinder *)aSelectedItem;
+			*anIndex = [(ATBinder *)aSelectedItem count];
 		}
 		else
 		{
@@ -783,7 +771,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 
 - (void)delayedPostDidChangeNotification:(BOOL)aRootChanged
 {
-    [self performSelector:@selector(postDidChangeNotification:) withObject:aRootChanged afterDelay:0.03];
+    [self performSelector:@selector(postDidChangeNotification:) withObject:@(aRootChanged) afterDelay:0.03];
 }
 
 @end
@@ -917,7 +905,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
     
     
     if ([self notificationIsEnabled])
-        [self postDidChangeNotification:NO];
+        [self postDidChangeNotification:@(NO)];
 }
 
 - (void)changeLastColumn:(NSInteger)anOldLastColumn toColumn:(NSInteger)aColumn
@@ -963,15 +951,15 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
     if (binderWrappersBeforeDragging)
     {
         [self restoreBinderWrappersForDragging];
-        [self postDidChangeNotification:YES];
+        [self postDidChangeNotification:@(YES)];
     }
     else
-        [self postDidChangeNotification:NO];
+        [self postDidChangeNotification:@(NO)];
 }
 
 - (BOOL)acceptDrop:(id <NSDraggingInfo>)anInfo on:(id)anItem contextInfo:(id)aContextInfo
 {
-    return [self acceptDrop:anInfo to:anItem at:[anItem count] contextInfo:aContextInfo];
+    return [self acceptDrop:anInfo to:anItem at:[(ATBinder *)anItem count] contextInfo:aContextInfo];
 }
 
 - (BOOL)acceptDrop:(id <NSDraggingInfo>)anInfo to:(id)anItem at:(NSUInteger)anIndex contextInfo:(id)aContextInfo
@@ -997,14 +985,14 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
     return anAccepted;
 }
 
-- (void)postDidChangeNotification:(BOOL)aRootChanged
+- (void)postDidChangeNotification:(NSNumber *)aRootChanged
 {
     if (![self notificationIsEnabled]) return;
     
 //    NSLog(@"postDidChangeNotification:");
 //    NSLog(@"%@", [NSThread callStackSymbols]);
     
-    NSDictionary *aUserInfo = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:aRootChanged] forKey:@"RootChangedKey"];
+    NSDictionary *aUserInfo = [NSDictionary dictionaryWithObject:aRootChanged forKey:@"RootChangedKey"];
     [[NSNotificationCenter defaultCenter] postNotificationName:ATBookmarksPresentationDidChangeNotification object:self userInfo:aUserInfo];
     [self discardBinderWrapperChangeInfo];
 }
@@ -1548,7 +1536,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 	if (![self selections] || ![[self selections] count])
 		NSLog(@"emptySelection");
 	else
-		NSLog(aDesc);
+		NSLog(@"%@", aDesc);
 }
 
 - (void)logDraggingSourceOperationMask:(id <NSDraggingInfo> )info

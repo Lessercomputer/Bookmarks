@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <Nursery/Nursery.h>
 
+@class ATItem;
 @class ATBinder;
 @class ATBookmark;
 @class ATIDPool;
@@ -51,9 +52,9 @@ extern NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType;
 	NSUndoManager *undoManager;
 	unsigned untitledBookmarkIndex;
 	unsigned untitledFolderIndex;
-	int changeCountOfDraggingPasteBoard;
+	NSInteger changeCountOfDraggingPasteBoard;
 	NSNumber *sourceBinderID;
-	int changeCountOfGeneralPasteboard;
+	NSInteger changeCountOfGeneralPasteboard;
     BOOL hasCutItems;
 	NSArray *itemsToPaste;
 	ATBookmarksDocument *document;
@@ -84,8 +85,6 @@ extern NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType;
 
 - (NSUInteger)count;
 
-- (NSMutableArray *)items;
-- (NSMutableDictionary *)itemsDictionary;
 - (NULibrary *)itemLibrary;
 
 - (ATBookmarksDocument *)document;
@@ -108,11 +107,6 @@ extern NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType;
 - (void)closeFolder:(ATBinder *)aFolder recursive:(BOOL)aRecursiveFlag;
 - (void)closeFolder:(ATBinder *)aFolder recursive:(BOOL)aRecursiveFlag firstPass:(BOOL)aFirstPassFlag;
 
-- (NSMutableDictionary *)groupItemsByParentAndSortSiblingsByIndex:(NSArray *)anItems;
-- (NSMutableDictionary *)groupItemsByParentAndSortSiblingsByIndex:(NSArray *)anItems groupLinkedSiblings:(BOOL)aFlag;
-
-- (NSArray *)topLevelItemsIn:(NSArray *)anItems;
-
 - (ATBinder *)draggingSourceBinder;
 - (void)setDraggingSourceBinder:(ATBinder *)aBinder;
 
@@ -129,25 +123,12 @@ extern NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType;
 
 - (void)apply:(NSArray *)aWebIcons to:(NSArray *)aBookmarks;
 
-- (void)add:(id)anItem;
-- (void)add:(id)anItem to:(ATBinder *)aFolder contextInfo:(id)anInfo;
-- (void)addItems:(NSArray  *)anItems to:(ATBinder *)aFolder contextInfo:(id)anInfo;
-- (void)insert:(id)anItem to:(NSUInteger)anIndex of:(ATBinder *)aFolder contextInfo:(id)anInfo;
-- (void)insertItems:(NSArray  *)anItems of:(ATBinder *)aSourceBinder to:(NSUInteger)anIndex of:(ATBinder *)aDestinationBinder contextInfo:(id)anInfo;
-
+- (void)add:(ATItem *)anItem;
 - (void)insertItems:(NSArray *)anItems to:(NSUInteger)anIndex of:(ATBinder *)aBinder contextInfo:(id)anInfo;
 
 - (void)registerItems:(NSArray *)anItems;
 
--  (void)move:(id)anItem to:(NSUInteger)anIndex of:(ATBinder *)aFolder contextInfo:(id)anInfo;
-- (void)moveItems:(NSArray  *)anItems of:(ATBinder *)aSourceBinder to:(NSUInteger)anIndex of:(ATBinder *)aFolder contextInfo:(id)anInfo;
-
-- (void)moveOrInsertItems:(NSArray *)anItems of:(ATBinder *)aSourceBinder to:(NSUInteger)anIndex of:(ATBinder *)aDestinationBinder contextInfo:(id)aContextInfo;
-
 - (void)moveItemsAtIndexes:(NSIndexSet *)aSourceIndexes of:(ATBinder *)aSourceBinder toIndex:(NSUInteger)aDestinationIndex of:(ATBinder *)aDestinationBinder contextInfo:(id)anInfo;
-
-- (void)removeItems:(NSArray  *)anItems from:(ATBinder *)aSourceBinder;
-- (void)removeItems:(NSArray  *)anItems  from:(ATBinder *)aSourceBinder contextInfo:(id)anInfo;
 
 - (void)removeItemsAtIndexes:(NSIndexSet *)anIndexes from:(ATBinder *)aBinder contextInfo:(id)anInfo;
 
@@ -155,7 +136,6 @@ extern NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType;
 
 @interface ATBookmarks (Testing)
 
-- (BOOL)canMove:(NSArray *)anItems to:(ATBinder *)aFolder at:(NSUInteger)anIndex;
 - (BOOL)canMoveItemsAtIndexes:(NSIndexSet *)anIndexSet of:(ATBinder *)aSourceBinder to:(NSUInteger)anIndex of:(ATBinder *)aDestinationBinder;
 
 - (BOOL)canPaste;
@@ -173,7 +153,6 @@ extern NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType;
 
 - (NSMutableDictionary   *)propertyListRepresentation;
 
-- (NSArray *)indexPathsFrom:(NSArray *)anItems;
 - (NSArray *)itemsFromBookmarkDictionaryList:(NSArray *)aBookmarkDictionaryList;
 @end
 
@@ -198,11 +177,11 @@ extern NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType;
 
 - (NSArray *)pasteBoardTypes;
 
-- (NSDragOperation)validateDrop:(id <NSDraggingInfo>)anInfo on:(id)anItem;
-- (NSDragOperation)validateDrop:(id <NSDraggingInfo>)anInfo to:(id)anItem at:(NSUInteger)anIndex;
+- (NSDragOperation)validateDrop:(id <NSDraggingInfo>)anInfo on:(ATItem *)anItem;
+- (NSDragOperation)validateDrop:(id <NSDraggingInfo>)anInfo to:(ATItem *)anItem at:(NSUInteger)anIndex;
 - (NSDragOperation)validateLocalDrop:(id <NSDraggingInfo>)anInfo to:(ATBinder *)anItem at:(NSUInteger)anIndex;
 
-- (BOOL)acceptDrop:(id <NSDraggingInfo>)anInfo on:(id)anItem contextInfo:(id)aContextInfo;
+- (BOOL)acceptDrop:(id <NSDraggingInfo>)anInfo on:(ATBinder *)anItem contextInfo:(id)aContextInfo;
 - (BOOL)acceptDrop:(id <NSDraggingInfo>)anInfo to:(id)anItem at:(NSUInteger)anIndex contextInfo:(id)aContextInfo;
 - (BOOL)acceptLocalDrop:(id <NSDraggingInfo>)anInfo to:(id)anItem at:(NSUInteger)anIndex contextInfo:(id)aContextInfo;
 - (BOOL)acceptNonLocalDrop:(id <NSDraggingInfo>)anInfo to:(id)anItem at:(NSUInteger)anIndex contextInfo:(id)aContextInfo;
@@ -223,29 +202,14 @@ extern NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType;
 - (void)restoreItemIDOf:(id)anItem;
 - (void)releseItemIDOf:(id)anItem;
 
-- (void)setItems:(NSMutableArray *)anItems;
-- (void)setItemsDictionary:(NSMutableDictionary *)aDictionary;
 - (void)setItemLibrary:(NULibrary *)aLibrary;
-
-- (void)bookmarksWillInsert:(NSArray *)anItems from:(ATBinder *)aSource to:(ATBinder *)aDestination contextInfo:(id)anInfo;
-- (void)bookmarksDidInsert:(NSArray *)anItems from:(ATBinder *)aSource to:(ATBinder *)aDestination contextInfo:(id)anInfo;
 
 - (void)runInsertOperation:(ATBookmarksInsertOperation *)anInsertOperation;
 - (void)runRemoveOperation:(ATBookmarksRemoveOperation *)aRemoveOperation;
 - (void)runMoveOperation:(ATBookmarksMoveOperation *)aMoveOperation;
 
-- (void)bookmarksWillMove:(NSArray *)anItems from:(ATBinder *)aSource to:(ATBinder *)aDestination contextInfo:(id)anInfo;
-- (void)bookmarksDidMove:(NSArray *)anItems from:(ATBinder *)aSource to:(ATBinder *)aDestination contextInfo:(id)anInfo;
-
-- (void)bookmarksWillMoveOrInsert:(NSArray *)anItems from:(ATBinder *)aSourceBinder to:(ATBinder *)aDestinationBinder movingItems:(NSArray *)aMovingItems insertingItems:(NSArray *)anInsertingItems contextInfo:(id)aContextInfo;
-- (void)bookmarksDidMoveOrInsert:(NSArray *)anItems from:(ATBinder *)aSourceBinder to:(ATBinder *)aDestinationBinder movingItems:(NSArray *)aMovingItems insertingItems:(NSArray *)anInsertingItems contextInfo:(id)aContextInfo;
-
-- (void)bookmarksWillRemove:(NSArray *)anItems from:(ATBinder *)aSource to:(ATBinder *)aDestination contextInfo:(id)anInfo;
-- (void)bookmarksDidRemove:(NSArray *)anItems from:(ATBinder *)aSource to:(ATBinder *)aDestination contextInfo:(id)anInfo;
-
 - (NSDictionary *)userInfoWithItems:(NSArray *)anItems contextInfo:(id)anInfo;
 - (NSDictionary *)userInfoWithItems:(NSArray *)anItems source:(ATBinder *)aSource destination:(ATBinder *)aDestination contextInfo:(id)anInfo;
-- (NSDictionary *)moveOrInsertUserInfoWithItems:(NSArray *)anItems source:(ATBinder *)aSourceBinder destination:(ATBinder *)aDestinationBinder movingItems:(NSArray *)aMovingItems insertingItems:(NSArray *)anInsertingItems contextInfo:(id)aContextInfo;
 
 - (void)bookmarksWillEdit:(id)anItem;
 - (void)bookmarksDidEdit:(id)anItem;

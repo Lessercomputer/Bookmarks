@@ -7,6 +7,7 @@
 //
 
 #import "ATBrowser.h"
+#import "NSObject+NSBrowserTableViewDragDrop.h"
 #import <objc/runtime.h>
 
 @implementation ATBrowser
@@ -30,23 +31,6 @@
     return [[self delegate] menuForEvent:theEvent];
 }
 
-//- (NSDragOperation)draggingEntered:(id < NSDraggingInfo >)sender
-//{
-//    NSLog(@"#draggingEntered:");
-//    return [super draggingEntered:sender];
-//}
-//
-//- (BOOL)prepareForDragOperation:(id < NSDraggingInfo >)sender
-//{
-//    return [super prepareForDragOperation:sender];
-//}
-//
-//- (void)concludeDragOperation:(id < NSDraggingInfo >)sender
-//{
-//    NSLog(@"#concludeDragOperation:");
-//    [super concludeDragOperation:sender];
-//}
-//
 - (void)draggingEnded:(id < NSDraggingInfo >)sender
 {
     //NSLog(@"draggingEnded:");
@@ -81,21 +65,5 @@
     inDragging = NO;
     inDraggingEnding = NO;
 }
-
-//- (void)dragImage:(NSImage *)anImage at:(NSPoint)imageLoc offset:(NSSize)mouseOffset event:(NSEvent *)theEvent pasteboard:(NSPasteboard *)pboard source:(id)sourceObject slideBack:(BOOL)slideBack
-//{
-//    [super dragImage:anImage at:imageLoc offset:mouseOffset event:theEvent pasteboard:pboard source:sourceObject slideBack:slideBack];
-//}
-
-//- (NSDraggingSession *)beginDraggingSessionWithItems:(NSArray *)items event:(NSEvent *)event source:(id < NSDraggingSource >)source
-//{
-//    return [super beginDraggingSessionWithItems:items event:event source:source];
-//}
-
-//- (void)draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation
-//{
-//    NSLog(@"draggingSession:endedAtPoint:operation:");
-//    [super draggingSession:session endedAtPoint:screenPoint operation:operation];
-//}
 
 @end

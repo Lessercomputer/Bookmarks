@@ -14,7 +14,6 @@
 #import "ATItemWrapper.h"
 #import "ATBinderWrapper.h"
 #import "ATEditor.h"
-#import "ATBrowserMatrix.h"
 #import "ATInspectorWindowController.h"
 
 @implementation ATBookmarksBrowserController
@@ -25,7 +24,6 @@
     [(NSBrowser *)[self view] setAction:@selector(clicked:)];
     [self setNextResponder:[[self view] nextResponder]];
     [[self view] setNextResponder:self];
-    [[self browser] setMatrixClass:[ATBrowserMatrix class]];
 //    [(NSBrowser *)[self view] setBackgroundColor:[NSColor clearColor]];
 }
 

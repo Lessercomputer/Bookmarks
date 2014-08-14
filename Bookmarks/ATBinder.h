@@ -33,7 +33,7 @@
 - (NSUInteger)countOfDescendant;
 
 - (id)at:(NSUInteger)anIndex;
-- (id)descendantAt:(unsigned *)anIndexRef;
+- (id)descendantAt:(NSUInteger *)anIndexRef;
 
 - (id)atIndexPath:(NSIndexPath *)anIndexPath;
 

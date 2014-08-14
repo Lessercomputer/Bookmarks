@@ -127,7 +127,7 @@
 	if (!nextBindingValueUpdatingDate || ([nextBindingValueUpdatingDate timeIntervalSinceNow] < 0))
 	{
 		[self performSelectorOnMainThread:@selector(setCurrentItemNameForBinding:) withObject:currentItemName waitUntilDone:YES];
-		[self performSelectorOnMainThread:@selector(setConvertingProgressDescription:) withObject:[NSString stringWithFormat:@"%u / %u", countOfConvertedItems, countOfItems] waitUntilDone:YES];
+		[self performSelectorOnMainThread:@selector(setConvertingProgressDescription:) withObject:[NSString stringWithFormat:@"%lu / %lu", countOfConvertedItems, countOfItems] waitUntilDone:YES];
 		
 		[nextBindingValueUpdatingDate release];
 		nextBindingValueUpdatingDate = [[NSDate dateWithTimeIntervalSinceNow:0.001] retain];
@@ -170,7 +170,16 @@
 - (void)importInBackgroundFromFileSelectedByUser
 {
 	[self retain];
-	[[NSOpenPanel openPanel] beginSheetForDirectory:nil file:nil types:[NSArray arrayWithObject:@"html"] modalForWindow:[document windowForSheet] modalDelegate:self didEndSelector:@selector(openPanelDidEnd:returnCode:contextInfo:) contextInfo:nil];
+    [[NSOpenPanel openPanel] setAllowedFileTypes:[NSArray arrayWithObject:@"html"]];
+    [[NSOpenPanel openPanel] beginSheetModalForWindow:[document windowForSheet] completionHandler:^(NSInteger aResult) {
+        if (aResult == NSOKButton)
+        {
+            bookmarksFilePath = [[[[NSOpenPanel openPanel] URL] path] copy];
+            [self importInBackground];
+        }
+        else
+            [self release];
+    }];
 }
 
 - (void)importInBackground
@@ -179,7 +188,9 @@
 	
 	status = ATFirefoxHTMLBookmarksImporterIsLoadingFile;
 	
-	[NSBundle loadNibNamed:@"ATFirefoxHTMLBookmarksImporter" owner:self];
+    NSNib *aNib = [[[NSNib alloc] initWithNibNamed:@"ATFirefoxHTMLBookmarksImporter" bundle:nil] autorelease];
+    NSArray *aTopLevelObjects = nil;
+    [aNib instantiateWithOwner:self topLevelObjects:&aTopLevelObjects];
 	[panel makeKeyAndOrderFront:nil];
 	
 	[NSThread detachNewThreadSelector:@selector(importUsingThread) toTarget:self withObject:nil];
@@ -214,7 +225,7 @@
 
 - (void)startLoadingBookmarksFile
 {
-	unsigned aFileSize = 0;
+	NSUInteger aFileSize = 0;
 	
 	[statusLock lock];
 	
@@ -223,7 +234,7 @@
 		
 	[statusLock unlock];
 	
-	aFileSize = [[[[NSFileManager defaultManager] fileAttributesAtPath:bookmarksFilePath traverseLink:NO] objectForKey:NSFileSize] unsignedIntegerValue];
+	aFileSize = [[[[NSFileManager defaultManager] attributesOfItemAtPath:bookmarksFilePath error:NULL] objectForKey:NSFileSize] unsignedIntegerValue];
 	bookmarksFileData = [[NSMutableData alloc] initWithLength:aFileSize];
 	bookmarksInputStream = [[NSInputStream alloc] initWithFileAtPath:bookmarksFilePath];
 
@@ -274,7 +285,7 @@
 {
 	NSEnumerator *anEnumerator = nil;
 	ATElement *anElement = nil;
-	unsigned aCount;
+	NSUInteger aCount;
 	ATItem *aPreviousItem = nil;
 
 	[statusLock lock];
@@ -445,7 +456,7 @@
 {
 	if (returnCode == NSOKButton)
 	{
-		bookmarksFilePath = [[aPanel filename] copy];
+		bookmarksFilePath = [[[aPanel URL] path] copy];
 		[self importInBackground];
 	}
 	else
@@ -459,9 +470,9 @@
 	{
         case NSStreamEventHasBytesAvailable:
         {
-			int len = 0;
+			NSInteger len = 0;
 			uint8_t *aBytes = [bookmarksFileData mutableBytes];
-			unsigned aMaxLength = (([bookmarksFileData length] - bytesRead) < 1024) ? [bookmarksFileData length] - bytesRead : 1024;
+			NSUInteger aMaxLength = (([bookmarksFileData length] - bytesRead) < 1024) ? [bookmarksFileData length] - bytesRead : 1024;
 
             len = [(NSInputStream *)stream read:&aBytes[bytesRead] maxLength:aMaxLength];
 
@@ -491,6 +502,8 @@
 
             break;
 		}
+        default:
+            break;
 	}
 }
 

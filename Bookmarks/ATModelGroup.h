@@ -7,10 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ATContent.h"
 
 @class ATProcessIndicator;
 
-@interface ATModelGroup : NSObject
+@interface ATModelGroup : NSObject <ATContent>
 {
 	NSArray *contentTokens;
 	NSString *occurrenceIndicator;

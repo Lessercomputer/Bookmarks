@@ -327,85 +327,6 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 	}
 }
 
-- (NSMutableDictionary *)groupItemsByParentAndSortSiblingsByIndex:(NSArray *)anItems
-{
-	NSMutableDictionary *aDic = [NSMutableDictionary dictionary];
-	NSEnumerator *enumerator = [anItems objectEnumerator];
-	id anItem;
-	NSMutableArray *aSiblings;
-	
-	while (anItem = [enumerator nextObject])
-	{
-		aSiblings = [aDic objectForKey:[[anItem parent] numberWithItemID]];
-		
-		if (!aSiblings)
-		{
-			aSiblings = [NSMutableArray array];
-			[aDic setObject:aSiblings forKey:[[anItem parent] numberWithItemID]];
-		}
-		
-		[aSiblings addObject:anItem];
-	}
-	
-	[[aDic allValues] makeObjectsPerformSelector:@selector(sortUsingSelector:) withObject:@selector(compareIndex:)];
-	
-	return aDic;
-}
-
-- (NSMutableDictionary *)groupItemsByParentAndSortSiblingsByIndex:(NSArray *)anItems groupLinkedSiblings:(BOOL)aFlag
-{
-	NSMutableDictionary *aDictOfItemsGroupedByParent = [self groupItemsByParentAndSortSiblingsByIndex:anItems];
-	NSEnumerator *anEnumeratorOfItemsGroupedByParent = [aDictOfItemsGroupedByParent objectEnumerator];
-	NSArray *anItemsGroupedByParent = nil;
-	NSMutableArray *aSiblings = [NSMutableArray array];
-	NSMutableDictionary *aDic = [NSMutableDictionary dictionary];
-	
-	while (anItemsGroupedByParent = [anEnumeratorOfItemsGroupedByParent nextObject])
-	{
-		NSEnumerator *aSiblingEnumerator = [anItemsGroupedByParent objectEnumerator];
-		ATItem *aSibling = [aSiblingEnumerator nextObject];
-		NSMutableArray *aLinkedSiblings = [NSMutableArray array];
-		
-		if (aSibling)
-			[aLinkedSiblings addObject:aSibling];
-			
-		while (aSibling = [aSiblingEnumerator nextObject])
-		{
-			if ([[aLinkedSiblings lastObject] index] + 1 == [aSibling index])
-				[aLinkedSiblings addObject:aSibling];
-			else
-			{
-				[aSiblings addObject:aLinkedSiblings];
-				aLinkedSiblings = [NSMutableArray array];
-				[aLinkedSiblings addObject:aSibling];
-			}
-		}
-		
-		[aSiblings addObject:aLinkedSiblings];
-		
-		[aDic setObject:aSiblings forKey:[[aSibling parent] numberWithItemID]];
-		
-		aSiblings = [NSMutableArray array];
-	}
-
-	return aDic;
-}
-
-- (NSArray *)topLevelItemsIn:(NSArray *)anItems
-{
-	NSMutableArray *aTopLevelItems = [NSMutableArray array];
-	NSEnumerator *enumerator = [anItems objectEnumerator];
-	id anItem = nil;
-	
-	while (anItem = [enumerator nextObject])
-	{
-		if (![anItem isDescendantIn:anItems])
-			[aTopLevelItems addObject:anItem];
-	}
-	
-	return aTopLevelItems;
-}
-
 - (ATBinder *)draggingSourceBinder
 {
     return draggingSourceBinder;
@@ -514,6 +435,11 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 	[self bookmarksDidInsert:anItems from:aSourceBinder to:aDestinationBinder contextInfo:anInfo];
 	[self bookmarksDidChange:anInfo];
 }*/
+
+- (void)add:(id)anItem
+{
+    [self insertItems:@[anItem] to:[[self root] count] of:[self root] contextInfo:nil];
+}
 
 - (void)insertItems:(NSArray *)anItems to:(NSUInteger)anIndex of:(ATBinder *)aBinder contextInfo:(id)anInfo
 {
@@ -640,36 +566,6 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 
 @implementation ATBookmarks (Testing)
 
-- (BOOL)canMove:(NSArray *)anItems to:(ATBinder *)aFolder at:(NSUInteger)anIndex
-{
-	NSMutableDictionary *aDic = [self groupItemsByParentAndSortSiblingsByIndex:anItems];
-	
-	if ([aDic count] == 1)
-	{
-		NSArray *aSelectedSiblings = [[aDic allValues] lastObject];
-		BOOL anAllSiblingsIsLinked = YES;
-		NSEnumerator *enumerator = [aSelectedSiblings objectEnumerator];
-		ATItem *aSibling;
-		unsigned aSiblingIndex = [[enumerator nextObject] index];
-		
-		while (anAllSiblingsIsLinked && (aSibling = [enumerator nextObject]))
-		{
-			anAllSiblingsIsLinked = (++aSiblingIndex == [aSibling index]);
-		}
-		
-		if (anAllSiblingsIsLinked)
-		{
-			unsigned aFirstIndex = [[aSelectedSiblings objectAtIndex:0] index];
-			unsigned aLastIndex = [[aSelectedSiblings lastObject] index];
-			
-			if (([[[aSelectedSiblings objectAtIndex:0] parent] isEqual:aFolder]) && (aFirstIndex <= anIndex) && ((aLastIndex + 1) >= anIndex))
-				return NO;
-		}
-	}
-	
-	return !([aFolder isDescendantIn:anItems] || [anItems containsObject:aFolder]);
-}
-
 - (BOOL)canMoveItemsAtIndexes:(NSIndexSet *)anIndexSet of:(ATBinder *)aSourceBinder to:(NSUInteger)anIndex of:(ATBinder *)aDestinationBinder
 {
     if ([aSourceBinder isEqual:aDestinationBinder])
@@ -732,13 +628,6 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 	//return [NSMutableDictionary dictionaryWithObjectsAndKeys:[[self root] propertyListRepresentation], @"root", [idPool propertyListRepresentation], @"idPool", [NSNumber numberWithDouble:0.2], @"version", nil];
 }
 
-- (NSArray *)indexPathsFrom:(NSArray *)anItems
-{
-	NSMutableArray *anIndexPaths = [NSMutableArray array];
-	[anItems makeObjectsPerformSelector:@selector(writeIndexPathOn:) withObject:anIndexPaths];
-	return anIndexPaths;
-}
-
 - (NSArray *)itemsFromBookmarkDictionaryList:(NSArray *)aBookmarkDictionaryList
 {
 	NSEnumerator *aListEnumerator = [aBookmarkDictionaryList objectEnumerator];
@@ -751,7 +640,7 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 		
 		if ([aBookmarkType isEqualToString:@"WebBookmarkTypeLeaf"])
 		{
-			ATBookmark *aBookmark = [ATBookmark bookmarkWithName:[[aBookmarkDictionary objectForKey:@"URIDictionary"] objectForKey:@"title"] urlString:[aBookmarkDictionary objectForKey:@"URLString"]];
+			ATBookmark *aBookmark = [ATBookmark bookmarkWithName:aBookmarkDictionary[@"URIDictionary"][@"title"] urlString:aBookmarkDictionary[@"URLString"]];
 			
 			[anItems addObject:aBookmark];
 		}
@@ -845,7 +734,7 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 		
 		return anItems;*/
 		NSDictionary *aPlist = [aPasteboard propertyListForType:ATBookmarksItemsPropertyListRepresentaionPasteBoardType];
-		NSArray *aToplevelItems = [[ATBookmarksItemsUnarchiver unarchive:aPlist] objectForKey:@"toplevelItems"];
+		NSArray *aToplevelItems = [ATBookmarksItemsUnarchiver unarchive:aPlist][@"toplevelItems"];
 		
 		//[aToplevelItems makeObjectsPerformSelector:@selector(itemIDFrom:) withObject:self];
 		[aToplevelItems makeObjectsPerformSelector:@selector(invalidateItemID)];
@@ -870,7 +759,6 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 		NSEnumerator *aURLsEnumerator = [[aURLsWithTitles objectAtIndex:0] objectEnumerator];
 		NSEnumerator *aTitlesEnumerator = [[aURLsWithTitles objectAtIndex:1] objectEnumerator];
 		NSString *aURLString = nil;
-		NSString *aTitle = nil;
 		
 		while (aURLString = [aURLsEnumerator nextObject])
 		{
@@ -926,29 +814,27 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 	return [NSArray arrayWithObjects:ATBookmarksItemIDsPasteBoardType, ATBookmarksItemsPropertyListRepresentaionPasteBoardType, @"BookmarkDictionaryListPboardType", @"WebURLsWithTitlesPboardType", @"public.url", nil];
 }
 
-- (NSDragOperation)validateDrop:(id <NSDraggingInfo>)anInfo on:(id)anItem
+- (NSDragOperation)validateDrop:(id <NSDraggingInfo>)anInfo on:(ATItem *)anItem
 {
 	if ([anItem isFolder])
-		return [self validateDrop:anInfo  to:anItem at:[anItem count]];
+		return [self validateDrop:anInfo  to:anItem at:[(ATBinder *)anItem count]];
 	else
 		return NSDragOperationNone;
 }
 
-- (NSDragOperation)validateDrop:(id <NSDraggingInfo>)anInfo to:(id)anItem at:(NSUInteger)anIndex
+- (NSDragOperation)validateDrop:(id <NSDraggingInfo>)anInfo to:(ATItem *)anItem at:(NSUInteger)anIndex
 {
 	if (([anInfo draggingSourceOperationMask] & NSDragOperationNone) || ![[anInfo draggingPasteboard] availableTypeFromArray:[self pasteBoardTypes]])
 		return NSDragOperationNone;
 
 	if (changeCountOfDraggingPasteBoard == [[anInfo draggingPasteboard] changeCount])
-		return [self validateLocalDrop:anInfo to:anItem at:anIndex];
+		return [self validateLocalDrop:anInfo to:(ATBinder *)anItem at:anIndex];
 	else
 		return NSDragOperationCopy;
 }
 
 - (NSDragOperation)validateLocalDrop:(id <NSDraggingInfo>)anInfo to:(ATBinder *)aBinder at:(NSUInteger)anIndex
 {
-	NSArray *aDraggingItems = [self itemsFor:[[anInfo draggingPasteboard] propertyListForType:ATBookmarksItemIDsPasteBoardType]];
-	ATBinder *aSourceBinder = [self itemForIDNumber:sourceBinderID];
 	NSDragOperation aDragOperationToPerform = NSDragOperationNone;
 	NSDragOperation anAllowedDragOperation = [self draggingOperationForDraggingInfo:anInfo];
 	
@@ -1013,7 +899,7 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 	return aDragOperation;
 }
 
-- (BOOL)acceptDrop:(id <NSDraggingInfo>)anInfo on:(id)anItem contextInfo:(id)aContextInfo
+- (BOOL)acceptDrop:(id <NSDraggingInfo>)anInfo on:(ATBinder *)anItem contextInfo:(id)aContextInfo
 {
 	return [self acceptDrop:anInfo to:anItem at:[anItem count] contextInfo:aContextInfo];
 }
@@ -1061,7 +947,6 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 {
     NUSetIvar(&root, aRoot);
 	
-	[root setParent:self];
 	[root setIsOpen:YES];
 }
 
@@ -1128,7 +1013,7 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
     
     [self registerItems:[anInsertOperation items]];
     [[anInsertOperation binder] insert:[anInsertOperation items] atIndexes:[anInsertOperation indexes]];
-    ATBookmarksRemoveOperation *aRemoveOperation = [anInsertOperation undoOperation];
+    ATBookmarksRemoveOperation *aRemoveOperation = (ATBookmarksRemoveOperation *)[anInsertOperation undoOperation];
     [[[self undoManager] prepareWithInvocationTarget:self] runRemoveOperation:aRemoveOperation];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:ATBookmarksDidInsertNotification object:self userInfo:aUserInfo];
@@ -1144,7 +1029,7 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
     
     [[NSNotificationCenter defaultCenter] postNotificationName:ATBookmarksWillRemovetNotification object:self userInfo:aUserInfo];
     
-    ATBookmarksInsertOperation *anInsertOperation = [aRemoveOperation undoOperation];
+    ATBookmarksInsertOperation *anInsertOperation = (ATBookmarksInsertOperation *)[aRemoveOperation undoOperation];
     [[aRemoveOperation binder] removeAtIndexes:[aRemoveOperation indexes]];
     [[[self undoManager] prepareWithInvocationTarget:self] runInsertOperation:anInsertOperation];
     
@@ -1163,7 +1048,7 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
     
     [[aMoveOperation sourceBinder] removeAtIndexes:[aMoveOperation sourceIndexes]];
     [[aMoveOperation destinationBinder] insert:[aMoveOperation items] atIndexes:[aMoveOperation destinationIndexes]];
-    ATBookmarksMoveOperation *anUndoMoveOperation = [aMoveOperation undoOperation];
+    ATBookmarksMoveOperation *anUndoMoveOperation = (ATBookmarksMoveOperation *)[aMoveOperation undoOperation];
     [[[self undoManager] prepareWithInvocationTarget:self] runMoveOperation:anUndoMoveOperation];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:ATBookmarksDidMoveNotification object:self userInfo:aUserInfo];
@@ -1358,7 +1243,7 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 {
 	if (anIndex > 0)
 	{
-		unsigned aDescendantIndex = anIndex - 1;
+		NSUInteger aDescendantIndex = anIndex - 1;
 		
 		return [[self root] descendantAt:&aDescendantIndex];
 	}

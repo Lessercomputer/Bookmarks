@@ -66,16 +66,12 @@
 @interface ATBookmarksDocument (Accessing)
 
 - (NUMainBranchNursery *)nursery;
-- (void)setNursery:(NUMainBranchNursery *)aNursery;
 
 - (ATBookmarksHome *)bookmarksHome;
 - (void)setBookmarksHome:(ATBookmarksHome *)aBookmarksHome;
 
 -  (void)setBookmarks:(ATBookmarks *)aBookmarks;
 - (ATBookmarks *)bookmarks;
-
-- (ATIDPool *)bookmarksPresentationIDPool;
-- (void)setBookmarksPresentationIDPool:(ATIDPool *)aPool;
 
 - (NSArray *)orderedWindows;
 - (NSWindow *)mostFrontBookmarksWindow;

@@ -7,11 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ATContent.h"
 
 @class ATModelGroup;
 @class ATProcessIndicator;
 
-@interface ATContentModel : NSObject
+@interface ATContentModel : NSObject <ATContent>
 {
 	ATModelGroup *modelGroup;
 }

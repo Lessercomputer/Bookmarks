@@ -21,7 +21,7 @@ extern NSString *ATBase64DecoderInvalidDataException;
 - (NSUInteger)nextString:(unsigned char *)aString;
 - (unsigned char )nextCharacter;
 - (BOOL)isBase64Character:(unsigned char )aCharacter;
-- (BOOL)isValid:(unsigned char *)aString pad:(int *)aPadCount;
+- (BOOL)isValid:(unsigned char *)aString pad:(NSUInteger *)aPadCount;
 - (void)decode:(unsigned char *)aBase64String to:(unsigned char *)aValues;
 - (void)decodeBase64String:(unsigned char *)aBase64String  to:(unsigned char *)aBase64Values;
 - (unsigned char)decode:(unsigned char)aCharacter;

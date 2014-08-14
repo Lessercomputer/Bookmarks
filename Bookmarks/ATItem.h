@@ -17,7 +17,6 @@
 {
     NUBell *bell;
 	NSUInteger itemID;
-	ATBinder *parent;
 	NSMutableSet *binders;
 	NSString *name;
 	NSString *comment;
@@ -42,10 +41,7 @@
 - (NSUInteger)itemID;
 - (NSNumber *)numberWithItemID;
 
-- (ATBinder *)parent;
 - (NSMutableArray *)binders;
-
-- (ATBookmarks *)bookmarks;
 
 - (void)setName:(NSString *)aName;
 - (NSString *)name;
@@ -55,15 +51,6 @@
 
 - (NSDate *)addDate;
 - (void)setAddDate:(NSDate *)aDate;
-
-- (NSUInteger)index;
-
-- (ATBinder *)root;
-
-- (NSIndexPath *)indexPath;
-
-
-- (void)writeIndexPathOn:(NSMutableArray *)anArray;
 
 - (id)itemFor:(NSUInteger)anID;
 
@@ -88,27 +75,17 @@
 
 @interface ATItem (Modifying)
 
-- (NSUInteger)moveTo:(NSUInteger)anIndex of:(ATBinder *)aDestination from:(ATBinder *)aSource on:(ATBookmarks *)aBookmarks;
-
 @end
 
 @interface ATItem (Testing)
 - (BOOL)isBookmark;
 - (BOOL)isFolder;
-- (BOOL)isRoot;
 - (BOOL)hasItemID;
 
 - (BOOL)canMoveFrom:(ATBinder *)aSourceBinder to:(ATBinder *)aDestinationBinder;
 - (BOOL)canInsertTo:(ATBinder *)aBinder;
 
-- (BOOL)isDescendantOf:(ATBinder *)aFolder;
-
-- (BOOL)isDescendantIn:(NSArray *)anItems;
-
-- (BOOL)eachAncestorsIsOpen;
-
 - (NSComparisonResult)compareItemID:(ATItem *)anAnotherItem;
-- (NSComparisonResult)compareIndex:(ATItem *)anAnotherItem;	
 
 @end
 
@@ -126,14 +103,6 @@
 
 @interface ATItem (Selecting)
 
-+ (NSArray *)minimum:(NSArray *)anItems;
-
-+ (NSArray *)categorizeByParentAndIndex:(NSArray *)anItems;
-
-+ (NSArray *)categorizeByParent:(NSArray *)anItems;
-
-+ (NSArray *)categorizeByIndex:(NSArray *)anItems;
-
 + (NSArray *)bindersIn:(NSArray *)anItems;
 
 @end
@@ -141,7 +110,6 @@
 
 @interface ATItem (Private)
 - (void)setItemID:(NSUInteger)anID;
-- (void)setParent:(ATBinder *)aFolder;
 - (void)addBinder:(ATBinder *)aBinder;
 - (void)removeBinder:(ATBinder *)aBinder;
 - (void)setBinders:(NSMutableSet *)aBinders;

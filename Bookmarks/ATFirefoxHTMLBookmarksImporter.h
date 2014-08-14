@@ -10,7 +10,7 @@
 
 enum ATFirefoxHTMLBookmarksImporterStatus { ATFirefoxHTMLBookmarksImporterIsLoadingFile, ATFirefoxHTMLBookmarksImporterLoadingFinished, ATFirefoxHTMLBookmarksImporterIsParsing, ATFirefoxHTMLBookmarksImporterParsingFailed, ATFirefoxHTMLBookmarksImporterIsConverting, ATFirefoxHTMLBookmarksImporterSucceed, ATFirefoxHTMLBookmarksImporterFailed, ATFirefoxHTMLBookmarksImporterIsCanceled };
 
-@interface ATFirefoxHTMLBookmarksImporter : NSObject
+@interface ATFirefoxHTMLBookmarksImporter : NSObject <NSStreamDelegate>
 {
 	NSString *bookmarksFilePath;
 	NSMutableData *bookmarksFileData;
@@ -27,8 +27,8 @@ enum ATFirefoxHTMLBookmarksImporterStatus { ATFirefoxHTMLBookmarksImporterIsLoad
 	
 	NSString *currentItemName;
 	NSString *currentItemNameForBinding;
-	unsigned countOfItems;
-	unsigned countOfConvertedItems;
+	NSUInteger countOfItems;
+	NSUInteger countOfConvertedItems;
 	NSString *convertingProgressDescription;
 	NSDate *nextBindingValueUpdatingDate;
 	NSString *processDescription;

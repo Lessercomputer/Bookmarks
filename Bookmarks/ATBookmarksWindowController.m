@@ -1,7 +1,6 @@
 #import "ATBookmarksWindowController.h"
 #import "ATInspectorWindowController.h"
 #import "ATBookmarksPresentation.h"
-#import "ImageAndTextCell.h"
 #import "ATWebIconLoaderWindowController.h"
 #import "ATBookmarks.h"
 #import "ATBookmarksBrowserController.h"
@@ -131,7 +130,7 @@
 
 - (NSString *)windowTitleForDocumentDisplayName:(NSString *)displayName
 {
-	return [NSString stringWithFormat:@"%@ : %u (PMID:%lu)", displayName, windowIndex, [[[self bookmarksPresentation] presentationID] unsignedIntegerValue]];
+	return [NSString stringWithFormat:@"%@ : %lu (PMID:%lu)", displayName, (unsigned long)windowIndex, [[[self bookmarksPresentation] presentationID] unsignedIntegerValue]];
 }
 
 @end
@@ -179,7 +178,7 @@
 		if ([anItem isBookmark])
 			[[self bookmarksPresentation] open:[sender itemAtRow:[sender clickedRow]]];
 		else
-			[[self document] openWindowFor:[self bookmarksPresentation]];
+			[[self document] openWindowFor:[[self bookmarksPresentation] root]];
 	}
 }
 

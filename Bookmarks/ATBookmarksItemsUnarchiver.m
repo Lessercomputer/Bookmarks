@@ -83,7 +83,7 @@
 
 - (void)establishBinder:(ATBinder *)aBinder itemID:(NSNumber *)aBinderID
 {
-	NSEnumerator *anEnumerator = [[[[itemsArchive objectForKey:@"items"] objectForKey:[aBinderID stringValue]] objectForKey:@"children"] objectEnumerator];
+	NSEnumerator *anEnumerator = [itemsArchive[@"items"][[aBinderID stringValue]][@"children"] objectEnumerator];
 	NSNumber *aChildItemID = nil;
 	
 	while (aChildItemID = [anEnumerator nextObject])
