@@ -461,6 +461,7 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 		{
 			[anItem itemIDFrom:self];
 			[[self itemLibrary] setObject:anItem forKey:[anItem numberWithItemID]];
+            if (![anItem addDate]) [anItem setAddDate:[NSDate date]];
             //[[[self bell] playLot] markChangedObject:[self itemsDictionary]];
 		}
 	}
