@@ -483,6 +483,8 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
              || (anAction == @selector(openSelectedBookmarksWithChromeWithNewTabs:))
              || (anAction == @selector(openSelectedBookmarksWithFirefoxWithNewTabs:)))
 		return [self anyBookmarkWithURLIsSelected];
+    else if (anAction == @selector(kidnap:))
+        return YES;
 	else
 		return NO;
 }
@@ -599,6 +601,12 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
             }
         }
     }
+}
+
+
+- (void)kidnap:(id)sender
+{
+    [[self bookmarks] kidnap];
 }
 
 @end

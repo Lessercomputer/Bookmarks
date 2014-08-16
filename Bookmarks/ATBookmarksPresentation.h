@@ -141,6 +141,8 @@ extern NSString *ATBookmarksPresentationDidChangeNotification;
 - (void)runAppleScriptNamed:(NSString *)aScriptName handlerName:(NSString *)aHandlerName argment:(NSAppleEventDescriptor *)anArgment;
 - (void)runAppleScriptNamed:(NSString *)aScriptName handlerName:(NSString *)aHandlerName argments:(NSAppleEventDescriptor *)anArgments;
 
+- (IBAction)kidnap:(id)sender;
+
 @end
 
 @interface ATBookmarksPresentation (Editing)

@@ -333,6 +333,17 @@
 
 @end
 
+@implementation ATItem (Kidnapping)
+
+- (void)removeToKidnap
+{
+    NSArray *aBinders = [[[self binders] copy] autorelease];
+    [aBinders enumerateObjectsUsingBlock:^(ATBinder *aBinder, NSUInteger idx, BOOL *stop) {
+        [aBinder remove:self];
+    }];
+}
+
+@end
 @implementation ATItem (Private)
 
 - (void)setItemID:(NSUInteger)anID

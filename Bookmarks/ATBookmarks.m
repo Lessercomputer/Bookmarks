@@ -942,6 +942,38 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 
 @end
 
+@implementation ATBookmarks (Kidnapping)
+
+- (void)kidnap
+{
+    @autoreleasepool
+    {
+        NSMutableSet *aVisitedItems = [NSMutableSet setWithObject:[self root]];
+        NSMutableArray *anItemsToKidnap = [NSMutableArray array];
+        ATBookmarksEnumerator *anEnumerator = [ATBookmarksEnumerator enumeratorWithBinder:[self root]];
+        ATItem *anItem = nil;
+        
+        while (anItem = [anEnumerator nextObject])
+            [aVisitedItems addObject:anItem];
+        
+        [[self itemLibrary] enumerateKeysAndObjectsUsingBlock:^(NSNumber *aKey, ATItem *anItem, BOOL *aStop) {
+            if (![aVisitedItems containsObject:anItem])
+                [anItemsToKidnap addObject:anItem];
+        }];
+        
+        [self bookmarksWillChange];
+        
+        [anItemsToKidnap enumerateObjectsUsingBlock:^(ATItem *anItem, NSUInteger idx, BOOL *stop) {
+            [anItem removeToKidnap];
+            [[self itemLibrary] removeObjectForKey:[anItem numberWithItemID]];
+        }];
+        
+        [self bookmarksDidChange];
+    }
+}
+
+@end
+
 @implementation ATBookmarks (Private)
 
 - (void)setRoot:(ATBinder *)aRoot

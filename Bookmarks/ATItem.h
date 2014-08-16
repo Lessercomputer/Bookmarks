@@ -107,6 +107,11 @@
 
 @end
 
+@interface ATItem (Kidnapping)
+
+- (void)removeToKidnap;
+
+@end
 
 @interface ATItem (Private)
 - (void)setItemID:(NSUInteger)anID;

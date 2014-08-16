@@ -190,6 +190,12 @@ extern NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType;
 
 @end
 
+@interface ATBookmarks (Kidnapping)
+
+- (void)kidnap;
+
+@end
+
 @interface ATBookmarks (Private)
 
 - (void)setRoot:(ATBinder *)aRoot;

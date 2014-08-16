@@ -296,6 +296,12 @@ CA
                                     <action selector="logCurrentFirstResponder:" target="216" id="227"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Kidnap" id="KCF-Wm-Lh3">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="kidnap:" target="-1" id="VxM-fT-IZU"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>
