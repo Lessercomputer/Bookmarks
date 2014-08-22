@@ -45,6 +45,8 @@
         
         [[self bookmarksHome] setWindowSettings:[self windowSettingsForNursery]];
         
+        [[self bookmarks] kidnap];
+        
         NUFarmOutStatus aFarmOutStatus = [[[self nursery] playLot] save];
         return aFarmOutStatus == NUFarmOutStatusSucceeded;
     }
