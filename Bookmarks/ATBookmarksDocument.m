@@ -38,7 +38,7 @@
 
 - (BOOL)writeSafelyToURL:(NSURL *)anAbsoluteURL ofType:(NSString *)aTypeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError **)outError
 {
-    if ([aTypeName isEqualToString:@"BookmarksDocumentInNursery"])
+    if ([aTypeName isEqualToString:@"BookmarksDocumentInNursery"] || [aTypeName isEqualToString:@"jp.pedophilia.bookmarksn"])
     {
         if (![[self nursery] filePath])
             [[self nursery] setFilePath:[anAbsoluteURL path]];
@@ -60,7 +60,7 @@
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError
 {
-    if ([typeName isEqualToString:@"BookmarksDocumentInNursery"])
+    if ([typeName isEqualToString:@"BookmarksDocumentInNursery"] || [typeName isEqualToString:@"jp.pedophilia.bookmarksn"])
     {
         NUMainBranchNursery *aNursery = [NUMainBranchNursery nurseryWithContentsOfFile:[url path]];
         id aNurseryRoot = [[aNursery playLot] root];

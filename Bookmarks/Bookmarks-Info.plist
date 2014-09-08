@@ -11,8 +11,6 @@
 			<array>
 				<string>bkmn</string>
 			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string></string>
 			<key>CFBundleTypeName</key>
 			<string>BookmarksDocumentInNursery</string>
 			<key>CFBundleTypeOSTypes</key>
@@ -21,6 +19,10 @@
 			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>jp.pedophilia.bookmarksn</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>ATBookmarksDocument</string>
 		</dict>
@@ -33,6 +35,10 @@
 			<string>BookmarksDocumentInPlist</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>jp.pedophilia.bookmarksp</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>ATBookmarksDocument</string>
 		</dict>
@@ -63,5 +69,46 @@
 	<string>MainMenu.nib</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Bookmarks document</string>
+			<key>UTTypeIconFile</key>
+			<string>bkmn</string>
+			<key>UTTypeIdentifier</key>
+			<string>jp.pedophilia.bookmarksn</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>bkmn</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Bookmarks document</string>
+			<key>UTTypeIconFile</key>
+			<string>bkmp</string>
+			<key>UTTypeIdentifier</key>
+			<string>jp.pedophilia.bookmarksp</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>bkmp</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>
