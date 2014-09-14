@@ -65,7 +65,6 @@
 {
     if (self = [super init])
     {
-        
         NUSetIvar(&localizableTitle, [aChildminder decodeObject]);
         selector = NSSelectorFromString([aChildminder decodeObjectReally]);
         isEnabled = [aChildminder decodeBOOL];

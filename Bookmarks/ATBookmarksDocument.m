@@ -129,7 +129,6 @@
 
 - (void)makeWindowControllers
 {
-	
 	inMakingWindowControllers = YES;
 	
     id aRoot = [[[self nursery] playLot] root];
@@ -174,7 +173,7 @@
 - (void)showWindows
 {
     [[self windowControllers] enumerateObjectsUsingBlock:^(NSWindowController *aWinController, NSUInteger idx, BOOL *stop) {
-        [aWinController showWindow:nil];
+        //[aWinController showWindow:nil];
         [[aWinController window] makeKeyAndOrderFront:nil];
     }];
 }

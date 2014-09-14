@@ -20,7 +20,6 @@
 		612ED5FA1955B6F500218D5D /* ATMenuItemDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 612ED5F91955B6F500218D5D /* ATMenuItemDescription.m */; };
 		612ED5FD1955BC4F00218D5D /* ATDocumentPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 612ED5FC1955BC4F00218D5D /* ATDocumentPreferencesWindowController.m */; };
 		6155049519BB446300FB17B7 /* bkmp.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 6155049419BB446300FB17B7 /* bkmp.iconset */; };
-		6155049719BB456C00FB17B7 /* bkmp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6155049619BB456C00FB17B7 /* bkmp.icns */; };
 		6158CD761915A90100BD8BA1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6158CD751915A90100BD8BA1 /* Cocoa.framework */; };
 		6158CD801915A90100BD8BA1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6158CD7E1915A90100BD8BA1 /* InfoPlist.strings */; };
 		6158CD821915A90100BD8BA1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6158CD811915A90100BD8BA1 /* main.m */; };
@@ -719,7 +718,6 @@
 				6158CE8D1915C44800BD8BA1 /* ATBookmarkInspectorWindow.xib in Resources */,
 				6155049519BB446300FB17B7 /* bkmp.iconset in Resources */,
 				612ED5E419526CA900218D5D /* openURLsWithChrome.scpt in Resources */,
-				6155049719BB456C00FB17B7 /* bkmp.icns in Resources */,
 				6158CE871915C42D00BD8BA1 /* ATWebIconLoaderWindow.nib in Resources */,
 				6158CE981915C91600BD8BA1 /* Localizable.strings in Resources */,
 				6158CE7E1915C40D00BD8BA1 /* ATBookmarksWindow.nib in Resources */,

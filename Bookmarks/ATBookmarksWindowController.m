@@ -13,7 +13,9 @@
 @implementation ATBookmarksWindowController
 
 - (void)windowDidLoad
-{	
+{
+    [super windowDidLoad];
+    
 	/*NSTextFieldCell *aTextFieldCell = [[bookmarksView tableColumnWithIdentifier:@"urlString"] dataCell];
 	ImageAndTextCell *aCell = [[[ImageAndTextCell alloc] init] autorelease];
 	[aCell setLineBreakMode:NSLineBreakByTruncatingMiddle];
@@ -37,15 +39,30 @@
 	
 	[presentationController setContent:[self bookmarksPresentation]];
 	//[[bookmarksView tableColumnWithIdentifier:@"name"] setDataCell:aCell];
-    [[self window] setAlphaValue:[[bookmarksHome preferences] windowAlphaValue]];
     //[[self window] setStyleMask:NSResizableWindowMask | NSTitledWindowMask];
     //[[self window] setBackgroundColor:[NSColor clearColor]];
     //[[self window] setOpaque:NO];
     
+    [[self window] setAlphaValue:[[bookmarksHome preferences] windowAlphaValue]];
+    
 //	[self addObserverForWindow];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeMain:) name:NSWindowDidBecomeMainNotification object:[self window]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(documentPreferencesWindowAlphaValueDidChange:) name:ATDocumentPreferencesDidChangeWindowAlphaValueNotification object:[bookmarksHome preferences]];
 }
+
+//- (void)showWindow:(id)sender
+//{
+//    [super showWindow:sender];
+//    
+//    [[self window] setAlphaValue:[[bookmarksHome preferences] windowAlphaValue]];
+//}
+
+//- (void)windowDidBecomeMain:(NSNotification *)aNotification
+//{
+////    [[self window] setAlphaValue:[[bookmarksHome preferences] windowAlphaValue]];
+////    [[self window] setAlphaValue:0];
+//}
 
 - (void)documentPreferencesWindowAlphaValueDidChange:(NSNotification *)aNotification
 {
