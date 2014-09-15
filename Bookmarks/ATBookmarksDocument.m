@@ -267,7 +267,7 @@
 {
     NSOpenPanel *anOpenPanel = [NSOpenPanel openPanel];
     NSString *aBookmarksFilepath = [anImporter defaultBookmarksFilepath];
-    
+    NSURL *aPreviousDirectoryURL = [[[anOpenPanel directoryURL] copy] autorelease];
     [anOpenPanel setDirectoryURL:[NSURL fileURLWithPath:aBookmarksFilepath]];
     
     if ([[aBookmarksFilepath pathExtension] length])
@@ -281,6 +281,7 @@
             ATBinder *aRoot = [[self bookmarks] root];
             [[self bookmarks] insertItems:anItem to:[aRoot count] of:aRoot contextInfo:nil];
         }
+        [anOpenPanel setDirectoryURL:aPreviousDirectoryURL];
         [anOpenPanel orderOut:nil];
     }];
 }

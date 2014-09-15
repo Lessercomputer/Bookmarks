@@ -138,7 +138,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
     if (aBookmarksHome && ![aBookmarksHome isBell])
     {
         [self setRoot:[[aBookmarksHome bookmarks] root]];
-        [self setCountOfItems:[[aBookmarksHome bookmarks] count]];
+        [self setCountOfItems:[[aBookmarksHome bookmarks] count] - 1];
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bookmarksItemsDidInsert:) name:ATBookmarksDidInsertNotification object:[aBookmarksHome bookmarks]];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bookmarksItemsDidMove:) name:ATBookmarksDidMoveNotification object:[aBookmarksHome bookmarks]];
@@ -774,7 +774,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
     //[self postDidChangeNotification:NO];
     [self delayedPostDidChangeNotification:NO];
 	
-	[self setCountOfItems:[[self bookmarks] count]];
+	[self setCountOfItems:[[self bookmarks] count] - 1];
 }
 
 - (void)delayedPostDidChangeNotification:(BOOL)aRootChanged

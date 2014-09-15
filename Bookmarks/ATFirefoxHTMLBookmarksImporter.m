@@ -304,7 +304,7 @@
 	[self performSelectorOnMainThread:@selector(setProcessDescription:) withObject:NSLocalizedString(@"Converting Firefox Bookmarks ...", nil) waitUntilDone:YES];
 	
 	aCount = [bookmarksDocumentEntity countOfElementNamed:@"H3"] + [bookmarksDocumentEntity countOfElementNamed:@"A"];
-	[self setCountOfItems:aCount];
+	[self setCountOfItems:aCount - 1];
 	
 	while (([self status] != ATFirefoxHTMLBookmarksImporterIsCanceled) && (anElement = [anEnumerator nextObject]))
 	{
