@@ -94,8 +94,10 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 
 - (void)dealloc
 {
+#ifdef DEBUG
 	NSLog(@"ATBookmarks #dealloc");
-
+#endif
+    
     [self setDraggingSourceBinder:nil];
     [self setDraggingItemIndexes:nil];
     [self releaseItems];
@@ -255,76 +257,6 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 	}
 	
 	return anItems;
-}
-
-- (void)openFolder:(ATBinder *)aFolder
-{
-	[self openFolder:aFolder recursive:NO firstPass:YES];
-}
-
-- (void)openFolder:(ATBinder *)aFolder recursive:(BOOL)aRecursiveFlag
-{
-	[self openFolder:aFolder recursive:aRecursiveFlag firstPass:YES];
-}
-
-- (void)openFolder:(ATBinder *)aFolder recursive:(BOOL)aRecursiveFlag firstPass:(BOOL)aFirstPassFlag
-{
-	BOOL aFolderStatusChanged = [aFolder setIsOpen:YES];
-		
-	if (aRecursiveFlag)
-	{
-		NSEnumerator *enumerator = [[aFolder children] objectEnumerator];
-		id anItem = nil;
-		
-		while (anItem = [enumerator nextObject])
-		{
-			if ([anItem isFolder])
-				[self openFolder:anItem recursive:aRecursiveFlag firstPass:NO];
-		}
-	}
-	
-	if (aFirstPassFlag && aFolderStatusChanged)
-	{
-		[[[self undoManager] prepareWithInvocationTarget:self] closeFolder:aFolder recursive:aRecursiveFlag firstPass:YES];
-		[[NSNotificationCenter defaultCenter] postNotificationName:ATBookmarksDidOpenFolderNotification object:self userInfo:[NSDictionary dictionaryWithObject:aFolder forKey:@"folder"]];
-	}
-}
-
-- (void)closeFolder:(ATBinder *)aFolder
-{
-	[self closeFolder:aFolder recursive:NO firstPass:YES];
-}
-
-- (void)closeFolder:(ATBinder *)aFolder recursive:(BOOL)aRecursiveFlag
-{
-	[self closeFolder:aFolder recursive:aRecursiveFlag firstPass:YES];
-}
-
-- (void)closeFolder:(ATBinder *)aFolder recursive:(BOOL)aRecursiveFlag firstPass:(BOOL)aFirstPassFlag
-{
-	if (aRecursiveFlag)
-	{
-		NSEnumerator *enumerator = [[aFolder children] objectEnumerator];
-		id anItem = nil;
-		
-		while (anItem = [enumerator nextObject])
-		{
-			if ([anItem isFolder])
-			{
-				[self closeFolder:anItem recursive:aRecursiveFlag firstPass:NO];
-			}
-		}
-	}
-	
-	if ([aFolder setIsOpen:NO])
-	{
-		if (aFirstPassFlag)
-		{
-			[[[self undoManager] prepareWithInvocationTarget:self] openFolder:aFolder recursive:aRecursiveFlag firstPass:YES];
-			
-			[[NSNotificationCenter defaultCenter] postNotificationName:ATBookmarksDidCloseFolderNotification object:self userInfo:[NSDictionary dictionaryWithObject:aFolder forKey:@"folder"]];
-		}
-	}
 }
 
 - (ATBinder *)draggingSourceBinder
@@ -979,8 +911,6 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 - (void)setRoot:(ATBinder *)aRoot
 {
     NUSetIvar(&root, aRoot);
-	
-	[root setIsOpen:YES];
 }
 
 - (void)setIDPool:(ATIDPool *)anIDPool

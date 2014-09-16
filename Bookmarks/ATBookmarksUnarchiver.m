@@ -21,7 +21,7 @@
 	
 	if ([aVersion doubleValue] == 0.2)
 		return [[[[ATBookmarksTreeUnarchiver alloc] initWithArchive:anArchive] autorelease] unarchive];
-	else if ([aVersion doubleValue] == 0.3)
+	else if ([aVersion doubleValue] == 0.3 || [aVersion doubleValue] == 1.0)
 		return [[[[self alloc] initWithArchive:anArchive] autorelease] unarchive];
 	else
 		return nil;

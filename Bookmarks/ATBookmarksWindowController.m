@@ -94,8 +94,10 @@
 
 - (void)dealloc
 {
+#ifdef DEBUG
 	NSLog(@"ATBookmarksWindowController #dealloc");
-		
+#endif
+    
 	[self setBookmarksPresentation:nil];
     //[browserController release];
 	//[self setBookmarks:nil];

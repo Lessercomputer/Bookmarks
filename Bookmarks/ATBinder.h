@@ -12,7 +12,6 @@
 @interface ATBinder : ATItem
 {
 	NSMutableArray *children;
-	BOOL isOpen;
 }
 
 @end
@@ -80,8 +79,6 @@
 @end
 
 @interface ATBinder (Testing)
-- (BOOL)isOpen;
-- (BOOL)setIsOpen:(BOOL)aFlag;
 - (BOOL)isReachableFrom:(ATBinder *)aBinder;
 @end
 

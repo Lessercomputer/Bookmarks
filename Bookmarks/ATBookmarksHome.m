@@ -172,7 +172,10 @@
     [nursery close];
     [nursery release];
     nursery = [aNursery retain];
+
+#ifdef DEBUG
     [nursery setBackups:YES];
+#endif
     
     if ([[nursery playLot] root] != self)
     {

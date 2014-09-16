@@ -45,8 +45,10 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 
 - (void)dealloc
 {
+#ifdef DEBUG
 	NSLog(@"ATBookmarksPresentaion #dealloc");
-
+#endif
+    
     [self setBinderWrappers:nil];
 	[self setBookmarksHome:nil];
 	[self setRoot:nil];
@@ -237,18 +239,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 - (NSMenu *)menuForEvent:(NSEvent *)theEvent
 {
 	NSMenu *aMenu = [[[NSMenu alloc] initWithTitle:@"bookmarkMenu"] autorelease];
-	
-//	[aMenu insertItemWithTitle:NSLocalizedString(@"Open Bookmarks Of Selected Binder With Safari", nil) action:@selector(openBookmarksInSelectedBinderWithSafari:) keyEquivalent:@"" atIndex:0];
-//	[aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookmarks With Safari", nil) action:@selector(openSelectedBookmarksWithSafari:) keyEquivalent:@"" atIndex:1];
-//	[aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookmarks With Safari With New Tabs", nil) action:@selector(openSelectedBookmarksWithSafariWithNewTabs:) keyEquivalent:@"" atIndex:2];
-//    
-//    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Bookmarks Of Selected Binder With Chrome", nil) action:@selector(openBookmarksInSelectedBinderWithChrome:) keyEquivalent:@"" atIndex:3];
-//    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookmarks With Chrome", nil) action:@selector(openSelectedBookmarksWithChrome:) keyEquivalent:@"" atIndex:4];
-//    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookmarks With Chrome With New Tabs", nil) action:@selector(openSelectedBookmarksWithChromeWithNewTabs:) keyEquivalent:@"" atIndex:5];
-//    
-//    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Bookmarks Of Selected Binder With Firefox", nil) action:@selector(openBookmarksInSelectedBinderWithFirefox:) keyEquivalent:@"" atIndex:6];
-//    [aMenu insertItemWithTitle:NSLocalizedString(@"Open Selected Bookarmks With Firefox With New Tabs", nil) action:@selector(openSelectedBookmarksWithFirefoxWithNewTabs:) keyEquivalent:@"" atIndex:7];
-	
+		
     __block NSUInteger aMenuItemIndex = 0;
     
     [[[[self bookmarksHome] preferences] menuItemDescriptionsForOpenBookmarksWith] enumerateObjectsUsingBlock:^(ATMenuItemDescription *aMenuItemDescription, NSUInteger idx, BOOL *stop) {
@@ -784,107 +775,6 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 
 @end
 
-//@implementation ATBookmarksPresentation (OutlineViewDataSouce)
-//
-//- (id)outlineView:(NSOutlineView *)outlineView child:(int)index ofItem:(id)item
-//{
-//	if (!item)
-//		return [[self root] at:index];
-//	else
-//		return [item at:index];
-//}
-//
-//- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
-//{
-//	return [item isFolder];
-//}
-//
-//- (int)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
-//{
-//	if (!item)
-//		return [[self root] count];
-//	else	
-//		return [item count];
-//}
-//
-//- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
-//{
-//	if ([item isFolder] && [[tableColumn identifier] isEqualToString:@"urlString"])
-//		return @"";
-//	else if ([[tableColumn identifier] isEqualToString:@"name"])
-//	{
-//		NSCell *cell = [tableColumn dataCell];
-//		
-//		if ([item isBookmark] && [item icon])
-//			[cell setImage:[item icon]];
-//		else
-//			[cell setImage:nil];
-//		
-//		return [item name];
-//	}
-//	else if ([[tableColumn identifier] isEqualToString:@"lastVisitDate"] || [[tableColumn identifier] isEqualToString:@"lastModifiedDate"])
-//	{
-//		if ([item isBookmark])
-//			return [item valueForKey:[tableColumn identifier]];
-//		else
-//			return @"";
-//	}
-//	else
-//		return [item valueForKey:[tableColumn identifier]];
-//}
-//
-//
-//- (void)outlineView:(NSOutlineView *)outlineView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
-//{
-//	if (!([item isFolder] && [[tableColumn identifier] isEqual:@"urlString"]))
-//	{
-//		ATEditor *anEditor = [ATEditor editorFor:item on:self];
-//
-//		[[anEditor value] setObject:([object isEqual:@""] ? [NSNull null] : object) forKey:[tableColumn identifier]];
-//
-//		[anEditor acceptIfValid];
-//	}
-//}
-//
-//- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpanded:(id)aFolder
-//{
-//	return [aFolder isOpen];
-//}
-//
-//- (void)outlineView:(NSOutlineView *)outlineView openFolder:(ATBinder *)aFolder recursive:(BOOL)aRecursiveFlag
-//{
-//	[[self bookmarks] openFolder:aFolder recursive:aRecursiveFlag];
-//}
-//
-//- (void)outlineView:(NSOutlineView *)outlineView closeFolder:(ATBinder *)aFolder recursive:(BOOL)aRecursiveFlag
-//{
-//	[[self bookmarks] closeFolder:aFolder recursive:aRecursiveFlag];
-//}
-//
-//- (BOOL)outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pboard
-//{
-//	return [[self bookmarks] writeDraggingItems:[[self bookmarks] topLevelItemsIn:items] to:pboard];
-//}
-//
-//- (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id <NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(int)index
-//{
-//	//[self logDraggingSourceOperationMask:info];
-//	
-//	if (index == NSOutlineViewDropOnItemIndex)
-//		return [[self bookmarks] validateDrop:info on:item];
-//	else
-//		return [[self bookmarks] validateDrop:info to:(item ? item : [self root]) at:index];
-//}
-//
-//- (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id <NSDraggingInfo>)info item:(id)item childIndex:(int)index
-//{
-//	if (index == NSOutlineViewDropOnItemIndex)
-//		return [[self bookmarks] acceptDrop:info on:item contextInfo:[self presentationID]];
-//	else
-//		return [[self bookmarks] acceptDrop:info to:(item ? item : [self root]) at:index contextInfo:[self presentationID]];
-//}
-//
-//@end
 
 @implementation ATBookmarksPresentation (BrowserDelegate)
 
@@ -1123,9 +1013,12 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 
 - (void)addBinderWrapper:(ATBinderWrapper *)aBinderWrapper
 {
+#ifdef DEBUG
     NSLog(@"addBinderWrapper:%@", aBinderWrapper);
+    
     if ([self binderCount] == 1)
         NSLog(@"");
+#endif
     
     [[self binderWrappers] addObject:aBinderWrapper];
 //    [aBinderWrapper setItemsIsChanged:YES];
@@ -1436,61 +1329,6 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
         }
     }
 }
-
-//- (void)updateWithMoveOperation:(ATBookmarksMoveOperation *)aMoveOperation binderIndex:(NSInteger)aBinderIndex
-//{
-//    ATBinderWrapper *aBinderWrapper = [self binderWrapperAt:aBinderIndex];
-//    NSArray *aMoveItems = [aBinderWrapper itemsAt:[aMoveOperation sourceIndexes]];
-//    NSArray *aSelectedItems = [aBinderWrapper selectedItems];
-//    if ([aSelectedItems count] == 1 && [[aSelectedItems lastObject] isBinderWrapper])
-//        [[aSelectedItems lastObject] removeAll];
-//    [aBinderWrapper removeAtIndexes:[aMoveOperation sourceIndexes]];
-//    [aBinderWrapper insertItems:aMoveItems at:[aMoveOperation destinationIndexes]];
-//    [aBinderWrapper setSelectedItems:aMoveItems];
-//}
-//
-//- (void)updateWithMoveOperation:(ATBookmarksMoveOperation *)aMoveOperation upperBinderIndex:(NSInteger)anUpperBinderIndex lowerBinderIndex:(NSInteger)aLowerBinderIndex
-//{
-//    ATBinderWrapper *anUpperBinderWrapper = [self binderWrapperAt:anUpperBinderIndex];
-//    
-//    if ([[anUpperBinderWrapper binder ] isEqual:[aMoveOperation sourceBinder]])
-//    {
-//        NSArray *aMoveItems = [anUpperBinderWrapper itemsAt:[aMoveOperation sourceIndexes]];
-//        NSArray *anOldSelectedItems = [anUpperBinderWrapper selectedItems];
-//        NSMutableArray *aNewSelectedItems = [[anOldSelectedItems mutableCopy] autorelease];
-//        [aNewSelectedItems removeObjectsInArray:aMoveItems];
-//        if ([anOldSelectedItems count] == 1 && [[anOldSelectedItems lastObject] isBinderWrapper]
-//            && ![anOldSelectedItems isEqualToArray:aNewSelectedItems])
-//            [[anOldSelectedItems lastObject] removeAll];
-//        [anUpperBinderWrapper removeAtIndexes:[aMoveOperation sourceIndexes]];
-//        [anUpperBinderWrapper setSelectedItems:aNewSelectedItems];
-//        
-//        if (aLowerBinderIndex != NSNotFound)
-//        {
-//            ATBinderWrapper *aDestinationBinderWrapper = [self binderWrapperAt:aLowerBinderIndex];
-//            NSArray *aSelectedItemsInDestination = [aDestinationBinderWrapper selectedItems];
-//            [aDestinationBinderWrapper insertItems:aMoveItems at:[aMoveOperation destinationIndexes]];
-//            if ([aSelectedItemsInDestination count] == 1 && [[aSelectedItemsInDestination lastObject] isBinderWrapper])
-//                [[aSelectedItemsInDestination lastObject] removeAll];
-//            [aDestinationBinderWrapper setSelectedItems:aMoveItems];
-//        }
-//    }
-//    else
-//    {
-//        NSArray *anOldSelectedItems = [anUpperBinderWrapper selectedItems];
-//        
-//        if (aLowerBinderIndex != NSNotFound)
-//        {
-//            ATBinderWrapper *aSourceBinderWrapper = [self binderWrapperAt:aLowerBinderIndex];
-//            NSArray *aMoveItems = [aSourceBinderWrapper itemsAt:[aMoveOperation sourceIndexes]];
-//            [aSourceBinderWrapper removeAtIndexes:[aMoveOperation sourceIndexes]];
-//            if ([anOldSelectedItems count] == 1 && [[anOldSelectedItems lastObject] isBinderWrapper])
-//                [[anOldSelectedItems lastObject] removeAll];
-//            [anUpperBinderWrapper insertItems:aMoveItems at:[aMoveOperation destinationIndexes]];
-//            [anUpperBinderWrapper setSelectedItems:aMoveItems];
-//        }
-//    }
-//}
 
 - (void)discardBinderWrapperChangeInfo
 {

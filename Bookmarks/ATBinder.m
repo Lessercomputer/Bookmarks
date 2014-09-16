@@ -24,21 +24,9 @@
 
 - (id)initWith:(NSDictionary *)aPropertyList
 {
-	/*NSEnumerator *anEnumerator = [[aPropertyList objectForKey:@"children"] objectEnumerator];
-	NSDictionary *anItem = nil;*/
-	
 	[super initWith:aPropertyList];
 	
 	[self setChildren:[NSMutableArray array]];
-	
-	//while (anItem = [anEnumerator nextObject])
-//	{
-//		Class aClass = [[anItem objectForKey:@"class"] isEqualToString:@"ATFolder"] ? [ATBinder class] : NSClassFromString([anItem objectForKey:@"class"]);
-//		
-//		[self insert:[aClass newWith:anItem] at:[[self children] count]];
-//	}
-	
-	[self setIsOpen:[[aPropertyList objectForKey:@"isOpen"] boolValue]];
 	
 	return self;
 }
@@ -301,23 +289,6 @@
 	return YES;
 }
 
-- (BOOL)isOpen
-{
-	return isOpen;
-}
-
-- (BOOL)setIsOpen:(BOOL)aFlag
-{
-	if (isOpen != aFlag)
-	{
-		isOpen = aFlag;
-		
-		return YES;
-	}
-	else
-		return NO;
-}
-
 - (BOOL)canMoveFrom:(ATBinder *)aSourceBinder to:(ATBinder *)aDestinationBinder
 {
 	if ([aSourceBinder isEqual:aDestinationBinder])
@@ -410,9 +381,7 @@
 	
 	while (anItem = [anEnumerator nextObject])
 		[[aPlist objectForKey:@"children"] addObject:[anItem numberWithItemID]];
-	
-	[aPlist setObject:[NSNumber numberWithBool:[self isOpen]] forKey:@"isOpen"];
-	
+		
 	return aPlist;
 }
 

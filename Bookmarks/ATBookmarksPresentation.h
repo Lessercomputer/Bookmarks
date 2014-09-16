@@ -182,21 +182,6 @@ extern NSString *ATBookmarksPresentationDidChangeNotification;
 
 @end
 
-@interface ATBookmarksPresentation (OutlineViewDataSouce)
-
-- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item;
-- (void)outlineView:(NSOutlineView *)outlineView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn byItem:(id)item;
-
-- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpanded:(id)aFolder;
-
-- (void)outlineView:(NSOutlineView *)outlineView openFolder:(ATBinder *)aFolder recursive:(BOOL)aRecursiveFlag;
-- (void)outlineView:(NSOutlineView *)outlineView closeFolder:(ATBinder *)aFolder recursive:(BOOL)aRecursiveFlag;
-
-- (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id <NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(int)index;
-- (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id <NSDraggingInfo>)info item:(id)item childIndex:(int)index;
-
-@end
-
 @interface ATBookmarksPresentation (BrowserDelegate)
 
 @end

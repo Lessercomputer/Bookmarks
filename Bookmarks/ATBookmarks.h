@@ -99,14 +99,6 @@ extern NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType;
 
 - (NSArray *)itemsBy:(NSArray *)anIndexPaths;
 
-- (void)openFolder:(ATBinder *)aFolder;
-- (void)openFolder:(ATBinder *)aFolder recursive:(BOOL)aRecursiveFlag;
-- (void)openFolder:(ATBinder *)aFolder recursive:(BOOL)aRecursiveFlag firstPass:(BOOL)aFirstPassFlag;
-
-- (void)closeFolder:(ATBinder *)aFolder;
-- (void)closeFolder:(ATBinder *)aFolder recursive:(BOOL)aRecursiveFlag;
-- (void)closeFolder:(ATBinder *)aFolder recursive:(BOOL)aRecursiveFlag firstPass:(BOOL)aFirstPassFlag;
-
 - (ATBinder *)draggingSourceBinder;
 - (void)setDraggingSourceBinder:(ATBinder *)aBinder;
 

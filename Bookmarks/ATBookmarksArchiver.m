@@ -56,7 +56,7 @@
 
 - (id)makeArchivedBookmarks
 {
-	archivedBookmarks = [[NSMutableDictionary dictionaryWithObjectsAndKeys:itemsPlist,@"items", [[bookmarks root] numberWithItemID],@"root", [[bookmarks idPool] propertyListRepresentation],@"idPool", [NSNumber numberWithDouble:0.3],@"version", nil] retain];
+	archivedBookmarks = [[NSMutableDictionary dictionaryWithObjectsAndKeys:itemsPlist,@"items", [[bookmarks root] numberWithItemID],@"root", [[bookmarks idPool] propertyListRepresentation],@"idPool", [NSNumber numberWithDouble:1.0],@"version", nil] retain];
 	
 	return archivedBookmarks;
 }

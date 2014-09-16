@@ -340,8 +340,10 @@
 
 - (void)dealloc
 {
+#ifdef DEBUG
 	NSLog(@"ATBookmarksDocument #dealloc");
-	
+#endif
+    
 	[importers makeObjectsPerformSelector:@selector(cancel)];
 	[importers release];
 
