@@ -68,7 +68,7 @@
 	<key>NSMainNibFile</key>
 	<string>MainMenu.nib</string>
 	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
+	<string>ATApplication</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
