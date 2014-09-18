@@ -8,6 +8,19 @@ static NSInteger ATDebugMenuItemTag = -1;
 
 @implementation ATApplicationDelegate
 
+void ATUncaughtExceptionHandler(NSException *anException)
+{
+    NSLog(@"Exception: %@", anException);
+    NSLog(@"Stack Trace: %@", [anException callStackSymbols]);
+    
+    exit(EXIT_FAILURE);
+}
+
+- (void)applicationWillFinishLaunching:(NSNotification *)aNotification
+{
+    NSSetUncaughtExceptionHandler(&ATUncaughtExceptionHandler);
+}
+
 - (void)awakeFromNib
 {
 	[NSValueTransformer setValueTransformer:[[[ATNullBetweenNilTransformer alloc] init] autorelease]
@@ -57,6 +70,13 @@ static NSInteger ATDebugMenuItemTag = -1;
 - (IBAction)logCurrentFirstResponder:(id)sender
 {
 	NSLog(@"currentFirstResponder is %@", [[NSApplication sharedApplication] targetForAction:@selector(openWindow:)]);
+}
+
+- (IBAction)raiseException:(id)sender
+{
+    NSArray *anArray = [@[] copy];
+    id anObject = anArray[0];
+    [anObject release];
 }
 
 @end

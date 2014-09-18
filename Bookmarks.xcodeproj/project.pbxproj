@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6107D03019CB981500BC3562 /* ATApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 6107D02F19CB981500BC3562 /* ATApplication.m */; };
 		61137F93191670A70083DC07 /* Nursery.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6158CE5D1915AD5100BD8BA1 /* Nursery.framework */; };
 		61137F94191670BA0083DC07 /* Nursery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6158CE5D1915AD5100BD8BA1 /* Nursery.framework */; };
 		6117F37D191DB9AF00CE4D3D /* ATBinderInspectorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6117F37F191DB9AF00CE4D3D /* ATBinderInspectorWindow.xib */; };
@@ -132,6 +133,8 @@
 
 /* Begin PBXFileReference section */
 		610022DE19BAA1C900B38B51 /* bkmn.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = bkmn.icns; sourceTree = "<group>"; };
+		6107D02E19CB981500BC3562 /* ATApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATApplication.h; sourceTree = "<group>"; };
+		6107D02F19CB981500BC3562 /* ATApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATApplication.m; sourceTree = "<group>"; };
 		6117F37E191DB9AF00CE4D3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ATBinderInspectorWindow.xib; sourceTree = "<group>"; };
 		611FA35619433D4800D416B3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		611FA35719433D4800D416B3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ATBookmarksWindow.strings; sourceTree = "<group>"; };
@@ -397,6 +400,8 @@
 				6158CE901915C47B00BD8BA1 /* Foundation */,
 				6158CDB21915AB2300BD8BA1 /* ATEditor.h */,
 				6158CDB31915AB2300BD8BA1 /* ATEditor.m */,
+				6107D02E19CB981500BC3562 /* ATApplication.h */,
+				6107D02F19CB981500BC3562 /* ATApplication.m */,
 				6158CDE11915AB2300BD8BA1 /* ATApplicationDelegate.h */,
 				6158CDE21915AB2300BD8BA1 /* ATApplicationDelegate.m */,
 				6158CE911915C49F00BD8BA1 /* NETSCAPE-Bookmark-file-1 */,
@@ -768,6 +773,7 @@
 				6158CE171915AB2300BD8BA1 /* ATEditor.m in Sources */,
 				6158CE1B1915AB2300BD8BA1 /* ATFirefoxHTMLBookmarksImporter.m in Sources */,
 				6158CE461915AB2300BD8BA1 /* ATBookmarksWindowController.m in Sources */,
+				6107D03019CB981500BC3562 /* ATApplication.m in Sources */,
 				6158CE3F1915AB2300BD8BA1 /* ATBookmarksMoveOperation.m in Sources */,
 				6158CE3E1915AB2300BD8BA1 /* ATBookmarksItemsUnarchiver.m in Sources */,
 				6158CE3B1915AB2300BD8BA1 /* ATBookmarksHome.m in Sources */,
