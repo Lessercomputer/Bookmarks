@@ -3,7 +3,7 @@
 //  ATBase64Decoder
 //
 //  Created by çÇìc ñæéj on Mon Jan 24 2005.
-//  Copyright (c) 2005 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2005 Pedophilia. All rights reserved.
 //
 
 #import "ATBase64Processor.h"

@@ -3,7 +3,7 @@
 //  ATQuotedPrintable
 //
 //  Created by 高田　明史 on 07/11/18.
-//  Copyright 2007 __MyCompanyName__. All rights reserved.
+//  Copyright 2007 Pedophilia. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>

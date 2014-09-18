@@ -2,8 +2,8 @@
 //  ATBrowser.m
 //  ATBookmarks
 //
-//  Created by 明史 高田 on 12/02/26.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Created by 高田 明史  on 12/02/26.
+//  Copyright (c) 2012年 Pedophilia. All rights reserved.
 //
 
 #import "ATBrowser.h"

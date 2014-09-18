@@ -3,7 +3,7 @@
 //  ATBase64
 //
 //  Created by çÇìc ñæéj on Sun Apr 10 2005.
-//  Copyright (c) 2005 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2005 Pedophilia. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

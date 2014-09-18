@@ -3,7 +3,7 @@
 //  ATBookmarks
 //
 //  Created by ?? on 05/10/11.
-//  Copyright __MyCompanyName__ 2005 . All rights reserved.
+//  Copyright Pedophilia 2005 . All rights reserved.
 //
 
 #import "ATBookmarksDocument.h"

@@ -3,7 +3,7 @@
 //  ATBookmarks
 //
 //  Created by ‚“c@–¾j on 07/08/22.
-//  Copyright 2007 __MyCompanyName__. All rights reserved.
+//  Copyright 2007 Pedophilia. All rights reserved.
 //
 
 #import "ATSubtreeEnumerator.h"

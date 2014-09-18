@@ -2,8 +2,8 @@
 //  ATBookmaksBrowserController.m
 //  ATBookmarks
 //
-//  Created by 明史 高田 on 11/12/30.
-//  Copyright (c) 2011年 __MyCompanyName__. All rights reserved.
+//  Created by 高田 明史  on 11/12/30.
+//  Copyright (c) 2011年 Pedophilia. All rights reserved.
 //
 
 #import "ATBookmarksBrowserController.h"

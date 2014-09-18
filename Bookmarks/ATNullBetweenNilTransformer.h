@@ -3,7 +3,7 @@
 //  ATBookmarks
 //
 //  Created by –¾Žj on 05/10/12.
-//  Copyright 2005 __MyCompanyName__. All rights reserved.
+//  Copyright 2005 Pedophilia. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
