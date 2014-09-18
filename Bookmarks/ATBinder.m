@@ -1,6 +1,6 @@
 //
 //  ATBinder.m
-//  ATBookmarks
+//  Bookmarks
 //
 //  Created by 高田 明史  on 05/10/11.
 //  Copyright 2005 Pedophilia. All rights reserved.

@@ -2,7 +2,7 @@
 //  ATBase64Processor.m
 //  ATBase64
 //
-//  Created by ‚“c –¾j on Sun Apr 10 2005.
+//  Created by é«˜ç”° æ˜å² on Sun Apr 10 2005.
 //  Copyright (c) 2005 Pedophilia. All rights reserved.
 //
 

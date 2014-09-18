@@ -1,6 +1,6 @@
 //
-//  ATBookmarksItemsUnarchiver.h
-//  ATBookmarks
+//  BookmarksItemsUnarchiver.h
+//  Bookmarks
 //
 //  Created by 高田 明史 on 09/03/26.
 //  Copyright 2009 Pedophilia. All rights reserved.

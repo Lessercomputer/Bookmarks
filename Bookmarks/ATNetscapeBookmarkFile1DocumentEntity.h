@@ -1,8 +1,8 @@
 //
 //  ATNetscapeBookmarkFile1DocumentEntity.h
-//  ATBookmarks
+//  Bookmarks
 //
-//  Created by ‚“c@–¾j on 07/08/07.
+//  Created by é«˜ç”° æ˜å² on 07/08/07.
 //  Copyright 2007 Pedophilia. All rights reserved.
 //
 

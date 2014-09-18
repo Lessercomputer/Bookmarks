@@ -2,7 +2,7 @@
 //  ATQuotedPrintableDecoder.m
 //  ATQuotedPrintable
 //
-//  Created by 高田　明史 on 07/11/18.
+//  Created by 高田 明史 on 07/11/18.
 //  Copyright 2007 Pedophilia. All rights reserved.
 //
 

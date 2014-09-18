@@ -1,8 +1,8 @@
 //
 //  ATProcessIndicator.h
-//  ATBookmarks
+//  Bookmarks
 //
-//  Created by ‚“c@–¾j on 07/08/10.
+//  Created by é«˜ç”° æ˜å² on 07/08/10.
 //  Copyright 2007 Pedophilia. All rights reserved.
 //
 

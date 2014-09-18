@@ -1,8 +1,8 @@
 //
-//  MyDocument.h
-//  ATBookmarks
+//  BookmarksDocument.h
+//  Bookmarks
 //
-//  Created by ?? on 05/10/11.
+//  Created by 高田 明史 on 05/10/11.
 //  Copyright Pedophilia 2005 . All rights reserved.
 //
 

@@ -1,6 +1,6 @@
 //
 //  ATItemWrapper.h
-//  ATBookmarks
+//  Bookmarks
 //
 //  Created by 高田 明史  on 12/07/21.
 //  Copyright (c) 2012年 Pedophilia. All rights reserved.

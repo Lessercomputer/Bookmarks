@@ -1,5 +1,5 @@
 //
-//  ATBookmarksImporter.m
+//  BookmarksImporter.m
 //  Bookmarks
 //
 //  Created by 高田 明史 on 2014/06/07.

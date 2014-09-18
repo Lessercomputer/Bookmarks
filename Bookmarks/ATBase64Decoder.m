@@ -2,7 +2,7 @@
 //  ATBase64Decoder.m
 //  ATBase64Decoder
 //
-//  Created by ‚“c –¾j on Mon Jan 24 2005.
+//  Created by é«˜ç”° æ˜å² on Mon Jan 24 2005.
 //  Copyright (c) 2005 Pedophilia. All rights reserved.
 //
 

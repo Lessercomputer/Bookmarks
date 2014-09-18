@@ -1,6 +1,6 @@
 //
 //  ATWebIconLoader.m
-//  ATBookmarks
+//  Bookmarks
 //
 //  Created by 高田 明史 on 2012/12/28.
 //

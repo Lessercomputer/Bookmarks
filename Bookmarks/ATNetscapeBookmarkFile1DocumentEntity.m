@@ -1,8 +1,8 @@
 //
 //  ATNetscapeBookmarkFile1DocumentEntity.m
-//  ATBookmarks
+//  Bookmarks
 //
-//  Created by ���c�@���j on 07/08/07.
+//  Created by 高田 明史 on 07/08/07.
 //  Copyright 2007 Pedophilia. All rights reserved.
 //
 
@@ -63,9 +63,9 @@
 
 - (BOOL)parse
 {
-	ATMarkup *aMarkup = [scanner scanMarkup];//DOCTYPE��ǂݔ�΂�
-	aMarkup = [scanner scanMarkup];//�R�����g��ǂݔ�΂�
-	aMarkup = [scanner scanMarkup];//META��ǂݔ�΂�
+	ATMarkup *aMarkup = [scanner scanMarkup];//DOCTYPEÇì«Ç›îÚÇŒÇ∑
+	aMarkup = [scanner scanMarkup];//ÉRÉÅÉìÉgÇì«Ç›îÚÇŒÇ∑
+	aMarkup = [scanner scanMarkup];//METAÇì«Ç›îÚÇŒÇ∑
 	
 	netscapeBookmarkFile1Element = (ATNETSCAPEBookmarkFile1Element *)[[ATElement alloc] initWithName:@"netscape-bookmark-file-1" documentEntity:self scanner:scanner];
 	

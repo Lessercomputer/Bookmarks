@@ -1,6 +1,6 @@
 //
 //  ATBinderWrapper.m
-//  ATBookmarks
+//  Bookmarks
 //
 //  Created by 高田 明史 on 2012/10/13.
 //

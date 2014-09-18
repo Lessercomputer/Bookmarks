@@ -1,6 +1,6 @@
 //
-//  ATBookmarksHome.m
-//  ATBookmarks
+//  BookmarksHome.m
+//  Bookmarks
 //
 //  Created by 高田 明史 on 2012/11/30.
 //

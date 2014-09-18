@@ -1,6 +1,6 @@
 //
 //  ATWebIconLoaderWindowController.h
-//  ATBookmarks
+//  Bookmarks
 //
 //  Created by 高田 明史 on 08/01/04.
 //  Copyright 2008 Pedophilia. All rights reserved.
