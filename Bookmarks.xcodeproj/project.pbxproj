@@ -133,6 +133,8 @@
 
 /* Begin PBXFileReference section */
 		610022DE19BAA1C900B38B51 /* bkmn.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = bkmn.icns; sourceTree = "<group>"; };
+		6102291A19CF0CBB003A1FA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ATDocumentPreferencesWindow.xib; sourceTree = "<group>"; };
+		6102291D19CF0D2B003A1FA7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ATDocumentPreferencesWindow.strings; sourceTree = "<group>"; };
 		6107D02E19CB981500BC3562 /* ATApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATApplication.h; sourceTree = "<group>"; };
 		6107D02F19CB981500BC3562 /* ATApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATApplication.m; sourceTree = "<group>"; };
 		6117F37E191DB9AF00CE4D3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ATBinderInspectorWindow.xib; sourceTree = "<group>"; };
@@ -156,7 +158,6 @@
 		611FA36B194349B600D416B3 /* ATFirefoxBookmarksImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATFirefoxBookmarksImporter.m; sourceTree = "<group>"; };
 		612ED5DE1951C53700218D5D /* openURLsWithFirefox.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; path = openURLsWithFirefox.scpt; sourceTree = "<group>"; };
 		612ED5E319526CA900218D5D /* openURLsWithChrome.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; path = openURLsWithChrome.scpt; sourceTree = "<group>"; };
-		612ED5F119550E4900218D5D /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ATDocumentPreferencesWindow.xib; sourceTree = "<group>"; };
 		612ED5F51955B49E00218D5D /* ATDocumentPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATDocumentPreferences.h; sourceTree = "<group>"; };
 		612ED5F61955B49E00218D5D /* ATDocumentPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATDocumentPreferences.m; sourceTree = "<group>"; };
 		612ED5F81955B6F500218D5D /* ATMenuItemDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMenuItemDescription.h; sourceTree = "<group>"; };
@@ -841,7 +842,8 @@
 		612ED5F219550E4900218D5D /* ATDocumentPreferencesWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				612ED5F119550E4900218D5D /* ja */,
+				6102291A19CF0CBB003A1FA7 /* Base */,
+				6102291D19CF0D2B003A1FA7 /* ja */,
 			);
 			name = ATDocumentPreferencesWindow.xib;
 			path = Bookmarks;

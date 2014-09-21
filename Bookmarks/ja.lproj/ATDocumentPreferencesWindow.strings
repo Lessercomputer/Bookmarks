@@ -1,0 +1,39 @@
+
+/* Class = "NSBox"; title = "ウインドウの不透明度"; ObjectID = "6W0-Dz-dbm"; */
+"6W0-Dz-dbm.title" = "ウインドウの不透明度";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "NA8-N1-wHh"; */
+"NA8-N1-wHh.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "OFf-yC-CET"; */
+"OFf-yC-CET.title" = "Item 3";
+
+/* Class = "NSTextFieldCell"; title = "ダブルクリック時の動作"; ObjectID = "Pf9-k2-m5E"; */
+"Pf9-k2-m5E.title" = "ダブルクリック時の動作";
+
+/* Class = "NSWindow"; title = "ドキュメント設定"; ObjectID = "QvC-M9-y7g"; */
+"QvC-M9-y7g.title" = "ドキュメント設定";
+
+/* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "VEI-l8-9Vl"; */
+"VEI-l8-9Vl.title" = "Item 1";
+
+/* Class = "NSBox"; title = "Webブラウザで開く"; ObjectID = "VEn-lR-EKs"; */
+"VEn-lR-EKs.title" = "Webブラウザで開く";
+
+/* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "bgk-QP-W31"; */
+"bgk-QP-W31.title" = "Item 2";
+
+/* Class = "NSTableColumn"; headerCell.title = "使用する"; ObjectID = "cp9-5j-kU1"; */
+"cp9-5j-kU1.headerCell.title" = "使用する";
+
+/* Class = "NSButtonCell"; title = "OK"; ObjectID = "fhF-tP-fa2"; */
+"fhF-tP-fa2.title" = "OK";
+
+/* Class = "NSTableColumn"; headerCell.title = "タイトル"; ObjectID = "gCd-5x-pcZ"; */
+"gCd-5x-pcZ.headerCell.title" = "タイトル";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "kLl-iC-V7r"; */
+"kLl-iC-V7r.title" = "Text Cell";
+
+/* Class = "NSButtonCell"; title = "キャンセル"; ObjectID = "kuU-l4-2HY"; */
+"kuU-l4-2HY.title" = "キャンセル";
