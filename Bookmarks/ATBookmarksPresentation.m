@@ -1333,6 +1333,8 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 
 @end
 
+#ifdef DEBUG
+
 @implementation ATBookmarksPresentation (Debugging)
 
 - (IBAction)logItemIDOfSelections:(id)sender
@@ -1400,3 +1402,5 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 }
 
 @end
+
+#endif

@@ -178,7 +178,9 @@ extern NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType;
 - (BOOL)acceptLocalDrop:(id <NSDraggingInfo>)anInfo to:(id)anItem at:(NSUInteger)anIndex contextInfo:(id)aContextInfo;
 - (BOOL)acceptNonLocalDrop:(id <NSDraggingInfo>)anInfo to:(id)anItem at:(NSUInteger)anIndex contextInfo:(id)aContextInfo;
 
+#ifdef DEBUG
 - (void)logDragOperationMask:(NSDragOperation)aDragOperation;
+#endif
 
 @end
 
@@ -217,7 +219,9 @@ extern NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType;
 - (void)bookmarksDidChange;
 - (void)bookmarksDidChange:(id)anInfo;
 
+#ifdef DEBUG
 - (void)logDraggingSourceOperationMask:(NSDragOperation)aOperation;
+#endif
 
 - (void)setSourceBinderID:(NSNumber *)aSourceBinderID;
 

@@ -38,6 +38,7 @@ void ATUncaughtExceptionHandler(NSException *anException)
 	return NO;
 }
 
+#ifdef DEUBG
 - (IBAction)logResponderChain:(id)sender
 {
 	[self logResponderChainOf:[[NSApplication sharedApplication] keyWindow] type:@"keyWindow"];
@@ -78,5 +79,7 @@ void ATUncaughtExceptionHandler(NSException *anException)
     id anObject = anArray[0];
     [anObject release];
 }
+
+#endif
 
 @end

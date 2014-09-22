@@ -251,6 +251,8 @@ extern NSString *ATBookmarksPresentationDidChangeNotification;
 
 @end
 
+#ifdef DEBUG
+
 @interface ATBookmarksPresentation (Debugging)
 
 - (IBAction)logItemIDOfSelections:(id)sender;
@@ -260,3 +262,5 @@ extern NSString *ATBookmarksPresentationDidChangeNotification;
 - (void)logDraggingSourceOperationMask:(id <NSDraggingInfo> )info;
 
 @end
+
+#endif

@@ -797,6 +797,7 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 	return aDragOperationToPerform;
 }
 
+#ifdef DEBUG
 - (void)logDragOperationMask:(NSDragOperation)aDragOperation
 {
 	if (aDragOperation & NSDragOperationCopy)
@@ -816,6 +817,7 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 	if (aDragOperation == NSDragOperationNone)
 		NSLog(@"NSDragOperationNone");
 }
+#endif
 
 - (NSDragOperation)draggingOperationForDraggingInfo:(id <NSDraggingInfo>)aDraggingInfo
 {
@@ -1142,6 +1144,8 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 		[[NSNotificationCenter defaultCenter] postNotificationName:ATBookmarksDidChangeNotification object:self];
 }
 
+#ifdef DEBUG
+
 - (void)logDraggingSourceOperationMask:(NSDragOperation)aOperation
 {
 	NSLog(@"ATBookmarks log:");
@@ -1163,6 +1167,8 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 	if (aOperation & NSDragOperationNone)
 		NSLog(@"NSDragOperationNone");
 }
+
+#endif
 
 - (void)setSourceBinderID:(NSNumber *)aSourceBinderID
 {

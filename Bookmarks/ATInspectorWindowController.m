@@ -48,10 +48,7 @@
 {
     [super windowDidLoad];
 
-    NSLog(@"%@", [[self window] firstResponder]);
-    NSLog(@"%@", [[self window] initialFirstResponder]);
     [[self window] makeFirstResponder:[[self window] initialFirstResponder]];
-    NSLog(@"%@", [[self window] firstResponder]);
 }
 
 - (IBAction)cancel:(id)sender

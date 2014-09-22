@@ -87,8 +87,10 @@
 				//NSLog(aRCDATA);
 				[self setContent:aRCDATA];
 			}
+#ifdef DEBUG
 			else
 				NSLog(@"No RCDATA");
+#endif
 			
 			aProcessSucceed = YES;
 		}

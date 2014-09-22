@@ -52,7 +52,9 @@
 	[processDescription release];
 	processDescription = nil;
 	
+#ifdef DEBUG
 	NSLog(@"ATFirefoxHTMLBookmarksImporter dealloc");
+#endif
 	
 	[super dealloc];
 }
@@ -271,7 +273,9 @@
 			if (status != ATFirefoxHTMLBookmarksImporterIsCanceled)
 			{
 				status = ATFirefoxHTMLBookmarksImporterParsingFailed;
+#ifdef DEBUG
 				NSLog(@"Firefox Bookmarks Importing Failed.");
+#endif
 			}
 			
 			[statusLock unlock];
@@ -478,8 +482,10 @@
 
             if(len)
                 bytesRead += len;
+#ifdef DEBUG
 			else
                 NSLog(@"no read bytes");
+#endif
 
             break;
         }
