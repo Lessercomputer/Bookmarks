@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6107D03019CB981500BC3562 /* ATApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 6107D02F19CB981500BC3562 /* ATApplication.m */; };
-		61137F93191670A70083DC07 /* Nursery.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6158CE5D1915AD5100BD8BA1 /* Nursery.framework */; };
+		61137F93191670A70083DC07 /* Nursery.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6158CE5D1915AD5100BD8BA1 /* Nursery.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		61137F94191670BA0083DC07 /* Nursery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6158CE5D1915AD5100BD8BA1 /* Nursery.framework */; };
 		6117F37D191DB9AF00CE4D3D /* ATBinderInspectorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6117F37F191DB9AF00CE4D3D /* ATBinderInspectorWindow.xib */; };
 		611FA3661943439500D416B3 /* ATSafariBookmarksImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 611FA3651943439500D416B3 /* ATSafariBookmarksImporter.m */; };
@@ -655,7 +655,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = AT;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = Pedophilia;
 				TargetAttributes = {
 					6158CD951915A90200BD8BA1 = {
