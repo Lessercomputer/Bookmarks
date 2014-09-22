@@ -147,10 +147,12 @@
 	return nil;//[bookmarksView selectionIndexSetInPresentation];
 }
 
+#ifdef DEBUG
 - (NSString *)windowTitleForDocumentDisplayName:(NSString *)displayName
 {
 	return [NSString stringWithFormat:@"%@ : %lu (PMID:%lu)", displayName, (unsigned long)windowIndex, [[[self bookmarksPresentation] presentationID] unsignedIntegerValue]];
 }
+#endif
 
 @end
 
