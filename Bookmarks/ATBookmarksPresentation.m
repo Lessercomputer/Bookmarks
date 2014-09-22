@@ -594,12 +594,6 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
     }
 }
 
-
-- (void)kidnap:(id)sender
-{
-    [[self bookmarks] kidnap];
-}
-
 @end
 
 @implementation ATBookmarksPresentation (Editing)

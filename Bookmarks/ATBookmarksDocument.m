@@ -45,7 +45,7 @@
         
         [[self bookmarksHome] setWindowSettings:[self windowSettingsForNursery]];
         
-        [[self bookmarks] kidnap];
+        [[self bookmarks] kidnapWithRoots:[self rootBindersForBookmarksPresentation]];
         
         NUFarmOutStatus aFarmOutStatus = [[[self nursery] playLot] save];
         return aFarmOutStatus == NUFarmOutStatusSucceeded;
@@ -91,6 +91,8 @@
 
 - (NSData *)dataRepresentationOfType:(NSString *)aType
 {
+    [[self bookmarks] kidnapWithRoots:[self rootBindersForBookmarksPresentation]];
+    
 	NSMutableDictionary *aPlist = [[self bookmarks] propertyListRepresentation];
 	
 	[aPlist setObject:[self windowSettings] forKey:@"windowSettings"];
@@ -238,6 +240,19 @@
     return anInspectorWindowController;
 }
 
+- (NSArray *)bookmarksWindowControllers
+{
+    NSMutableArray *aWindowControllers = [NSMutableArray array];
+    
+    [[self windowControllers] enumerateObjectsUsingBlock:^(NSWindowController *aWindowController, NSUInteger idx, BOOL *stop)
+    {
+        if ([aWindowController isKindOfClass:[ATBookmarksWindowController class]])
+            [aWindowControllers addObject:aWindowController];
+    }];
+    
+    return aWindowControllers;
+}
+
 - (NSDictionary *)windowSettings
 {
 	return [NSDictionary dictionaryWithObject:[[[[self windowControllers] objectAtIndex:0] window] stringWithSavedFrame] forKey:@"savedWindowFrame"];
@@ -338,6 +353,17 @@
     }];
 }
 
+- (NSArray *)rootBindersForBookmarksPresentation
+{
+    NSMutableArray *aRootBinders = [NSMutableArray array];
+    
+    [[self bookmarksWindowControllers] enumerateObjectsUsingBlock:^(ATBookmarksWindowController *aWindowController, NSUInteger idx, BOOL *stop) {
+        [aRootBinders addObject:[[aWindowController bookmarksPresentation] root]];
+    }];
+    
+    return aRootBinders;
+}
+
 - (void)dealloc
 {
 #ifdef DEBUG
@@ -428,6 +454,11 @@
 - (IBAction)importBookmarksFromChrome:(id)sender
 {
     [self importBookmarksUsingImporter:[ATChromeBookmarksImporter importer]];
+}
+
+- (void)kidnap:(id)sender
+{
+    [[self bookmarks] kidnapWithRoots:[self rootBindersForBookmarksPresentation]];
 }
 
 @end

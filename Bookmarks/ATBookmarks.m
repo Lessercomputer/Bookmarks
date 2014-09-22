@@ -876,15 +876,20 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 
 @implementation ATBookmarks (Kidnapping)
 
-- (void)kidnap
+- (void)kidnapWithRoots:(NSArray *)aRoots
 {
     @autoreleasepool
     {
         NSMutableSet *aVisitedItems = [NSMutableSet setWithObject:[self root]];
         NSMutableArray *anItemsToKidnap = [NSMutableArray array];
-        ATBookmarksEnumerator *anEnumerator = [ATBookmarksEnumerator enumeratorWithBinder:[self root]];
+        ATBookmarksEnumerator *anEnumerator = nil;
         ATItem *anItem = nil;
         
+        anEnumerator = [ATBookmarksEnumerator enumeratorWithBinders:aRoots];
+        while (anItem = [anEnumerator nextObject])
+            [aVisitedItems addObject:anItem];
+        
+        anEnumerator = [ATBookmarksEnumerator enumeratorWithBinder:[self root]];
         while (anItem = [anEnumerator nextObject])
             [aVisitedItems addObject:anItem];
         

@@ -35,6 +35,7 @@
 - (void)openInspectorWindowFor:(NSArray *)anEditors bookmarksWindowController:(ATBookmarksWindowController *)aBookmarksWindowController;
 
 - (ATInspectorWindowController *)inspectorWindowControllerForEditor:(ATEditor *)anEditor;
+- (NSArray *)bookmarksWindowControllers;
 
 - (NSDictionary *)windowSettings;
 - (NSDictionary *)windowSettingsForNursery;
@@ -44,6 +45,8 @@
 - (void)preferencesDidChangeNotification:(NSNotification *)aNotification;
 
 - (void)cancelWebIconLoaderIfNeeded;
+
+- (NSArray *)rootBindersForBookmarksPresentation;
 
 @end
 
@@ -60,6 +63,8 @@
 - (IBAction)importBookmarksFromSafari:(id)sender;
 - (IBAction)importBookmarksFromFirefox:(id)sender;
 - (IBAction)importBookmarksFromChrome:(id)sender;
+
+- (IBAction)kidnap:(id)sender;
 
 @end
 

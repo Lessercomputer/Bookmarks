@@ -16,9 +16,15 @@
 - (NSString *)defaultBookmarksFilepath
 {
     NSString *aBookmarkbackupsDirectoryPath = [self bookmarkbackupsDirectoryPath];
-    NSArray *aBookmarkbackupFilepaths = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:aBookmarkbackupsDirectoryPath error:nil];
+    NSArray *aFilepathsOnBackupsDirectory = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:aBookmarkbackupsDirectoryPath error:nil];
     __block NSDate *aMaxDate = [NSDate distantPast];
     __block NSString *aBookmarkFilepath = nil;
+    
+    NSMutableArray *aBookmarkbackupFilepaths = [NSMutableArray array];
+    [aFilepathsOnBackupsDirectory enumerateObjectsUsingBlock:^(NSString *aFilepath, NSUInteger idx, BOOL *stop) {
+        if ([aFilepath hasSuffix:@".json"])
+            [aBookmarkbackupFilepaths addObject:aFilepath];
+    }];
     
     [aBookmarkbackupFilepaths enumerateObjectsUsingBlock:^(NSString *aBookmarkbackupFilepath, NSUInteger idx, BOOL *stop) {
         NSInteger aYear = 0, aMonth = 0, aDay = 0;
