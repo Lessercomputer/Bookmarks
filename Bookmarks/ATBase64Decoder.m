@@ -2,8 +2,8 @@
 //  ATBase64Decoder.m
 //  ATBase64Decoder
 //
-//  Created by 高田 明史 on Mon Jan 24 2005.
-//  Copyright (c) 2005 Pedophilia. All rights reserved.
+//  Created by P,T,A on Mon Jan 24 2005.
+//  Copyright (c) 2005 PEDOPHILIA. All rights reserved.
 //
 
 #import "ATBase64Decoder.h"

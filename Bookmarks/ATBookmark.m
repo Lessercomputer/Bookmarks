@@ -2,8 +2,8 @@
 //  ATBookmark.m
 //  Bookmarks
 //
-//  Created by 高田 明史  on 05/10/11.
-//  Copyright 2005 Pedophilia. All rights reserved.
+//  Created by P,T,A  on 05/10/11.
+//  Copyright 2005 PEDOPHILIA. All rights reserved.
 //
 
 #import "ATBookmark.h"
@@ -170,7 +170,6 @@
 - (NSImage *)getIcon
 {
 	icon = [[NSImage alloc] initWithData:[self iconData]];
-	[icon setScalesWhenResized:YES];
 	[icon setSize:NSMakeSize(16, 16)];
 	
 	return icon;

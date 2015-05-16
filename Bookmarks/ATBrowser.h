@@ -2,8 +2,8 @@
 //  ATBrowser.h
 //  Bookmarks
 //
-//  Created by 高田 明史  on 12/02/26.
-//  Copyright (c) 2012年 Pedophilia. All rights reserved.
+//  Created by P,T,A  on 12/02/26.
+//  Copyright (c) 2012年 PEDOPHILIA. All rights reserved.
 //
 
 #import <AppKit/AppKit.h>

@@ -2,7 +2,7 @@
 //  ATWebIconLoader.m
 //  Bookmarks
 //
-//  Created by 高田 明史 on 2012/12/28.
+//  Created by P,T,A on 2012/12/28.
 //
 //
 
@@ -14,12 +14,12 @@
 
 @implementation ATWebIconLoader
 
-+ (id)newWith:(NSArray *)anItems bookmarks:(ATBookmarks *)aBookmarks
++ (id)newWith:(NSArray *)anItems bookmarks:(ATBookmarks *)aBookmarks webView:(WebView *)aWebView
 {
-	return [[[self alloc] initWith:anItems bookmarks:aBookmarks] autorelease];
+	return [[[self alloc] initWith:anItems bookmarks:aBookmarks webView:aWebView] autorelease];
 }
 
-- (id)initWith:(NSArray *)anItems bookmarks:(ATBookmarks *)aBookmarks
+- (id)initWith:(NSArray *)anItems bookmarks:(ATBookmarks *)aBookmarks webView:(WebView *)aWebView
 {
 	[super init];
 	
@@ -27,7 +27,7 @@
     urlToFaviconDictionary = [NSMutableDictionary new];
     
     bookmarks = [aBookmarks retain];
-    webView = [[WebView alloc] initWithFrame:NSZeroRect frameName:nil groupName:nil];
+    webView = [aWebView retain];
     [webView setFrameLoadDelegate:self];
     
 #ifdef DEBUG

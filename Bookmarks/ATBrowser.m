@@ -2,8 +2,8 @@
 //  ATBrowser.m
 //  Bookmarks
 //
-//  Created by 高田 明史  on 12/02/26.
-//  Copyright (c) 2012年 Pedophilia. All rights reserved.
+//  Created by P,T,A  on 12/02/26.
+//  Copyright (c) 2012年 PEDOPHILIA. All rights reserved.
 //
 
 #import "ATBrowser.h"
@@ -28,7 +28,7 @@
 
 - (NSMenu *)menuForEvent:(NSEvent *)theEvent
 {
-    return [[self delegate] menuForEvent:theEvent];
+    return [(id)[self delegate] menuForEvent:theEvent];
 }
 
 - (void)draggingEnded:(id < NSDraggingInfo >)sender

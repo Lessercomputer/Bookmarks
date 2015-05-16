@@ -2,8 +2,8 @@
 //  ATWebIconLoaderWindowController.h
 //  Bookmarks
 //
-//  Created by 高田 明史 on 08/01/04.
-//  Copyright 2008 Pedophilia. All rights reserved.
+//  Created by P,T,A on 08/01/04.
+//  Copyright 2008 PEDOPHILIA. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
@@ -17,6 +17,7 @@
 {
     ATWebIconLoader *model;
     IBOutlet NSObjectController *controller;
+    IBOutlet WebView *webView;
 }
 
 + (id)newWith:(NSArray *)anItems bookmarks:(ATBookmarks *)aBookmarks;

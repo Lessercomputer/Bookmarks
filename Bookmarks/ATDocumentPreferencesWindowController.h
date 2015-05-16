@@ -3,7 +3,7 @@
 //  Bookmarks
 //
 //  Created by 高田 明史 on 2014/06/21.
-//  Copyright (c) 2014年 Pedophilia. All rights reserved.
+//  Copyright (c) 2014年 PEDOPHILIA. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>

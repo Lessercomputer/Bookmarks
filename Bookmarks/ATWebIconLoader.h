@@ -2,7 +2,7 @@
 //  ATWebIconLoader.h
 //  Bookmarks
 //
-//  Created by 高田 明史 on 2012/12/28.
+//  Created by P,T,A on 2012/12/28.
 //
 //
 
@@ -30,8 +30,8 @@
     id <ATWebIconLoaderDelegate> delegate;
 }
 
-+ (id)newWith:(NSArray *)anItems bookmarks:(ATBookmarks *)aBookmarks;
-- (id)initWith:(NSArray *)anItems bookmarks:(ATBookmarks *)aBookmarks;
++ (id)newWith:(NSArray *)anItems bookmarks:(ATBookmarks *)aBookmarks webView:(WebView *)aWebView;
+- (id)initWith:(NSArray *)anItems bookmarks:(ATBookmarks *)aBookmarks webView:(WebView *)aWebView;
 
 - (void)start;
 - (void)cancel;

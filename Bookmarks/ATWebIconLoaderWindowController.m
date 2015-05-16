@@ -2,8 +2,8 @@
 //  ATWebIconLoaderWindowController.m
 //  Bookmarks
 //
-//  Created by 高田 明史 on 08/01/04.
-//  Copyright 2008 Pedophilia. All rights reserved.
+//  Created by P,T,A on 08/01/04.
+//  Copyright 2008 PEDOPHILIA. All rights reserved.
 //
 
 #import "ATWebIconLoaderWindowController.h"
@@ -21,7 +21,6 @@
 {
 	[super initWithWindowNibName:@"ATWebIconLoaderWindow"];
 	
-	[self setModel:[ATWebIconLoader newWith:anItems bookmarks:aBookmarks]];
     
 	return self;
 }
@@ -30,6 +29,8 @@
 {
     [super windowDidLoad];
     
+    [self setModel:[ATWebIconLoader newWith:anItems bookmarks:aBookmarks webView:webView]];
+
     [controller setContent:[self model]];
 }
 

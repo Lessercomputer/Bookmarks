@@ -2,8 +2,8 @@
 //  ATSubtreeEnumerator.m
 //  Bookmarks
 //
-//  Created by 高田 明史 on 07/08/22.
-//  Copyright 2007 Pedophilia. All rights reserved.
+//  Created by P,T,A on 07/08/22.
+//  Copyright 2007 PEDOPHILIA. All rights reserved.
 //
 
 #import "ATSubtreeEnumerator.h"

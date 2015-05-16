@@ -2,8 +2,8 @@
 //  ATNetscapeBookmarkFile1Scanner.m
 //  Bookmarks
 //
-//  Created by 高田 明史 on 07/08/03.
-//  Copyright 2007 Pedophilia. All rights reserved.
+//  Created by P,T,A on 07/08/03.
+//  Copyright 2007 PEDOPHILIA. All rights reserved.
 //
 
 #import "ATNetscapeBookmarkFile1Scanner.h"
@@ -31,7 +31,7 @@ static NSDictionary *characterReferenceDictionary;
 		NSRange anUppercaseCharRange = NSMakeRange((NSUInteger)'A', (NSUInteger)('Z' - 'A') + 1);
 		NSRange aNumberCharRange =  NSMakeRange((NSUInteger)'0', 10);
 		
-		NSMutableCharacterSet *aTempCharSet = [NSCharacterSet characterSetWithRange:aLowercaseCharRange];
+		NSMutableCharacterSet *aTempCharSet = [NSMutableCharacterSet characterSetWithRange:aLowercaseCharRange];
 		numberCharacterSet = [[NSCharacterSet characterSetWithRange:aNumberCharRange] copy];
 		[aTempCharSet addCharactersInRange:anUppercaseCharRange];
 		nameStartCharacterSet = [aTempCharSet copy];

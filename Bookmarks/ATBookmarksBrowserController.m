@@ -2,8 +2,8 @@
 //  ATBookmaksBrowserController.m
 //  Bookmarks
 //
-//  Created by 高田 明史  on 11/12/30.
-//  Copyright (c) 2011年 Pedophilia. All rights reserved.
+//  Created by P,T,A  on 11/12/30.
+//  Copyright (c) 2011年 PEDOPHILIA. All rights reserved.
 //
 
 #import "ATBookmarksBrowserController.h"
@@ -22,7 +22,7 @@
 {
     [(NSBrowser *)[self view] setDoubleAction:@selector(openItem:)];
     [(NSBrowser *)[self view] setAction:@selector(clicked:)];
-    [self setNextResponder:[[self view] nextResponder]];
+//    [self setNextResponder:[[self view] nextResponder]];
     [[self view] setNextResponder:self];
 //    [(NSBrowser *)[self view] setBackgroundColor:[NSColor clearColor]];
 }

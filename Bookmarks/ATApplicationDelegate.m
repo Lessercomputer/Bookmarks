@@ -27,9 +27,9 @@ void ATUncaughtExceptionHandler(NSException *anException)
                                 forName:@"ATNullBetweenNilTransformer"];
     [ATBrowser installHookMethods];
     
-#ifndef DEBUG
+#ifdef DEBUG
     NSMenu *aMainMenu = [[NSApplication sharedApplication] mainMenu];
-    [aMainMenu removeItem:[aMainMenu itemWithTag:ATDebugMenuItemTag]];
+    [aMainMenu addItem:debugMenuItem];
 #endif
 }
 

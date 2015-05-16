@@ -3,7 +3,7 @@
 //  BookmarksTests
 //
 //  Created by 高田 明史 on 2014/05/04.
-//  Copyright (c) 2014年 Pedophilia. All rights reserved.
+//  Copyright (c) 2014年 PEDOPHILIA. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
@@ -31,7 +31,7 @@
 
 - (void)testParseExample1Json
 {
-    NSString *anExampleFilepath = @"/Users/aki/Cocoa/Bookmarks/BookmarksTests/Examples/example-1.json";
+    NSString *anExampleFilepath = @"/Users/aki/Documents/computer/Dev/Cocoa/Bookmarks/BookmarksTests/Examples/example-1.json";
     ATJSONParser *aParser = [ATJSONParser parserWithString:[NSString stringWithContentsOfFile:anExampleFilepath encoding:NSUTF8StringEncoding error:NULL]];
     id anObject = [aParser parse];
     XCTAssertNotNil(anObject, @"");
@@ -40,7 +40,7 @@
 
 - (void)testParseExample2Json
 {
-    NSString *anExampleFilepath = @"/Users/aki/Cocoa/Bookmarks/BookmarksTests/Examples/example-2.json";
+    NSString *anExampleFilepath = @"/Users/aki/Documents/computer/Dev/Cocoa/Bookmarks/BookmarksTests/Examples/example-2.json";
     ATJSONParser *aParser = [ATJSONParser parserWithString:[NSString stringWithContentsOfFile:anExampleFilepath encoding:NSUTF8StringEncoding error:NULL]];
     id anObject = [aParser parse];
     XCTAssertNotNil(anObject, @"");
@@ -49,7 +49,7 @@
 
 - (void)testParseExampleFirefoxBookmarksJson
 {
-    NSString *aBookmarksJsonFilepath = @"/Users/aki/Cocoa/Bookmarks/BookmarksTests/Examples/Firefox_bookmarks-2014-05-17.json";
+    NSString *aBookmarksJsonFilepath = @"/Users/aki/Documents/computer/Dev/Cocoa/Bookmarks/BookmarksTests/Examples/Firefox_bookmarks-2014-05-17.json";
     ATJSONParser *aParser = [ATJSONParser parserWithString:[NSString stringWithContentsOfFile:aBookmarksJsonFilepath encoding:NSUTF8StringEncoding error:NULL]];
     NSDictionary *anObject = [aParser parse];
     XCTAssertNotNil(anObject, @"");
@@ -59,7 +59,7 @@
 
 - (void)testParseExampleChromeBookmarksJson
 {
-    NSString *aBookmarksJsonFilepath = @"/Users/aki/Cocoa/Bookmarks/BookmarksTests/Examples/Chrome_Bookmarks";
+    NSString *aBookmarksJsonFilepath = @"/Users/aki/Documents/computer/Dev/Cocoa/Bookmarks/BookmarksTests/Examples/Chrome_Bookmarks";
     ATJSONParser *aParser = [ATJSONParser parserWithString:[NSString stringWithContentsOfFile:aBookmarksJsonFilepath encoding:NSUTF8StringEncoding error:NULL]];
     NSDictionary *anObject = [aParser parse];
     XCTAssertNotNil(anObject, @"");

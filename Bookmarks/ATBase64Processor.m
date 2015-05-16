@@ -2,8 +2,8 @@
 //  ATBase64Processor.m
 //  ATBase64
 //
-//  Created by 高田 明史 on Sun Apr 10 2005.
-//  Copyright (c) 2005 Pedophilia. All rights reserved.
+//  Created by P,T,A on Sun Apr 10 2005.
+//  Copyright (c) 2005 PEDOPHILIA. All rights reserved.
 //
 
 #import "ATBase64Processor.h"

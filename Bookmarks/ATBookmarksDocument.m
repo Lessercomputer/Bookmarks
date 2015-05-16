@@ -2,8 +2,8 @@
 //  BookmarksDocument.m
 //  Bookmarks
 //
-//  Created by 高田 明史 on 05/10/11.
-//  Copyright Pedophilia 2005 . All rights reserved.
+//  Created by P,T,A on 05/10/11.
+//  Copyright PEDOPHILIA 2005 . All rights reserved.
 //
 
 #import "ATBookmarksDocument.h"
@@ -47,7 +47,7 @@
         
         [[self bookmarks] kidnapWithRoots:[self rootBindersForBookmarksPresentation]];
         
-        NUFarmOutStatus aFarmOutStatus = [[[self nursery] playLot] save];
+        NUFarmOutStatus aFarmOutStatus = [[[self nursery] playLot] farmOut];
         return aFarmOutStatus == NUFarmOutStatusSucceeded;
     }
     else

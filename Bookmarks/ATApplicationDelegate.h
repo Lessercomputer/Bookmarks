@@ -4,6 +4,7 @@
 
 @interface ATApplicationDelegate : NSObject
 {
+    IBOutlet NSMenuItem *debugMenuItem;
 }
 
 #ifdef DEBUG

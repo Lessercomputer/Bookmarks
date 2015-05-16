@@ -2,8 +2,8 @@
 //  main.m
 //  Bookmarks
 //
-//  Created by 高田 明史 on 2014/05/04.
-//  Copyright (c) 2014年 Pedophilia. All rights reserved.
+//  Created by P,T,A on 2014/05/04.
+//  Copyright (c) 2014年 PEDOPHILIA. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>

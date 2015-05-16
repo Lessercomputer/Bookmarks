@@ -2,8 +2,8 @@
 //  BookmarksTreeUnarchiver.m
 //  Bookmarks
 //
-//  Created by 高田 明史 on 09/05/02.
-//  Copyright 2009 Pedophilia. All rights reserved.
+//  Created by P,T,A on 09/05/02.
+//  Copyright 2009 PEDOPHILIA. All rights reserved.
 //
 
 #import "ATBookmarksTreeUnarchiver.h"
