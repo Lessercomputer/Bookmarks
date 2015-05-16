@@ -14,12 +14,12 @@
 
 @implementation ATWebIconLoader
 
-+ (id)newWith:(NSArray *)anItems bookmarks:(ATBookmarks *)aBookmarks webView:(WebView *)aWebView
++ (id)newWith:(NSArray *)anItems bookmarks:(ATBookmarks *)aBookmarks
 {
-	return [[[self alloc] initWith:anItems bookmarks:aBookmarks webView:aWebView] autorelease];
+	return [[[self alloc] initWith:anItems bookmarks:aBookmarks] autorelease];
 }
 
-- (id)initWith:(NSArray *)anItems bookmarks:(ATBookmarks *)aBookmarks webView:(WebView *)aWebView
+- (id)initWith:(NSArray *)anItems bookmarks:(ATBookmarks *)aBookmarks
 {
 	[super init];
 	
@@ -27,8 +27,6 @@
     urlToFaviconDictionary = [NSMutableDictionary new];
     
     bookmarks = [aBookmarks retain];
-    webView = [aWebView retain];
-    [webView setFrameLoadDelegate:self];
     
 #ifdef DEBUG
     NSLog(@"%@", [NSThread currentThread]);
@@ -50,10 +48,20 @@
     urlToFaviconDictionary = nil;
     [bookmarks release];
     bookmarks = nil;
+    [webView setFrameLoadDelegate:nil];
     [webView release];
     webView = nil;
 	
 	[super dealloc];
+}
+
+- (void)setWebView:(WebView *)aWebVew;
+{
+    [webView setFrameLoadDelegate:nil];
+    [webView autorelease];
+    webView = [aWebVew retain];
+    
+    [webView setFrameLoadDelegate:self];
 }
 
 - (void)start
@@ -112,7 +120,6 @@
     
     return NSNotFound;
 }
-
 
 - (NSString *)title
 {

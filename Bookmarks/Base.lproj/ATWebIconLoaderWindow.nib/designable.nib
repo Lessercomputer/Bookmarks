@@ -57,10 +57,12 @@
                             <binding destination="53" name="value" keyPath="selection.title" id="qgy-jd-U9V"/>
                         </connections>
                     </textField>
-                    <webView id="ioY-aM-cbR">
+                    <webView hidden="YES" id="ioY-aM-cbR">
                         <rect key="frame" x="20" y="8" width="371" height="42"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12"/>
+                        <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12">
+                            <nil key="identifier"/>
+                        </webPreferences>
                     </webView>
                 </subviews>
             </view>

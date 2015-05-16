@@ -30,8 +30,10 @@
     id <ATWebIconLoaderDelegate> delegate;
 }
 
-+ (id)newWith:(NSArray *)anItems bookmarks:(ATBookmarks *)aBookmarks webView:(WebView *)aWebView;
-- (id)initWith:(NSArray *)anItems bookmarks:(ATBookmarks *)aBookmarks webView:(WebView *)aWebView;
++ (id)newWith:(NSArray *)anItems bookmarks:(ATBookmarks *)aBookmarks;
+- (id)initWith:(NSArray *)anItems bookmarks:(ATBookmarks *)aBookmarks;
+
+- (void)setWebView:(WebView *)aWebVew;
 
 - (void)start;
 - (void)cancel;

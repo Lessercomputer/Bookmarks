@@ -211,7 +211,7 @@
 
 - (IBAction)loadWebIconOfSelectedItems:(id)sender
 {
-	ATWebIconLoaderWindowController *aLoader = [ATWebIconLoaderWindowController newWith:[bookmarksPresentation selections] bookmarks:[bookmarksPresentation bookmarks]];
+	ATWebIconLoaderWindowController *aLoader = [ATWebIconLoaderWindowController newWith:[bookmarksPresentation selectedBookmarks] bookmarks:[bookmarksPresentation bookmarks]];
 	
 	[[self document] addWindowController:aLoader];
 	[aLoader showWindow:nil];

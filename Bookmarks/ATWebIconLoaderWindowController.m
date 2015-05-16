@@ -20,8 +20,9 @@
 - (id)initWith:(NSArray *)anItems bookmarks:(ATBookmarks *)aBookmarks
 {
 	[super initWithWindowNibName:@"ATWebIconLoaderWindow"];
-	
     
+    [self setModel:[ATWebIconLoader newWith:anItems bookmarks:aBookmarks]];
+
 	return self;
 }
 
@@ -29,8 +30,7 @@
 {
     [super windowDidLoad];
     
-    [self setModel:[ATWebIconLoader newWith:anItems bookmarks:aBookmarks webView:webView]];
-
+    [[self model] setWebView:webView];
     [controller setContent:[self model]];
 }
 
