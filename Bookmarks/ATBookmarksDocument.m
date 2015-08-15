@@ -40,12 +40,17 @@
 {
     if ([aTypeName isEqualToString:@"BookmarksDocumentInNursery"] || [aTypeName isEqualToString:@"jp.pedophilia.bookmarksn"])
     {
-        if (![[self nursery] filePath])
-            [[self nursery] setFilePath:[anAbsoluteURL path]];
+        if (![[anAbsoluteURL scheme] isEqualToString:@"nursery"])
+        {
+            if (![(NUMainBranchNursery *)[self nursery] filePath])
+                [(NUMainBranchNursery *)[self nursery] setFilePath:[anAbsoluteURL path]];
+        }
         
         [[self bookmarksHome] setWindowSettings:[self windowSettingsForNursery]];
         
+#ifdef DEBUG
         [[self bookmarks] kidnapWithRoots:[self rootBindersForBookmarksPresentation]];
+#endif
         
         NUFarmOutStatus aFarmOutStatus = [[[self nursery] playLot] farmOut];
         return aFarmOutStatus == NUFarmOutStatusSucceeded;
@@ -62,13 +67,26 @@
 {
     if ([typeName isEqualToString:@"BookmarksDocumentInNursery"] || [typeName isEqualToString:@"jp.pedophilia.bookmarksn"])
     {
-        NUMainBranchNursery *aNursery = [NUMainBranchNursery nurseryWithContentsOfFile:[url path]];
+        NUNursery *aNursery = nil;
+        NUBranchNurseryAssociation *aBranchAssociation = nil;
+        
+        if ([[url scheme] isEqualToString:@"nursery"])
+        {
+            aBranchAssociation = [[NUBranchNurseryAssociation association] retain];
+            aNursery = [aBranchAssociation nurseryForURL:url];
+        }
+        else
+        {
+            aNursery = [NUMainBranchNursery nurseryWithContentsOfFile:[url path]];
+        }
+        
         id aNurseryRoot = [[aNursery playLot] root];
         
         if ([aNurseryRoot isKindOfClass:[ATBookmarksHome class]])
         {
             [self setBookmarksHome:aNurseryRoot];
             [[self bookmarksHome] setNursery:aNursery];
+            [[self bookmarksHome] setNurseryAssociation:aBranchAssociation];
             [self bookmarks];
             
             return [self bookmarksHome] ? YES : NO;
@@ -77,6 +95,7 @@
         {
             [[self bookmarksHome] setBookmarks:aNurseryRoot[@"Bookmarks"]];
             [[self bookmarksHome] setNursery:aNursery];
+            [[self bookmarksHome] setNurseryAssociation:aBranchAssociation];
             [[[self bookmarksHome] bookmarks] setDocument:self];
             [self setUndoManager:[[self bookmarks] undoManager]];
             
@@ -91,7 +110,9 @@
 
 - (NSData *)dataRepresentationOfType:(NSString *)aType
 {
+#ifdef DEBUG
     [[self bookmarks] kidnapWithRoots:[self rootBindersForBookmarksPresentation]];
+#endif
     
 	NSMutableDictionary *aPlist = [[self bookmarks] propertyListRepresentation];
 	
@@ -465,7 +486,7 @@
 
 @implementation ATBookmarksDocument (Accessing)
 
-- (NUMainBranchNursery *)nursery
+- (NUNursery *)nursery
 {
     return [[self bookmarksHome] nursery];
 }

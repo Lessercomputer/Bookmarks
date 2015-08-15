@@ -887,13 +887,20 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
         ATBookmarksEnumerator *anEnumerator = nil;
         ATItem *anItem = nil;
         
-        anEnumerator = [ATBookmarksEnumerator enumeratorWithBinders:aRoots];
-        while (anItem = [anEnumerator nextObject])
-            [aVisitedItems addObject:anItem];
-        
-        anEnumerator = [ATBookmarksEnumerator enumeratorWithBinder:[self root]];
-        while (anItem = [anEnumerator nextObject])
-            [aVisitedItems addObject:anItem];
+        @autoreleasepool
+        {
+            anEnumerator = [ATBookmarksEnumerator enumeratorWithBinders:aRoots];
+            while (anItem = [anEnumerator nextObject])
+                [aVisitedItems addObject:anItem];
+        }
+
+ 
+        @autoreleasepool
+        {
+            anEnumerator = [ATBookmarksEnumerator enumeratorWithBinder:[self root]];
+            while (anItem = [anEnumerator nextObject])
+                [aVisitedItems addObject:anItem];
+        }
         
         [[self itemLibrary] enumerateKeysAndObjectsUsingBlock:^(NSNumber *aKey, ATItem *anItem, BOOL *aStop) {
             if (![aVisitedItems containsObject:anItem])

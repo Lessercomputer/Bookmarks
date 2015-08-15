@@ -11,6 +11,8 @@
 			<array>
 				<string>bkmn</string>
 			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>bkmn</string>
 			<key>CFBundleTypeName</key>
 			<string>BookmarksDocumentInNursery</string>
 			<key>CFBundleTypeOSTypes</key>
@@ -31,6 +33,8 @@
 			<array>
 				<string>bkmp</string>
 			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>bkmp</string>
 			<key>CFBundleTypeName</key>
 			<string>BookmarksDocumentInPlist</string>
 			<key>CFBundleTypeRole</key>
@@ -59,8 +63,23 @@
 	<string>1.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string>bkmn</string>
+			<key>CFBundleURLName</key>
+			<string>jp.pedophilia.nursery</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>nursery</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>3</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>

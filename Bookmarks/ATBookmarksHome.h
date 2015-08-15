@@ -22,7 +22,8 @@
     NSMutableArray *bookmarksPresentations;
     NSDictionary *windowSettings;
     ATDocumentPreferences *preferences;
-    NUMainBranchNursery *nursery;
+    NUNursery *nursery;
+    NUBranchNurseryAssociation *nurseryAssociation;
 }
 
 + (id)bookmarksHome;
@@ -42,7 +43,8 @@
 - (ATBookmarks *)bookmarks;
 - (void)setBookmarks:(ATBookmarks *)aBookmarks;
 
-- (NUMainBranchNursery *)nursery;
+- (NUNursery *)nursery;
+- (NUBranchNurseryAssociation *)nurseryAssociation;
 - (ATIDPool *)bookmarksPresentationIDPool;
 - (NSMutableArray *)bookmarksPresentations;
 - (NSDictionary *)windowSettings;
@@ -54,7 +56,8 @@
 
 @interface ATBookmarksHome (Private)
 
-- (void)setNursery:(NUMainBranchNursery *)aNursery;
+- (void)setNursery:(NUNursery *)aNursery;
+- (void)setNurseryAssociation:(NUBranchNurseryAssociation *)anAssociation;
 - (void)setBookmarksPresentationIDPool:(ATIDPool *)aPool;
 - (void)setBookmarksPresentations:(NSMutableArray *)aPresentations;
 

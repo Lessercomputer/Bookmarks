@@ -1,6 +1,8 @@
 #import "ATApplicationDelegate.h"
 #import "ATNullBetweenNilTransformer.h"
 #import "ATBrowser.h"
+#import "ATNurserySpecifyingWindowController.h"
+#import "ATDocumentController.h"
 
 #ifndef DEBUG
 static NSInteger ATDebugMenuItemTag = -1;
@@ -23,6 +25,7 @@ void ATUncaughtExceptionHandler(NSException *anException)
 
 - (void)awakeFromNib
 {
+    [ATDocumentController new];
 	[NSValueTransformer setValueTransformer:[[[ATNullBetweenNilTransformer alloc] init] autorelease]
                                 forName:@"ATNullBetweenNilTransformer"];
     [ATBrowser installHookMethods];
@@ -36,6 +39,16 @@ void ATUncaughtExceptionHandler(NSException *anException)
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender
 {
 	return NO;
+}
+
+-(void)openBookmarksThroughNurseryAssociation:(id)sender
+{
+    if (!nurserySpecifyingWindowController)
+        nurserySpecifyingWindowController = [ATNurserySpecifyingWindowController new];
+    
+    [nurserySpecifyingWindowController clear];
+    
+    [nurserySpecifyingWindowController showWindow:sender];
 }
 
 #ifdef DEUBG

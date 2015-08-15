@@ -43,6 +43,8 @@
     [preferences release];
     [nursery close];
     [nursery release];
+    [nurseryAssociation close];
+    [nurseryAssociation release];
     
     [super dealloc];
 }
@@ -121,9 +123,14 @@
 
 @implementation ATBookmarksHome (Accessing)
 
-- (NUMainBranchNursery *)nursery
+- (NUNursery *)nursery
 {
     return nursery;
+}
+
+-(NUBranchNurseryAssociation *)nurseryAssociation
+{
+    return nurseryAssociation;
 }
 
 - (void)setBookmarks:(ATBookmarks *)aBookmarks
@@ -167,14 +174,15 @@
 
 @implementation ATBookmarksHome (Private)
 
-- (void)setNursery:(NUMainBranchNursery *)aNursery
+- (void)setNursery:(NUNursery *)aNursery
 {
     [nursery close];
     [nursery release];
     nursery = [aNursery retain];
 
 #ifdef DEBUG
-    [nursery setBackups:YES];
+    if ([nursery isMainBranch])
+        [(NUMainBranchNursery *)nursery setBackups:YES];
 #endif
     
     if ([[nursery playLot] root] != self)
@@ -183,6 +191,13 @@
 //        [bookmarks autorelease];
 //        bookmarks = nil;
     }
+}
+
+-(void)setNurseryAssociation:(NUBranchNurseryAssociation *)anAssociation
+{
+    [nurseryAssociation close];
+    [nurseryAssociation release];
+    nurseryAssociation = [anAssociation retain];
 }
 
 - (void)setBookmarksPresentationIDPool:(ATIDPool *)aPool

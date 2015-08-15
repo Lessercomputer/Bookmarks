@@ -9,7 +9,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class NUMainBranchNursery;
+@class NUNursery;
 @class ATBookmarks;
 @class ATBookmarksPresentation;
 @class ATFirefoxHTMLBookmarksImporter;
@@ -70,7 +70,7 @@
 
 @interface ATBookmarksDocument (Accessing)
 
-- (NUMainBranchNursery *)nursery;
+- (NUNursery *)nursery;
 
 - (ATBookmarksHome *)bookmarksHome;
 - (void)setBookmarksHome:(ATBookmarksHome *)aBookmarksHome;
