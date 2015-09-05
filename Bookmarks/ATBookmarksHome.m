@@ -41,6 +41,8 @@
     [bookmarksPresentations release];
     [windowSettings release];
     [preferences release];
+    [basePlayLot close];
+    [basePlayLot release];
     [nursery close];
     [nursery release];
     [nurseryAssociation close];
@@ -210,6 +212,12 @@
 {
     NUSetIvar(&bookmarksPresentations, aPresentations);
     [[self playLot] markChangedObject:self];
+}
+
+- (void)setBasePlayLot:(NUPlayLot *)aPlayLot
+{
+    [basePlayLot autorelease];
+    basePlayLot = [aPlayLot retain];
 }
 
 @end
