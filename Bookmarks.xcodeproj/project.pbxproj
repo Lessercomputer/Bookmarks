@@ -1045,6 +1045,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bookmarks/Bookmarks-Prefix.pch";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_UNDECLARED_SELECTOR = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
