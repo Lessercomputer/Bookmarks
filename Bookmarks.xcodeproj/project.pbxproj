@@ -411,7 +411,6 @@
 				610022DE19BAA1C900B38B51 /* bkmn.icns */,
 				6155049419BB446300FB17B7 /* bkmp.iconset */,
 				6155049619BB456C00FB17B7 /* bkmp.icns */,
-				6158CD9D1915A90200BD8BA1 /* Supporting Files */,
 				6158CD7C1915A90100BD8BA1 /* Supporting Files */,
 			);
 			path = Bookmarks;
@@ -433,6 +432,7 @@
 			isa = PBXGroup;
 			children = (
 				6158CDA21915A90200BD8BA1 /* BookmarksTests.m */,
+				6158CD9D1915A90200BD8BA1 /* Supporting Files */,
 			);
 			path = BookmarksTests;
 			sourceTree = "<group>";
