@@ -87,7 +87,7 @@
             [self setBookmarksHome:aNurseryRoot];
             [[self bookmarksHome] setNursery:aNursery];
             [[self bookmarksHome] setNurseryAssociation:aBranchAssociation];
-            [[self bookmarksHome] setBasePlayLot:[aNursery createPlayLotWithGrade:[[aNursery playLot] grade]]];
+//            [[self bookmarksHome] setBasePlayLot:[aNursery createPlayLotWithGrade:[[aNursery playLot] grade]]];
             [self bookmarks];
             
             return [self bookmarksHome] ? YES : NO;

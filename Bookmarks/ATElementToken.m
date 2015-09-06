@@ -2,7 +2,7 @@
 //  ATElementToken.m
 //  Bookmarks
 //
-//  Created by 高田 明史 on 07/08/09.
+//  Created by P,T,A on 07/08/09.
 //  Copyright 2007 PEDOPHILIA. All rights reserved.
 //
 

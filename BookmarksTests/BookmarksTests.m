@@ -2,7 +2,7 @@
 //  BookmarksTests.m
 //  BookmarksTests
 //
-//  Created by 高田 明史 on 2014/05/04.
+//  Created by P,T,A on 2014/05/04.
 //  Copyright (c) 2014年 PEDOPHILIA. All rights reserved.
 //
 

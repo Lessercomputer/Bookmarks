@@ -28,9 +28,3 @@
 - (NUUInt64)indexedIvarsSize;
 
 @end
-
-@protocol NUMovingUp
-
-- (void)moveUpWithAliaser:(NUAliaser *)anAliaser;
-
-@end

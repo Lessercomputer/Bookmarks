@@ -8,6 +8,7 @@
 
 #import <Nursery/NUTypes.h>
 #import <Nursery/NUCoding.h>
+#import <Nursery/NUMovingUp.h>
 
 extern const NUObjectFormat NUFixedIvars;
 extern const NUObjectFormat NUIndexedIvars;

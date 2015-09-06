@@ -80,7 +80,8 @@
 		615AA5AE19BB179200813B5D /* bkmn.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 615AA5AD19BB179200813B5D /* bkmn.iconset */; };
 		616468601943EDC100D9D50C /* ATChromeBookmarksImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6164685F1943EDC100D9D50C /* ATChromeBookmarksImporter.m */; };
 		619C7179195DC19C00E8B6BD /* ATDocumentPreferencesPresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 619C7178195DC19C00E8B6BD /* ATDocumentPreferencesPresentation.m */; };
-		61A329781B9A923C006B6FC5 /* Nursery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A329771B9A923C006B6FC5 /* Nursery.framework */; };
+		61A3297B1B9AA18B006B6FC5 /* Nursery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A329771B9A923C006B6FC5 /* Nursery.framework */; };
+		61A3297C1B9AA18B006B6FC5 /* Nursery.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 61A329771B9A923C006B6FC5 /* Nursery.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		61B029551B630DEB0044D793 /* ATDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B029541B630DEB0044D793 /* ATDocumentController.m */; };
 		61BD51681AEBB3C900245AFE /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6158CE8C1915C43500BD8BA1 /* MainMenu.nib */; };
 		61BD516B1AEBB3FF00245AFE /* ATBookmarksWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6158CE801915C40D00BD8BA1 /* ATBookmarksWindow.nib */; };
@@ -114,6 +115,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				61A3297C1B9AA18B006B6FC5 /* Nursery.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,8 +298,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61A329781B9A923C006B6FC5 /* Nursery.framework in Frameworks */,
 				6158CD761915A90100BD8BA1 /* Cocoa.framework in Frameworks */,
+				61A3297B1B9AA18B006B6FC5 /* Nursery.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

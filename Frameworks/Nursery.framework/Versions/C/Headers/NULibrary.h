@@ -43,9 +43,6 @@
 @interface NULibrary (Coding) <NUCoding>
 @end
 
-@interface NULibrary (MovingUp) <NUMovingUp>
-@end
-
 @interface NULibrary (Private)
 
 - (NUBTree *)tree;
