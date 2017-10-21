@@ -7,7 +7,7 @@
 //
 
 #import "ATBinderWrapper.h"
-#import "ATItem.h"
+#import "ATBinder.h"
 
 @implementation ATBinderWrapper
 

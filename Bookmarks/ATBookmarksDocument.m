@@ -363,7 +363,8 @@
 - (void)close
 {
     [self cancelWebIconLoaderIfNeeded];
-    
+    [[[self bookmarksHome] nursery] close];
+
     [super close];
 }
 
@@ -395,7 +396,6 @@
 	[importers makeObjectsPerformSelector:@selector(cancel)];
 	[importers release];
 
-    [[[self bookmarksHome] nursery] close];
     [self setBookmarksHome:nil];
 	
 	[super dealloc];
