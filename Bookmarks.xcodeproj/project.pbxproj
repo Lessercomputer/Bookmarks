@@ -1052,7 +1052,7 @@
 				);
 				INFOPLIST_FILE = "Bookmarks/Bookmarks-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks/ @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.pedophilia.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.nursery-framework.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1079,7 +1079,7 @@
 				);
 				INFOPLIST_FILE = "Bookmarks/Bookmarks-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks/ @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.pedophilia.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.nursery-framework.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1101,7 +1101,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "BookmarksTests/BookmarksTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.pedophilia.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.nursery-framework.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -1120,7 +1120,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bookmarks/Bookmarks-Prefix.pch";
 				INFOPLIST_FILE = "BookmarksTests/BookmarksTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.pedophilia.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.nursery-framework.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

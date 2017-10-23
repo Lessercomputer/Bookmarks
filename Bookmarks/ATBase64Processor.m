@@ -3,7 +3,7 @@
 //  ATBase64
 //
 //  Created by P,T,A on Sun Apr 10 2005.
-//  Copyright (c) 2005 PEDOPHILIA. All rights reserved.
+//  Copyright (c) 2005 Nursery-Framework. All rights reserved.
 //
 
 #import "ATBase64Processor.h"

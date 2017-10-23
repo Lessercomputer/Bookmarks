@@ -3,7 +3,7 @@
 //  Bookmarks
 //
 //  Created by P,T,A  on 11/12/30.
-//  Copyright (c) 2011年 PEDOPHILIA. All rights reserved.
+//  Copyright (c) 2011年 Nursery-Framework. All rights reserved.
 //
 
 #import "ATBookmarksBrowserController.h"

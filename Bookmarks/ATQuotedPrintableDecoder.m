@@ -3,7 +3,7 @@
 //  ATQuotedPrintable
 //
 //  Created by P,T,A on 07/11/18.
-//  Copyright 2007 PEDOPHILIA. All rights reserved.
+//  Copyright 2007 Nursery-Framework. All rights reserved.
 //
 
 #import "ATQuotedPrintableDecoder.h"

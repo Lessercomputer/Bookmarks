@@ -3,7 +3,7 @@
 //  Bookmarks
 //
 //  Created by P,T,A on 05/10/11.
-//  Copyright PEDOPHILIA 2005 . All rights reserved.
+//  Copyright Nursery-Framework 2005 . All rights reserved.
 //
 
 

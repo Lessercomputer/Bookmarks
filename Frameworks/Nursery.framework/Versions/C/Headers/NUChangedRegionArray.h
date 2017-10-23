@@ -3,7 +3,7 @@
 //  Nursery
 //
 //  Created by P,T,A on 11/01/22.
-//  Copyright 2011 PEDOPHILIA. All rights reserved.
+//  Copyright 2011 Nursery-Framework. All rights reserved.
 //
 
 #import "NURegionArray.h"

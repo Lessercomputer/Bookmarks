@@ -3,7 +3,7 @@
 //  Bookmarks
 //
 //  Created by P,T,A on 2014/05/04.
-//  Copyright (c) 2014年 PEDOPHILIA. All rights reserved.
+//  Copyright (c) 2014年 Nursery-Framework. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>

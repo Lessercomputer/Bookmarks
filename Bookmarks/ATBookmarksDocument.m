@@ -3,7 +3,7 @@
 //  Bookmarks
 //
 //  Created by P,T,A on 05/10/11.
-//  Copyright PEDOPHILIA 2005 . All rights reserved.
+//  Copyright Nursery-Framework 2005 . All rights reserved.
 //
 
 #import "ATBookmarksDocument.h"
@@ -38,7 +38,7 @@
 
 - (BOOL)writeSafelyToURL:(NSURL *)anAbsoluteURL ofType:(NSString *)aTypeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError **)outError
 {
-    if ([aTypeName isEqualToString:@"BookmarksDocumentInNursery"] || [aTypeName isEqualToString:@"jp.pedophilia.bookmarksn"])
+    if ([aTypeName isEqualToString:@"BookmarksDocumentInNursery"] || [aTypeName isEqualToString:@"org.nursery-framework.bookmarksn"])
     {
         if (![[anAbsoluteURL scheme] isEqualToString:@"nursery"])
         {
@@ -65,7 +65,7 @@
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError
 {
-    if ([typeName isEqualToString:@"BookmarksDocumentInNursery"] || [typeName isEqualToString:@"jp.pedophilia.bookmarksn"])
+    if ([typeName isEqualToString:@"BookmarksDocumentInNursery"] || [typeName isEqualToString:@"org.nursery-framework.bookmarksn"])
     {
         NUNursery *aNursery = nil;
         NUBranchNurseryAssociation *aBranchAssociation = nil;
