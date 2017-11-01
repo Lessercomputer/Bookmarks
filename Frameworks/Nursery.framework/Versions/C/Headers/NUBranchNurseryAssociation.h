@@ -2,14 +2,14 @@
 //  NUBranchNurseryAssociation.h
 //  Nursery
 //
-//  Created by P,T,A on 2013/06/29.
+//  Created by Akifumi Takata on 2013/06/29.
 //
 //
 
 #import <Nursery/NUNurseryAssociation.h>
 #import <Nursery/NUMainBranchNurseryAssociation.h>
 
-@class NUBranchNursery, NUBranchPlayLot, NUBranchNurseryAssociationEntry;
+@class NUBranchNursery, NUBranchSandbox, NUBranchNurseryAssociationEntry;
 
 @interface NUBranchNurseryAssociation : NUNurseryAssociation
 {
@@ -28,6 +28,6 @@
 
 - (NUBranchNurseryAssociationEntry *)entryForURL:(NSURL *)aURL;
 - (NSNumber *)ensureBranchNurseryAssociationThreadID;
-- (id <NUMainBranchNurseryAssociation>)mainBranchAssociationForPlayLot:(NUBranchPlayLot *)aPlayLot;
+- (id <NUMainBranchNurseryAssociation>)mainBranchAssociationForSandbox:(NUBranchSandbox *)aSandbox;
 
 @end

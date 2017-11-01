@@ -75,7 +75,7 @@
     return YES;
 }
 
-+ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUPlayLot *)aPlayLot
++ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUSandbox *)aSandbox
 {
     [aCharacter addUInt64IvarWithName:@"nextID"];
     [aCharacter addOOPIvarWithName:@"freeIDs"];

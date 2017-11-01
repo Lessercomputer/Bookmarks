@@ -2,7 +2,7 @@
 //  Nursery.h
 //  Nursery
 //
-//  Created by P,T,A on 10/10/24.
+//  Created by Akifumi Takata on 10/10/24.
 //  Copyright (c) 2014年 Nursery-Framework. All rights reserved.
 //
 
@@ -10,15 +10,11 @@
 
 #import <Nursery/NURegion.h>
 
-#import <Nursery/NUOpaqueArray.h>
-
 #import <Nursery/NUNursery.h>
 #import <Nursery/NUMainBranchNursery.h>
 #import <Nursery/NUBranchNursery.h>
 
-#import <Nursery/NUPlayLot.h>
-#import <Nursery/NUMainBranchPlayLot.h>
-#import <Nursery/NUBranchPlayLot.h>
+#import <Nursery/NUSandbox.h>
 
 #import <Nursery/NUAliaser.h>
 #import <Nursery/NUCoding.h>
@@ -31,15 +27,9 @@
 
 #import <Nursery/NULibrary.h>
 #import <Nursery/NUComparator.h>
-#import <Nursery/NUMutableDictionary.h>
 
 #import <Nursery/NUNurseryAssociation.h>
-#import <Nursery/NUMainBranchNurseryAssociationProtocol.h>
-#import <Nursery/NUMainBranchNurseryAssociation.h>
 #import <Nursery/NUBranchNurseryAssociation.h>
+#import <Nursery/NUMainBranchNurseryAssociation.h>
+//#import <Nursery/NUMainBranchNurseryAssociationProtocol.h>
 
-#import <Nursery/NUPupilNote.h>
-#import <Nursery/NUPupilAlbum.h>
-
-#import <Nursery/NUOpaqueODictionary.h>
-#import <Nursery/NUBellBallODictionary.h>

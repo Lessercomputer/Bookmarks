@@ -66,7 +66,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 	return YES;
 }
 
-+ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUPlayLot *)aPlayLot
++ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUSandbox *)aSandbox
 {
 	[aCharacter addOOPIvarWithName:@"presentationID"];
     [aCharacter addOOPIvarWithName:@"bookmarksHome"];
@@ -1002,7 +1002,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
     
     [[self binderWrappers] removeObjectsInRange:NSMakeRange(aColumn, [self binderCount] - aColumn)];
     
-    [[[self bell] playLot] markChangedObject:[self binderWrappers]];
+    [[[self bell] sandbox] markChangedObject:[self binderWrappers]];
 }
 
 - (void)addBinderWrapper:(ATBinderWrapper *)aBinderWrapper
@@ -1017,7 +1017,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
     [[self binderWrappers] addObject:aBinderWrapper];
 //    [aBinderWrapper setItemsIsChanged:YES];
     
-    [[[self bell] playLot] markChangedObject:[self binderWrappers]];
+    [[[self bell] sandbox] markChangedObject:[self binderWrappers]];
 }
 
 - (void)reloadItemsAt:(NSUInteger)aColumn
@@ -1044,7 +1044,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 {
     [self setBinderWrappers:binderWrappersBeforeDragging];
     [self setBinderWrappersForDragging:nil];
-    [[[self bell] playLot] markChangedObject:self];
+    [[[self bell] sandbox] markChangedObject:self];
 }
 
 - (void)discardBinderWrappersForDragging

@@ -64,7 +64,7 @@
 	return YES;
 }
 
-+ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUPlayLot *)aPlayLot
++ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUSandbox *)aSandbox
 {    
     [aCharacter addUInt64IvarWithName:@"itemID"];
     [aCharacter addOOPIvarWithName:@"binders"];
@@ -144,7 +144,7 @@
 - (void)setComment:(NSString *)aComment
 {
     NUSetIvar(&comment, aComment);
-    [[[self bell] playLot] markChangedObject:self];
+    [[[self bell] sandbox] markChangedObject:self];
 }
 
 - (NSDate *)addDate
@@ -155,7 +155,7 @@
 - (void)setAddDate:(NSDate *)aDate
 {
     NUSetIvar(&addDate, aDate);
-    [[[self bell] playLot] markChangedObject:self];
+    [[[self bell] sandbox] markChangedObject:self];
 }
 
 - (id)itemFor:(NSUInteger)anID
@@ -268,7 +268,7 @@
 	{        
 		[self setValuesForKeysWithDictionary:aChangedValues];
 		
-        [[[self bell] playLot] markChangedObject:self];
+        [[[self bell] sandbox] markChangedObject:self];
 
 		return anOldValues;
 	}
@@ -349,25 +349,25 @@
 - (void)setItemID:(NSUInteger)anID
 {
 	itemID = anID;
-    [[[self bell] playLot] markChangedObject:self];
+    [[[self bell] sandbox] markChangedObject:self];
 }
 
 - (void)addBinder:(ATBinder *)aBinder
 {
 	[[self binders] addObject:aBinder];
-    [[[self bell] playLot] markChangedObject:[self binders]];
+    [[[self bell] sandbox] markChangedObject:[self binders]];
 }
 
 - (void)removeBinder:(ATBinder *)aBinder
 {
 	[[self binders] removeObject:aBinder];
-    [[[self bell] playLot] markChangedObject:[self binders]];
+    [[[self bell] sandbox] markChangedObject:[self binders]];
 }
 
 - (void)setBinders:(NSMutableSet *)aBinders
 {
     NUSetIvar(&binders, aBinders);
-//    [[[self bell] playLot] markChangedObject:[self binders]];
+//    [[[self bell] sandbox] markChangedObject:[self binders]];
 }
 
 @end

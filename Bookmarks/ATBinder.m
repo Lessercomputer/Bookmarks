@@ -51,7 +51,7 @@
 
 @implementation ATBinder (Coding)
 
-+ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUPlayLot *)aPlayLot
++ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUSandbox *)aSandbox
 {
     [aCharacter addOOPIvarWithName:@"children"];
 }
@@ -351,7 +351,7 @@
 {
     [anItems makeObjectsPerformSelector:@selector(addBinder:) withObject:self];
     [[self children] insertObjects:anItems atIndexes:anIndexes];
-    [[[self bell] playLot] markChangedObject:[self children]];
+    [[[self bell] sandbox] markChangedObject:[self children]];
 }
 
 - (void)remove:(id)anItem
@@ -364,7 +364,7 @@
 {
     [[self atIndexes:anIndexes] makeObjectsPerformSelector:@selector(removeBinder:) withObject:self];
     [[self children] removeObjectsAtIndexes:anIndexes];
-    [[[self bell] playLot] markChangedObject:[self children]];
+    [[[self bell] sandbox] markChangedObject:[self children]];
 }
 
 @end
@@ -392,7 +392,7 @@
 - (void)setChildren:(NSMutableArray *)aChildren
 {
     NUSetIvar(&children, aChildren);
-    [[[self bell] playLot] markChangedObject:self];
+    [[[self bell] sandbox] markChangedObject:self];
 }
 
 @end

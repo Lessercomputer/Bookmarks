@@ -52,7 +52,7 @@
         [[self bookmarks] kidnapWithRoots:[self rootBindersForBookmarksPresentation]];
 #endif
         
-        NUFarmOutStatus aFarmOutStatus = [[[self nursery] playLot] farmOut];
+        NUFarmOutStatus aFarmOutStatus = [[[self nursery] sandbox] farmOut];
         return aFarmOutStatus == NUFarmOutStatusSucceeded;
     }
     else
@@ -63,7 +63,7 @@
     return NO;
 }
 
-- (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError
+- (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError * _Nullable *)outError
 {
     if ([typeName isEqualToString:@"BookmarksDocumentInNursery"] || [typeName isEqualToString:@"org.nursery-framework.bookmarksn"])
     {
@@ -80,14 +80,14 @@
             aNursery = [NUMainBranchNursery nurseryWithContentsOfFile:[url path]];
         }
         
-        id aNurseryRoot = [[aNursery playLot] root];
+        id aNurseryRoot = [[aNursery sandbox] root];
         
         if ([aNurseryRoot isKindOfClass:[ATBookmarksHome class]])
         {
             [self setBookmarksHome:aNurseryRoot];
             [[self bookmarksHome] setNursery:aNursery];
             [[self bookmarksHome] setNurseryAssociation:aBranchAssociation];
-//            [[self bookmarksHome] setBasePlayLot:[aNursery createPlayLotWithGrade:[[aNursery playLot] grade]]];
+//            [[self bookmarksHome] setBaseSandbox:[aNursery createSandboxWithGrade:[[aNursery sandbox] grade]]];
             [self bookmarks];
             
             return [self bookmarksHome] ? YES : NO;
@@ -155,7 +155,7 @@
 {
 	inMakingWindowControllers = YES;
 	
-    id aRoot = [[[self nursery] playLot] root];
+    id aRoot = [[[self nursery] sandbox] root];
     NSDictionary *aWindowSettingsForNursery = nil;
     
     if ([aRoot isKindOfClass:[NSDictionary class]])

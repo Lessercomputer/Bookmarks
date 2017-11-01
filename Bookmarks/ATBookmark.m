@@ -73,7 +73,7 @@
 
 @implementation ATBookmark (Coding)
 
-+ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUPlayLot *)aPlayLot
++ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUSandbox *)aSandbox
 {    
     [aCharacter addOOPIvarWithName:@"url"];
     [aCharacter addOOPIvarWithName:@"iconData"];
@@ -115,7 +115,7 @@
     [self willChangeValueForKey:@"url"];
     NUSetIvar(&url, aUrl);
     [self didChangeValueForKey:@"url"];
-    [[[self bell] playLot] markChangedObject:self];
+    [[[self bell] sandbox] markChangedObject:self];
 }
 
 - (NSURL *)url
@@ -148,7 +148,7 @@
     if (!iconData)
         [self setIcon:nil];
     
-    [[[self bell] playLot] markChangedObject:self];
+    [[[self bell] sandbox] markChangedObject:self];
 }
 
 - (NSString *)iconDataType
@@ -159,7 +159,7 @@
 - (void)setIconDataType:(NSString *)aType
 {
     NUSetIvar(&iconDataType, aType);
-    [[[self bell] playLot] markChangedObject:self];
+    [[[self bell] sandbox] markChangedObject:self];
 }
 
 - (NSImage *)icon
@@ -188,7 +188,7 @@
 - (void)setLastVisitDate:(NSDate *)aDate
 {
     NUSetIvar(&lastVisitDate, aDate);
-    [[[self bell] playLot] markChangedObject:self];
+    [[[self bell] sandbox] markChangedObject:self];
 }
 
 - (NSDate *)lastModifiedDate
@@ -199,7 +199,7 @@
 - (void)setLastModifiedDate:(NSDate *)aDate
 {
     NUSetIvar(&lastModifiedDate, aDate);
-    [[[self bell] playLot] markChangedObject:self];
+    [[[self bell] sandbox] markChangedObject:self];
 }
 
 + (NSArray *)editableValueKeys

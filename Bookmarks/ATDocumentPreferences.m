@@ -21,7 +21,7 @@ NSString *ATDocumentPreferencesDidChangeNotification = @"ATDocumentPreferencesDi
 	return YES;
 }
 
-+ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUPlayLot *)aPlayLot
++ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUSandbox *)aSandbox
 {
     [aCharacter addFloatIvarWithName:@"windowAlphaValue"];
     [aCharacter addOOPIvarWithName:@"menuItemDescriptionsForOpenBookmarksWith"];
@@ -224,7 +224,7 @@ NSString *ATDocumentPreferencesDidChangeNotification = @"ATDocumentPreferencesDi
     [self setMenuItemDescriptionWhenDoubleClick:[aPreferences menuItemDescriptionWhenDoubleClick]];
     
     [[self bell] markChanged];
-    [[[self bell] playLot] markChangedObject:[self menuItemDescriptionsForOpenBookmarksWith]];
+    [[[self bell] sandbox] markChangedObject:[self menuItemDescriptionsForOpenBookmarksWith]];
     [[self menuItemDescriptionsForOpenBookmarksWith] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [[obj bell] markChanged];
     }];

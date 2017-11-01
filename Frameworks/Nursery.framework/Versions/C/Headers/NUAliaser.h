@@ -2,13 +2,13 @@
 //  NUAliaser.h
 //  Nursery
 //
-//  Created by P,T,A on 11/02/05.
+//  Created by Akifumi Takata on 11/02/05.
 //  Copyright 2011 Nursery-Framework. All rights reserved.
 //
 
 #import <Nursery/NUTypes.h>
 
-@class NUPlayLot, NUPages, NUCodingContext, NUIndexArray, NUObjectTable, NUBell, NUPupilNote, NUCharacter;
+@class NUSandbox, NUPages, NUCodingContext, NUIndexArray, NUObjectTable, NUBell, NUPupilNote, NUCharacter;
 
 extern NSString *NUObjectLocationNotFoundException;
 extern NSString *NUBellBallNotFoundException;
@@ -17,7 +17,7 @@ extern NSString *NUAliaserCannotDecodeObjectException;
 
 @interface NUAliaser : NSObject
 {
-	NUPlayLot *playLot;
+	NUSandbox *sandbox;
 	NSMutableArray *contexts;
 	NSMutableArray *roots;
 	NSMutableArray *objectsToEncode;
@@ -27,16 +27,16 @@ extern NSString *NUAliaserCannotDecodeObjectException;
 
 @interface NUAliaser (Initializing)
 
-+ (id)aliaserWithPlayLot:(NUPlayLot *)aPlayLot;
++ (id)aliaserWithSandbox:(NUSandbox *)aSandbox;
 
-- (id)initWithPlayLot:(NUPlayLot *)aPlayLot;
+- (id)initWithSandbox:(NUSandbox *)aSandbox;
 
 @end
 
 @interface NUAliaser (Accessing)
 
-- (NUPlayLot *)playLot;
-- (void)setPlayLot:(NUPlayLot *)aPlayLot;
+- (NUSandbox *)sandbox;
+- (void)setSandbox:(NUSandbox *)aSandbox;
 
 - (NSMutableArray *)contexts;
 - (void)setContexts:(NSMutableArray *)aContexts;
@@ -96,7 +96,7 @@ extern NSString *NUAliaserCannotDecodeObjectException;
 - (void)objectDidEncode:(NUBell *)aBell;
 - (id)nextObjectToEncode;
 
-- (void)validatePlayLotOfEncodingObject:(id)anObject;
+- (void)validateSandboxOfEncodingObject:(id)anObject;
 
 - (void)encodeObject:(id)anObject;
 - (NUUInt64)preEncodeObject:(id)anObject;

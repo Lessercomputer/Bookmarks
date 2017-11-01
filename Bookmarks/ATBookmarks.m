@@ -136,7 +136,7 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 	return YES;
 }
 
-+ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUPlayLot *)aPlayLot
++ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUSandbox *)aSandbox
 {
     [aCharacter addOOPIvarWithName:@"root"];
     [aCharacter addOOPIvarWithName:@"idPool"];
@@ -394,7 +394,7 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 			[anItem itemIDFrom:self];
 			[[self itemLibrary] setObject:anItem forKey:[anItem numberWithItemID]];
             if (![anItem addDate]) [anItem setAddDate:[NSDate date]];
-            //[[[self bell] playLot] markChangedObject:[self itemsDictionary]];
+            //[[[self bell] sandbox] markChangedObject:[self itemsDictionary]];
 		}
 	}
 }
@@ -719,7 +719,7 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
     
     [self setIDPool:[ATIDPool idPool]];
     [self setItemLibrary:[NULibrary library]];
-    [[[self bell] playLot] markChangedObject:self];
+    [[[self bell] sandbox] markChangedObject:self];
     
     anItem = [self root];
     
@@ -941,19 +941,19 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 - (void)newItemIDTo:(id)anItem
 {
 	[anItem setItemID:[idPool newID]];
-    [[[self bell ] playLot] markChangedObject:idPool];
+    [[[self bell ] sandbox] markChangedObject:idPool];
 }
 
 - (void)restoreItemIDOf:(id)anItem
 {
 	[idPool newIDWith:[anItem itemID]];
-    [[[self bell ] playLot] markChangedObject:idPool];
+    [[[self bell ] sandbox] markChangedObject:idPool];
 }
 
 - (void)releseItemIDOf:(id)anItem
 {
 	[idPool releaseID:[anItem itemID]];
-    [[[self bell ] playLot] markChangedObject:idPool];
+    [[[self bell ] sandbox] markChangedObject:idPool];
 }
 
 //- (void)setItems:(NSMutableArray *)anItems

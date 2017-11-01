@@ -13,7 +13,7 @@
 - (NSString *)typeForContentsOfURL:(NSURL *)url error:(NSError **)outError
 {
     if ([[url scheme] isEqualToString:@"nursery"])
-        return @"org.Nursery-Framework.bookmarksn";
+        return @"org.nursery-framework.bookmarksn";
     else
         return [super typeForContentsOfURL:url error:outError];
 }

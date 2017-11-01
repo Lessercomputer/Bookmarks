@@ -24,7 +24,7 @@
     ATDocumentPreferences *preferences;
     NUNursery *nursery;
     NUBranchNurseryAssociation *nurseryAssociation;
-    NUPlayLot *basePlayLot;
+    NUSandbox *baseSandbox;
 }
 
 + (id)bookmarksHome;
@@ -36,7 +36,7 @@
 @end
 
 @interface ATBookmarksHome (Coding) <NUCoding>
-- (NUPlayLot *)playLot;
+- (NUSandbox *)sandbox;
 @end
 
 @interface ATBookmarksHome (Accessing)
@@ -61,6 +61,6 @@
 - (void)setNurseryAssociation:(NUBranchNurseryAssociation *)anAssociation;
 - (void)setBookmarksPresentationIDPool:(ATIDPool *)aPool;
 - (void)setBookmarksPresentations:(NSMutableArray *)aPresentations;
-- (void)setBasePlayLot:(NUPlayLot *)aPlayLot;
+- (void)setBaseSandbox:(NUSandbox *)aSandbox;
 
 @end

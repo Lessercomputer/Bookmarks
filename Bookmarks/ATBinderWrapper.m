@@ -62,7 +62,7 @@
 {
     NUSetIvar(&items, anItems);
     [self setItemsIsChanged:YES];
-    [[[self bell] playLot] markChangedObject:self];
+    [[[self bell] sandbox] markChangedObject:self];
 }
 
 - (NSIndexSet *)selectionIndexes
@@ -79,7 +79,7 @@
     
     NUSetIvar(&selectionIndexes, aSelectionIndexes);
     [self setSelectionIsChanged:YES];
-    [[[self bell] playLot] markChangedObject:self];
+    [[[self bell] sandbox] markChangedObject:self];
 }
 
 - (ATItemWrapper *)itemAt:(NSUInteger)anIndex
@@ -128,7 +128,7 @@
     [[self items] insertObjects:anItems atIndexes:anIndexes];
     
     [self setItemsIsChanged:YES];
-    [[[self bell] playLot] markChangedObject:[self items]];
+    [[[self bell] sandbox] markChangedObject:[self items]];
 }
 
 - (void)removeAtIndexes:(NSIndexSet *)anIndexes
@@ -136,7 +136,7 @@
     [[self items] removeObjectsAtIndexes:anIndexes];
     
     [self setItemsIsChanged:YES];
-    [[[self bell] playLot] markChangedObject:[self items]];
+    [[[self bell] sandbox] markChangedObject:[self items]];
 }
 
 - (void)reloadAll
@@ -214,7 +214,7 @@
 
 @implementation ATBinderWrapper (Coding)
 
-+ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUPlayLot *)aPlayLot
++ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUSandbox *)aSandbox
 {
 	[aCharacter addOOPIvarWithName:@"items"];
     [aCharacter addOOPIvarWithName:@"selectionIndexes"];

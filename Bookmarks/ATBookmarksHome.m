@@ -41,8 +41,8 @@
     [bookmarksPresentations release];
     [windowSettings release];
     [preferences release];
-    [basePlayLot close];
-    [basePlayLot release];
+    [baseSandbox close];
+    [baseSandbox release];
     [nursery close];
     [nursery release];
     [nurseryAssociation close];
@@ -57,7 +57,7 @@
     
     [aPresentation setPresentationID:[self newBookmarksPresentationID]];
     [[self bookmarksPresentations] addObject:aPresentation];
-    [[self playLot] markChangedObject:[self bookmarksPresentations]];
+    [[self sandbox] markChangedObject:[self bookmarksPresentations]];
     
     return aPresentation;
 }
@@ -65,7 +65,7 @@
 - (NSNumber *)newBookmarksPresentationID
 {
     NSNumber *aNumber = [NSNumber numberWithUnsignedLong:[[self bookmarksPresentationIDPool] newID]];
-    [[self playLot] markChangedObject:[self bookmarksPresentationIDPool]];
+    [[self sandbox] markChangedObject:[self bookmarksPresentationIDPool]];
     return aNumber;
 }
 
@@ -78,7 +78,7 @@
 	return YES;
 }
 
-+ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUPlayLot *)aPlayLot
++ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUSandbox *)aSandbox
 {
     [aCharacter addOOPIvarWithName:@"bookmarks"];
     [aCharacter addOOPIvarWithName:@"bookmarksPresentationIDPool"];
@@ -116,9 +116,9 @@
     bell = anOOP;
 }
 
-- (NUPlayLot *)playLot
+- (NUSandbox *)sandbox
 {
-    return [[self bell] playLot];
+    return [[self bell] sandbox];
 }
 
 @end
@@ -138,7 +138,7 @@
 - (void)setBookmarks:(ATBookmarks *)aBookmarks
 {    
     NUSetIvar(&bookmarks, aBookmarks);
-    [[self playLot] markChangedObject:self];
+    [[self sandbox] markChangedObject:self];
 }
 
 - (ATBookmarks *)bookmarks
@@ -164,7 +164,7 @@
 - (void)setWindowSettings:(NSDictionary *)aDictionary
 {
     NUSetIvar(&windowSettings, aDictionary);
-    [[self playLot] markChangedObject:self];
+    [[self sandbox] markChangedObject:self];
 }
 
 - (ATDocumentPreferences *)preferences
@@ -187,9 +187,9 @@
         [(NUMainBranchNursery *)nursery setBackups:YES];
 #endif
     
-    if ([[nursery playLot] root] != self)
+    if ([[nursery sandbox] root] != self)
     {
-        [[nursery playLot] setRoot:self];
+        [[nursery sandbox] setRoot:self];
 //        [bookmarks autorelease];
 //        bookmarks = nil;
     }
@@ -205,19 +205,19 @@
 - (void)setBookmarksPresentationIDPool:(ATIDPool *)aPool
 {
     NUSetIvar(&bookmarksPresentationIDPool, aPool);
-    [[self playLot] markChangedObject:self];
+    [[self sandbox] markChangedObject:self];
 }
 
 - (void)setBookmarksPresentations:(NSMutableArray *)aPresentations;
 {
     NUSetIvar(&bookmarksPresentations, aPresentations);
-    [[self playLot] markChangedObject:self];
+    [[self sandbox] markChangedObject:self];
 }
 
-- (void)setBasePlayLot:(NUPlayLot *)aPlayLot
+- (void)setBaseSandbox:(NUSandbox *)aSandbox
 {
-    [basePlayLot autorelease];
-    basePlayLot = [aPlayLot retain];
+    [baseSandbox autorelease];
+    baseSandbox = [aSandbox retain];
 }
 
 @end
