@@ -2,7 +2,7 @@
 //  ATModelGroup.m
 //  Bookmarks
 //
-//  Created by P,T,A on 07/08/09.
+//  Created by Akifumi Takata on 07/08/09.
 //  Copyright 2007 Nursery-Framework. All rights reserved.
 //
 

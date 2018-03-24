@@ -2,7 +2,7 @@
 //  ATBinderWrapper.h
 //  Bookmarks
 //
-//  Created by P,T,A on 2012/10/13.
+//  Created by Akifumi Takata on 2012/10/13.
 //
 //
 

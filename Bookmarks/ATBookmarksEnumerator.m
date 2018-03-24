@@ -2,7 +2,7 @@
 //  BookmarksEnumerator.m
 //  Bookmarks
 //
-//  Created by P,T,A on 09/06/20.
+//  Created by Akifumi Takata on 09/06/20.
 //  Copyright 2009 Nursery-Framework. All rights reserved.
 //
 

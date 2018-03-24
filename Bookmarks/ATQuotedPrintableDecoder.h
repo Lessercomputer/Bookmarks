@@ -2,7 +2,7 @@
 //  ATQuotedPrintableDecoder.h
 //  ATQuotedPrintable
 //
-//  Created by P,T,A on 07/11/18.
+//  Created by Akifumi Takata on 07/11/18.
 //  Copyright 2007 Nursery-Framework. All rights reserved.
 //
 

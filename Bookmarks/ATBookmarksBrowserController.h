@@ -2,7 +2,7 @@
 //  ATBookmaksBrowserController.h
 //  Bookmarks
 //
-//  Created by P,T,A  on 11/12/30.
+//  Created by Akifumi Takata  on 11/12/30.
 //  Copyright (c) 2011年 Nursery-Framework. All rights reserved.
 //
 

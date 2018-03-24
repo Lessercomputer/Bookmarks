@@ -2,7 +2,7 @@
 //  ATBase64Decoder.h
 //  ATBase64Decoder
 //
-//  Created by P,T,A on Mon Jan 24 2005.
+//  Created by Akifumi Takata on Mon Jan 24 2005.
 //  Copyright (c) 2005 Nursery-Framework. All rights reserved.
 //
 

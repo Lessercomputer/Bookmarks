@@ -2,7 +2,7 @@
 //  BookmarksUnarchiver.m
 //  Bookmarks
 //
-//  Created by P,T,A on 09/04/18.
+//  Created by Akifumi Takata on 09/04/18.
 //  Copyright 2009 Nursery-Framework. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  ATItemWrapper.m
 //  Bookmarks
 //
-//  Created by P,T,A  on 12/07/21.
+//  Created by Akifumi Takata  on 12/07/21.
 //  Copyright (c) 2012年 Nursery-Framework. All rights reserved.
 //
 

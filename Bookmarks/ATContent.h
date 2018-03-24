@@ -2,7 +2,7 @@
 //  ATContent.h
 //  Bookmarks
 //
-//  Created by P,T,A on 2014/08/14.
+//  Created by Akifumi Takata on 2014/08/14.
 //  Copyright (c) 2014年 Nursery-Framework. All rights reserved.
 //
 

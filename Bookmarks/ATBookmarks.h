@@ -2,7 +2,7 @@
 //  Bookmarks.h
 //  Bookmarks
 //
-//  Created by P,T,A  on 05/10/11.
+//  Created by Akifumi Takata  on 05/10/11.
 //  Copyright 2005 Nursery-Framework. All rights reserved.
 //
 

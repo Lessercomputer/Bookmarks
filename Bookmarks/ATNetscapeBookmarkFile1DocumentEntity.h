@@ -2,7 +2,7 @@
 //  ATNetscapeBookmarkFile1DocumentEntity.h
 //  Bookmarks
 //
-//  Created by P,T,A on 07/08/07.
+//  Created by Akifumi Takata on 07/08/07.
 //  Copyright 2007 Nursery-Framework. All rights reserved.
 //
 

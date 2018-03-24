@@ -2,7 +2,7 @@
 //  BookmarksInsertOperation.h
 //  Bookmarks
 //
-//  Created by P,T,A  on 12/01/08.
+//  Created by Akifumi Takata  on 12/01/08.
 //  Copyright (c) 2012年 Nursery-Framework. All rights reserved.
 //
 

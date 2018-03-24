@@ -2,7 +2,7 @@
 //  BookmarksArchiver.m
 //  Bookmarks
 //
-//  Created by P,T,A on 09/04/12.
+//  Created by Akifumi Takata on 09/04/12.
 //  Copyright 2009 Nursery-Framework. All rights reserved.
 //
 
@@ -43,13 +43,9 @@
 
 - (id)archive
 {
-	NSEnumerator *anEnumerator = [[bookmarks itemLibrary] objectEnumerator];
-	ATItem *anItem = nil;
-	
-	while (anItem = [anEnumerator nextObject])
-	{
-		[itemsPlist addObject:[anItem propertyListRepresentation]];
-	}
+    [[bookmarks itemLibrary] enumerateKeysAndObjectsUsingBlock:^(id aKey, ATItem *anItem, BOOL *aStop) {
+        [itemsPlist addObject:[anItem propertyListRepresentation]];
+    }];
 	
 	return [self makeArchivedBookmarks];
 }

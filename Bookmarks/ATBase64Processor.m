@@ -2,7 +2,7 @@
 //  ATBase64Processor.m
 //  ATBase64
 //
-//  Created by P,T,A on Sun Apr 10 2005.
+//  Created by Akifumi Takata on Sun Apr 10 2005.
 //  Copyright (c) 2005 Nursery-Framework. All rights reserved.
 //
 

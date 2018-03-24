@@ -2,7 +2,7 @@
 //  NSObject+NSBrowserTableViewDragDrop.h
 //  Bookmarks
 //
-//  Created by P,T,A on 2012/11/03.
+//  Created by Akifumi Takata on 2012/11/03.
 //
 //
 

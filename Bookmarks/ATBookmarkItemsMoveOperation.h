@@ -2,7 +2,7 @@
 //  ATBookmarkItemsMoveOperation.h
 //  Bookmarks
 //
-//  Created by P,T,A on 09/08/13.
+//  Created by Akifumi Takata on 09/08/13.
 //  Copyright 2009 Nursery-Framework. All rights reserved.
 //
 

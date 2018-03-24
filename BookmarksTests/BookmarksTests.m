@@ -2,7 +2,7 @@
 //  BookmarksTests.m
 //  BookmarksTests
 //
-//  Created by P,T,A on 2014/05/04.
+//  Created by Akifumi Takata on 2014/05/04.
 //  Copyright (c) 2014年 Nursery-Framework. All rights reserved.
 //
 

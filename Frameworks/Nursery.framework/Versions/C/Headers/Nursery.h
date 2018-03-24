@@ -19,6 +19,7 @@
 #import <Nursery/NUAliaser.h>
 #import <Nursery/NUCoding.h>
 #import <Nursery/NUMovingUp.h>
+#import <NUrsery/NUCoder.h>
 
 #import <Nursery/NUCharacter.h>
 #import <Nursery/NUIvar.h>
@@ -31,5 +32,5 @@
 #import <Nursery/NUNurseryAssociation.h>
 #import <Nursery/NUBranchNurseryAssociation.h>
 #import <Nursery/NUMainBranchNurseryAssociation.h>
-//#import <Nursery/NUMainBranchNurseryAssociationProtocol.h>
+#import <Nursery/NUMainBranchNurseryAssociationProtocol.h>
 

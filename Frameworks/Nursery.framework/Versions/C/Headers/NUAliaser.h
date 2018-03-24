@@ -8,7 +8,7 @@
 
 #import <Nursery/NUTypes.h>
 
-@class NUSandbox, NUPages, NUCodingContext, NUIndexArray, NUObjectTable, NUBell, NUPupilNote, NUCharacter;
+@class NUSandbox, NUPages, NUCodingContext, NUIndexArray, NUObjectTable, NUBell, NUPupilNote, NUCharacter, NUQueue, NUU64ODictionary;
 
 extern NSString *NUObjectLocationNotFoundException;
 extern NSString *NUBellBallNotFoundException;
@@ -20,7 +20,8 @@ extern NSString *NUAliaserCannotDecodeObjectException;
 	NUSandbox *sandbox;
 	NSMutableArray *contexts;
 	NSMutableArray *roots;
-	NSMutableArray *objectsToEncode;
+	NUQueue *objectsToEncode;
+    NSMutableArray *encodedPupils;
 	NUIndexArray *rootOOPs;
 }
 @end
@@ -44,8 +45,11 @@ extern NSString *NUAliaserCannotDecodeObjectException;
 - (NSMutableArray *)roots;
 - (void)setRoots:(NSMutableArray *)aRoots;
 
-- (NSMutableArray *)objectToEncode;
-- (void)setObjectToEncode:(NSMutableArray *)anObjectsToEncode;
+- (NUQueue *)objectsToEncode;
+- (void)setObjectsToEncode:(NUQueue *)anObjectsToEncode;
+
+- (NSMutableArray *)encodedPupils;
+- (void)setEncodedPupils:(NSMutableArray *)anEncodedPupils;
 
 - (NUUInt64)indexedIvarOffset;
 - (void)setIndexedIvarOffset:(NUUInt64)anOffset;
@@ -93,6 +97,10 @@ extern NSString *NUAliaserCannotDecodeObjectException;
 - (void)encodeObjectReally:(id)anObject;
 - (void)ensureCharacterRegistration:(NUCharacter *)aCharacter;
 - (void)prepareCodingContextForEncode:(id)anObject;
+- (NUU64ODictionary *)reducedEncodedPupilsDictionary:(NSArray *)anEncodedPupils;
+- (NSArray *)reducedEncodedPupilsFor:(NSArray *)anEncodedPupils with:(NUU64ODictionary *)aReducedEncodedPupilsDictionary;
+- (NUUInt64)sizeOfEncodedObjects:(NSArray *)aReducedEncodedPupils;
+- (NUUInt64)sizeOfEncodedObjects:(NSArray *)aReducedEncodedPupils with:(NUU64ODictionary *)aReducedEncodedPupilsDictionary;
 - (void)objectDidEncode:(NUBell *)aBell;
 - (id)nextObjectToEncode;
 
@@ -204,7 +212,6 @@ extern NSString *NUAliaserCannotDecodeObjectException;
 
 - (void)moveUp:(id)anObject;
 - (void)moveUp:(id)anObject ignoreGradeAtCallFor:(BOOL)anIgnoreFlag;
-- (void)moveUpObjects:(NSArray *)anObjects;
 - (void)prepareCodingContextForMoveUp:(NUBell *)aBell;
 
 - (NUUInt64)objectLocationForBell:(NUBell *)aBell gradeInto:(NUUInt64 *)aGrade;
