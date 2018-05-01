@@ -21,7 +21,7 @@ NSString *ATDocumentPreferencesDidChangeNotification = @"ATDocumentPreferencesDi
 	return YES;
 }
 
-+ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUSandbox *)aSandbox
++ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUGarden *)aGarden
 {
     [aCharacter addFloatIvarWithName:@"windowAlphaValue"];
     [aCharacter addOOPIvarWithName:@"menuItemDescriptionsForOpenBookmarksWith"];
@@ -78,22 +78,22 @@ NSString *ATDocumentPreferencesDidChangeNotification = @"ATDocumentPreferencesDi
     return aCopy;
 }
 
-- (void)encodeWithAliaser:(NUAliaser *)aChildminder
+- (void)encodeWithAliaser:(NUAliaser *)anAliaser
 {
-    [aChildminder encodeFloat:windowAlphaValue];
-    [aChildminder encodeObject:menuItemDescriptionsForOpenBookmarksWith];
-    [aChildminder encodeObject:menuItemDescriptionsForDoubleClick];
-    [aChildminder encodeObject:menuItemDescriptionWhenDoubleClick];
+    [anAliaser encodeFloat:windowAlphaValue];
+    [anAliaser encodeObject:menuItemDescriptionsForOpenBookmarksWith];
+    [anAliaser encodeObject:menuItemDescriptionsForDoubleClick];
+    [anAliaser encodeObject:menuItemDescriptionWhenDoubleClick];
 }
 
-- (id)initWithAliaser:(NUAliaser *)aChildminder
+- (id)initWithAliaser:(NUAliaser *)anAliaser
 {
     if (self = [super init])
     {
-        windowAlphaValue = [aChildminder decodeFloat];
-        NUSetIvar(&menuItemDescriptionsForOpenBookmarksWith, [aChildminder decodeObject]);
-        NUSetIvar(&menuItemDescriptionsForDoubleClick, [aChildminder decodeObject]);
-        NUSetIvar(&menuItemDescriptionWhenDoubleClick, [aChildminder decodeObject]);
+        windowAlphaValue = [anAliaser decodeFloat];
+        NUSetIvar(&menuItemDescriptionsForOpenBookmarksWith, [anAliaser decodeObject]);
+        NUSetIvar(&menuItemDescriptionsForDoubleClick, [anAliaser decodeObject]);
+        NUSetIvar(&menuItemDescriptionWhenDoubleClick, [anAliaser decodeObject]);
     }
     
     return self;
@@ -224,7 +224,7 @@ NSString *ATDocumentPreferencesDidChangeNotification = @"ATDocumentPreferencesDi
     [self setMenuItemDescriptionWhenDoubleClick:[aPreferences menuItemDescriptionWhenDoubleClick]];
     
     [[self bell] markChanged];
-    [[[self bell] sandbox] markChangedObject:[self menuItemDescriptionsForOpenBookmarksWith]];
+    [[[self bell] garden] markChangedObject:[self menuItemDescriptionsForOpenBookmarksWith]];
     [[self menuItemDescriptionsForOpenBookmarksWith] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [[obj bell] markChanged];
     }];

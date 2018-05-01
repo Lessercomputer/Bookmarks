@@ -136,7 +136,7 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 	return YES;
 }
 
-+ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUSandbox *)aSandbox
++ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUGarden *)aGarden
 {
     [aCharacter addOOPIvarWithName:@"root"];
     [aCharacter addOOPIvarWithName:@"idPool"];
@@ -144,22 +144,22 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
     [aCharacter addOOPIvarWithName:@"itemsDictionary"];
 }
 
-- (void)encodeWithAliaser:(NUAliaser *)aChildminder
+- (void)encodeWithAliaser:(NUAliaser *)anAliaser
 {
-    [aChildminder encodeObject:root];
-    [aChildminder encodeObject:idPool];
-//    [aChildminder encodeObject:items];
-    [aChildminder encodeObject:itemLibrary];
+    [anAliaser encodeObject:root];
+    [anAliaser encodeObject:idPool];
+//    [anAliaser encodeObject:items];
+    [anAliaser encodeObject:itemLibrary];
 }
 
-- (id)initWithAliaser:(NUAliaser *)aChildminder
+- (id)initWithAliaser:(NUAliaser *)anAliaser
 {
     [super init];
     
-    [self setRoot:[aChildminder decodeObjectReally]];
-    [self setIDPool:[aChildminder decodeObjectReally]];
-//    [self setItems:[aChildminder decodeObjectReally]];
-    [self setItemLibrary:[aChildminder decodeObjectReally]];
+    [self setRoot:[anAliaser decodeObjectReally]];
+    [self setIDPool:[anAliaser decodeObjectReally]];
+//    [self setItems:[anAliaser decodeObjectReally]];
+    [self setItemLibrary:[anAliaser decodeObjectReally]];
     
     undoManager = [NSUndoManager new];
 	changeCountOfDraggingPasteBoard = -1;
@@ -394,7 +394,7 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 			[anItem itemIDFrom:self];
 			[[self itemLibrary] setObject:anItem forKey:[anItem numberWithItemID]];
             if (![anItem addDate]) [anItem setAddDate:[NSDate date]];
-            //[[[self bell] sandbox] markChangedObject:[self itemsDictionary]];
+            //[[[self bell] garden] markChangedObject:[self itemsDictionary]];
 		}
 	}
 }
@@ -719,7 +719,7 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
     
     [self setIDPool:[ATIDPool idPool]];
     [self setItemLibrary:[NULibrary library]];
-    [[[self bell] sandbox] markChangedObject:self];
+    [[[self bell] garden] markChangedObject:self];
     
     anItem = [self root];
     
@@ -941,19 +941,19 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 - (void)newItemIDTo:(id)anItem
 {
 	[anItem setItemID:[idPool newID]];
-    [[[self bell ] sandbox] markChangedObject:idPool];
+    [[[self bell ] garden] markChangedObject:idPool];
 }
 
 - (void)restoreItemIDOf:(id)anItem
 {
 	[idPool newIDWith:[anItem itemID]];
-    [[[self bell ] sandbox] markChangedObject:idPool];
+    [[[self bell ] garden] markChangedObject:idPool];
 }
 
 - (void)releseItemIDOf:(id)anItem
 {
 	[idPool releaseID:[anItem itemID]];
-    [[[self bell ] sandbox] markChangedObject:idPool];
+    [[[self bell ] garden] markChangedObject:idPool];
 }
 
 //- (void)setItems:(NSMutableArray *)anItems
@@ -1171,7 +1171,7 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 		NSLog(@"NSDragOperationDelete");
 	if (aOperation & NSDragOperationEvery)
 		NSLog(@"NSDragOperationEvery");
-	if (aOperation & NSDragOperationNone)
+	if (aOperation == NSDragOperationNone)
 		NSLog(@"NSDragOperationNone");
 }
 

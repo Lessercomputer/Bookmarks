@@ -75,24 +75,24 @@
     return YES;
 }
 
-+ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUSandbox *)aSandbox
++ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUGarden *)aGarden
 {
     [aCharacter addUInt64IvarWithName:@"nextID"];
     [aCharacter addOOPIvarWithName:@"freeIDs"];
 }
 
-- (void)encodeWithAliaser:(NUAliaser *)aChildminder
+- (void)encodeWithAliaser:(NUAliaser *)anAliaser
 {
-    [aChildminder encodeUInt64:nextID];
-    [aChildminder encodeObject:freeIDs];
+    [anAliaser encodeUInt64:nextID];
+    [anAliaser encodeObject:freeIDs];
 }
 
-- (id)initWithAliaser:(NUAliaser *)aChildminder
+- (id)initWithAliaser:(NUAliaser *)anAliaser
 {
     [super init];
     
-    nextID = [aChildminder decodeUInt64];
-    NUSetIvar(&freeIDs, [aChildminder decodeObjectReally]);
+    nextID = [anAliaser decodeUInt64];
+    NUSetIvar(&freeIDs, [anAliaser decodeObjectReally]);
     
     return self;
 }

@@ -51,7 +51,7 @@ void ATUncaughtExceptionHandler(NSException *anException)
     [nurserySpecifyingWindowController showWindow:sender];
 }
 
-#ifdef DEUBG
+#ifdef DEBUG
 - (IBAction)logResponderChain:(id)sender
 {
 	[self logResponderChainOf:[[NSApplication sharedApplication] keyWindow] type:@"keyWindow"];

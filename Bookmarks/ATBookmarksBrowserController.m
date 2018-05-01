@@ -43,13 +43,25 @@
     return bookmarksPresentaion;
 }
 
+- (ATBookmarksHome *)bookmarksHome
+{
+    return bookmarksHome;
+}
+
+- (void)setBookmarksHome:(ATBookmarksHome *)aBookmarksHome
+{
+    [bookmarksHome release];
+    bookmarksHome = [aBookmarksHome retain];
+}
+
 - (void)setBookmarksPresentation:(ATBookmarksPresentation *)aBookmarksPresentation
 {
     if (bookmarksPresentaion)
         [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    [bookmarksPresentaion release];
-    bookmarksPresentaion = [aBookmarksPresentation retain];
+//    [bookmarksPresentaion release];
+//    bookmarksPresentaion = [aBookmarksPresentation retain];
+    bookmarksPresentaion = aBookmarksPresentation;
     
     if (bookmarksPresentaion)
     {
@@ -157,12 +169,12 @@
 
 - (BOOL)browser:(NSBrowser *)browser isLeafItem:(id)anItemWrapper
 {
-    return [(ATItem *)[anItemWrapper item] isBookmark];
+    return [[(ATItemWrapper *)anItemWrapper item] isBookmark];
 }
 
 - (id)browser:(NSBrowser *)browser objectValueForItem:(id)anItemWrapper 
 {
-    id item = [anItemWrapper item];
+    id item = [(ATItemWrapper *)anItemWrapper item];
     
     if ([item isBookmark])
     {
@@ -187,7 +199,7 @@
 {
     [self disableUpdating];
     
-    ATEditor *anEditor = [ATEditor editorFor:[item item] on:[self bookmarksPresentation]];
+    ATEditor *anEditor = [ATEditor editorFor:[(ATItemWrapper *)item item] on:[self bookmarksPresentation]];
     
     [[anEditor value] setObject:([object isEqual:@""] ? [NSNull null] : object) forKey:@"name"];
     
@@ -339,8 +351,11 @@
 
 - (void)dealloc
 {
+    NSLog(@"dealloc:%@", self);
+
     [self setBrowser:nil];
     [self setBookmarksPresentation:nil];
+    [self setBookmarksHome:nil];
     
     [super dealloc];
 }

@@ -17,6 +17,7 @@
 #import "ATInspectorWindowController.h"
 #import "ATItem.h"
 #import "ATBinder.h"
+#import "ATEditor.h"
 #import "ATSafariBookmarksImporter.h"
 #import "ATFirefoxBookmarksImporter.h"
 #import "ATChromeBookmarksImporter.h"
@@ -52,7 +53,7 @@
         [[self bookmarks] kidnapWithRoots:[self rootBindersForBookmarksPresentation]];
 #endif
         
-        NUFarmOutStatus aFarmOutStatus = [[[self nursery] sandbox] farmOut];
+        NUFarmOutStatus aFarmOutStatus = [[[self bookmarksHome] garden] farmOut];
         return aFarmOutStatus == NUFarmOutStatusSucceeded;
     }
     else
@@ -68,35 +69,39 @@
     if ([typeName isEqualToString:@"BookmarksDocumentInNursery"] || [typeName isEqualToString:@"org.nursery-framework.bookmarksn"])
     {
         NUNursery *aNursery = nil;
-        NUBranchNurseryAssociation *aBranchAssociation = nil;
+        NUGarden *aGarden = nil;
         
         if ([[url scheme] isEqualToString:@"nursery"])
         {
-            aBranchAssociation = [[NUBranchNurseryAssociation association] retain];
-            aNursery = [aBranchAssociation nurseryForURL:url];
+            aNursery = [NUBranchNursery branchNurseryWithServiceName:[url path]];
         }
         else
         {
             aNursery = [NUMainBranchNursery nurseryWithContentsOfFile:[url path]];
         }
         
-        id aNurseryRoot = [[aNursery sandbox] root];
+        NSLog(@"%@", aNursery);
+        aGarden = [aNursery makeGarden];
+        id aNurseryRoot = [aGarden root];
         
         if ([aNurseryRoot isKindOfClass:[ATBookmarksHome class]])
         {
             [self setBookmarksHome:aNurseryRoot];
-            [[self bookmarksHome] setNursery:aNursery];
-            [[self bookmarksHome] setNurseryAssociation:aBranchAssociation];
-//            [[self bookmarksHome] setBaseSandbox:[aNursery createSandboxWithGrade:[[aNursery sandbox] grade]]];
+            [self bookmarksHome];
+            
+//            [[self bookmarksHome] setNursery:aNursery];
+            [[self bookmarksHome] setGarden:aGarden];
+//            [[self bookmarksHome] setbaseGarden:[aNursery createSandboxWithGrade:[[aNursery garden] grade]]];
             [self bookmarks];
             
             return [self bookmarksHome] ? YES : NO;
+//            return NO;
         }
         else if ([aNurseryRoot isKindOfClass:[NSDictionary class]])
         {
             [[self bookmarksHome] setBookmarks:aNurseryRoot[@"Bookmarks"]];
             [[self bookmarksHome] setNursery:aNursery];
-            [[self bookmarksHome] setNurseryAssociation:aBranchAssociation];
+            [[self bookmarksHome] setGarden:aGarden];
             [[[self bookmarksHome] bookmarks] setDocument:self];
             [self setUndoManager:[[self bookmarks] undoManager]];
             
@@ -155,7 +160,7 @@
 {
 	inMakingWindowControllers = YES;
 	
-    id aRoot = [[[self nursery] sandbox] root];
+    id aRoot = [[[self bookmarksHome] garden] root];
     NSDictionary *aWindowSettingsForNursery = nil;
     
     if ([aRoot isKindOfClass:[NSDictionary class]])
@@ -178,7 +183,8 @@
     }
     else
     {
-        ATBookmarksWindowController *aWindowController = [ATBookmarksWindowController controllerWithPresentation:[[self bookmarksHome] newBookmarksPresentation] windowIndex:++windowIndex home:[self bookmarksHome]];
+        ATBookmarksPresentation *aPresentaion = [[self bookmarksHome] makeBookmarksPresentation];
+        ATBookmarksWindowController *aWindowController = [ATBookmarksWindowController controllerWithPresentation:aPresentaion windowIndex:++windowIndex home:[self bookmarksHome]];
         
         if (savedWindowFrame)
         {
@@ -210,7 +216,7 @@
 
 - (void)openWindowFor:(ATBinder *)aBinder
 {
-    ATBookmarksPresentation *aPresentation = [[self bookmarksHome] newBookmarksPresentation];
+    ATBookmarksPresentation *aPresentation = [[self bookmarksHome] makeBookmarksPresentation];
 
 	[aPresentation setRoot:aBinder];
 	[self addWindowController:[ATBookmarksWindowController controllerWithPresentation:aPresentation windowIndex:++windowIndex home:[self bookmarksHome]]];
@@ -363,7 +369,8 @@
 - (void)close
 {
     [self cancelWebIconLoaderIfNeeded];
-    [[[self bookmarksHome] nursery] close];
+
+    [[self bookmarksHome] invalidate];
 
     [super close];
 }
@@ -514,7 +521,6 @@
     if (bookmarksHome)
         [[NSNotificationCenter defaultCenter] removeObserver:[bookmarksHome preferences]];
     
-    [[bookmarksHome nursery] close];
     [bookmarksHome release];
     bookmarksHome = [aBookmarksHome retain];
     

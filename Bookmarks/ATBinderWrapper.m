@@ -62,7 +62,7 @@
 {
     NUSetIvar(&items, anItems);
     [self setItemsIsChanged:YES];
-    [[[self bell] sandbox] markChangedObject:self];
+    [[[self bell] garden] markChangedObject:self];
 }
 
 - (NSIndexSet *)selectionIndexes
@@ -79,7 +79,7 @@
     
     NUSetIvar(&selectionIndexes, aSelectionIndexes);
     [self setSelectionIsChanged:YES];
-    [[[self bell] sandbox] markChangedObject:self];
+    [[[self bell] garden] markChangedObject:self];
 }
 
 - (ATItemWrapper *)itemAt:(NSUInteger)anIndex
@@ -128,7 +128,7 @@
     [[self items] insertObjects:anItems atIndexes:anIndexes];
     
     [self setItemsIsChanged:YES];
-    [[[self bell] sandbox] markChangedObject:[self items]];
+    [[[self bell] garden] markChangedObject:[self items]];
 }
 
 - (void)removeAtIndexes:(NSIndexSet *)anIndexes
@@ -136,7 +136,7 @@
     [[self items] removeObjectsAtIndexes:anIndexes];
     
     [self setItemsIsChanged:YES];
-    [[[self bell] sandbox] markChangedObject:[self items]];
+    [[[self bell] garden] markChangedObject:[self items]];
 }
 
 - (void)reloadAll
@@ -214,26 +214,26 @@
 
 @implementation ATBinderWrapper (Coding)
 
-+ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUSandbox *)aSandbox
++ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUGarden *)aGarden
 {
 	[aCharacter addOOPIvarWithName:@"items"];
     [aCharacter addOOPIvarWithName:@"selectionIndexes"];
 }
 
-- (void)encodeWithAliaser:(NUAliaser *)aChildminder
+- (void)encodeWithAliaser:(NUAliaser *)anAliaser
 {
-    [super encodeWithAliaser:aChildminder];
+    [super encodeWithAliaser:anAliaser];
     
-    [aChildminder encodeObject:items];
-    [aChildminder encodeObject:selectionIndexes];
+    [anAliaser encodeObject:items];
+    [anAliaser encodeObject:selectionIndexes];
 }
 
-- (id)initWithAliaser:(NUAliaser *)aChildminder
+- (id)initWithAliaser:(NUAliaser *)anAliaser
 {
-    [super initWithAliaser:aChildminder];
+    [super initWithAliaser:anAliaser];
     
-    NUSetIvar(&items, [aChildminder decodeObjectReally]);
-    NUSetIvar(&selectionIndexes, [aChildminder decodeObjectReally]);
+    NUSetIvar(&items, [anAliaser decodeObjectReally]);
+    NUSetIvar(&selectionIndexes, [anAliaser decodeObjectReally]);
     
     return self;
 }

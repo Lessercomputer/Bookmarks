@@ -8,6 +8,7 @@
 #import "ATEditor.h"
 #import "ATItem.h"
 #import "ATBookmarksHome.h"
+#import "ATBookmarksPresentation.h"
 #import "ATDocumentPreferences.h"
 
 @implementation ATBookmarksWindowController
@@ -30,6 +31,7 @@
 	[bookmarksView registerForDraggedTypes:[[self bookmarks] pasteBoardTypes]];
 //    [[bookmarksView matrixInColumn:0] registeredDraggedTypes:[[self bookmarks] pasteBoardTypes]];
     
+    [browserController setBookmarksHome:bookmarksHome];
     [browserController setBookmarksPresentation:[self bookmarksPresentation]];
     [browserController setBrowser:bookmarksView];
     [browserController updateBrowser:YES];
@@ -37,7 +39,7 @@
 	
 	//[bookmarksView setDoubleAction:@selector(openItem:)];
 	
-	[presentationController setContent:[self bookmarksPresentation]];
+    [presentationController setContent:[self bookmarksPresentation]];
 	//[[bookmarksView tableColumnWithIdentifier:@"name"] setDataCell:aCell];
     //[[self window] setStyleMask:NSResizableWindowMask | NSTitledWindowMask];
     //[[self window] setBackgroundColor:[NSColor clearColor]];
@@ -88,8 +90,24 @@
 	windowIndex = anIndex;
 	
     bookmarksHome = [aHome retain];
+//    bookmarksHome = aHome;
     
 	return self;
+}
+
+- (instancetype)retain
+{
+    return [super retain];
+}
+
+- (oneway void)release
+{
+    [super release];
+}
+
+- (instancetype)autorelease
+{
+    return [super autorelease];
 }
 
 - (void)dealloc
@@ -97,11 +115,14 @@
 #ifdef DEBUG
 	NSLog(@"ATBookmarksWindowController #dealloc");
 #endif
+
+    NSLog(@"retainCount:%@", @([bookmarksPresentation retainCount]));
     
-	[self setBookmarksPresentation:nil];
     //[browserController release];
 	//[self setBookmarks:nil];
-	[bookmarksHome release];
+    [presentationController setContent:nil];
+    [self setBookmarksPresentation:nil];
+    [bookmarksHome release];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
@@ -130,9 +151,10 @@
 
 - (void)setBookmarksPresentation:(ATBookmarksPresentation *)aPresentation
 {
-	[bookmarksPresentation autorelease];
-	bookmarksPresentation = [aPresentation retain];
-	
+    bookmarksPresentation = aPresentation;
+    
+    if (aPresentation)
+        [bookmarksHome addBookmarksPresentation:aPresentation];
 	/*if ([self isWindowLoaded])
 		[bookmarksView reloadData];*/
 }

@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <WebKit/WebKit.h>
 
 @class ATBookmarks;
-@class WebView;
 
 @protocol ATWebIconLoaderDelegate <NSObject>
 
@@ -17,7 +17,7 @@
 
 @end
 
-@interface ATWebIconLoader : NSObject 
+@interface ATWebIconLoader : NSObject <WebFrameLoadDelegate>
 {
 	NSArray *items;
     NSMutableDictionary *urlToFaviconDictionary;

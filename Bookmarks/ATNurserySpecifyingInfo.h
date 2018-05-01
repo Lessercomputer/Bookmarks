@@ -11,25 +11,15 @@
 @interface ATNurserySpecifyingInfo : NSObject
 {
     NSString *hostName;
-    NSString *nurseryAssociationName;
-    BOOL useDefaultNurseryAssociationName;
     NSString *nurseryName;
-    NSURL *nurseryURL;
 }
 
 - (NSString *)hostName;
 - (void)setHostName:(NSString *)aName;
 
-- (NSString *)nurseryAssociationName;
-- (void)setNurseryAssociationName:(NSString *)aName;
-
-- (BOOL)useDefaultNurseryAssociationName;
-- (void)setUseDefaultNurseryAssociationName:(BOOL)aUseFlag;
-
 - (NSString *)nurseryName;
 - (void)setNurseryName:(NSString *)aName;
 
 - (NSURL *)nurseryURL;
-- (void)setNurseryURL:(NSURL *)aURL;
 
 @end

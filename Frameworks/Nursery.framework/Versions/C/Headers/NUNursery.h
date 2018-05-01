@@ -6,14 +6,17 @@
 //  Copyright 2010 Nursery-Framework. All rights reserved.
 //
 
+#import <Foundation/NSObjCRuntime.h>
+#import <Foundation/NSObject.h>
 #import <Nursery/NUTypes.h>
 
-@class NUCharacter, NUBell, NUObjectWrapper, NUAliaser, NUNurseryRoot, NUSandbox;
+@class NSString;
+@class NUGarden;
 
 extern NSString * const NUOOPNotFoundException;
 
-extern NUUInt64 NUNilSandboxID;
-extern NUUInt64 NUFirstSandboxID;
+extern NUUInt64 NUNilGardenID;
+extern NUUInt64 NUFirstGardenID;
 
 typedef enum : NSUInteger {
     NUNurseryOpenStatusClose,
@@ -24,7 +27,6 @@ typedef enum : NSUInteger {
 @interface NUNursery : NSObject
 {
     NUNurseryOpenStatus openStatus;
-	NUSandbox *sandbox;
 }
 @end
 
@@ -34,33 +36,6 @@ typedef enum : NSUInteger {
 
 @interface NUNursery (Accessing)
 
-- (NUSandbox *)sandbox;
-
-@end
-
-@interface NUNursery (Grade)
-
-- (NUUInt64)latestGrade:(NUSandbox *)sender;
-- (NUUInt64)olderRetainedGrade:(NUSandbox *)sender;
-
-- (NUUInt64)retainLatestGradeBySandbox:(NUSandbox *)sender;
-- (NUUInt64)retainGradeIfValid:(NUUInt64)aGrade bySandbox:(NUSandbox *)sender;
-- (void)retainGrade:(NUUInt64)aGrade bySandbox:(NUSandbox *)sender;
-- (void)releaseGradeLessThan:(NUUInt64)aGrade bySandbox:(NUSandbox *)sender;
-
-- (NUUInt64)retainLatestGradeBySandboxWithID:(NUUInt64)anID;
-- (void)retainGrade:(NUUInt64)aGrade bySandboxWithID:(NUUInt64)anID;
-- (void)releaseGradeLessThan:(NUUInt64)aGrade bySandboxWithID:(NUUInt64)anID;
-
-@end
-
-@interface NUNursery (Sandbox)
-
-- (NUSandbox *)createSandbox;
-- (NUSandbox *)createSandboxWithGrade:(NUUInt64)aGrade;
-
-- (void)sandboxDidClose:(NUSandbox *)aSandbox;
-
 @end
 
 @interface NUNursery (Testing)
@@ -69,14 +44,9 @@ typedef enum : NSUInteger {
 
 @end
 
-@interface NUNursery (Private)
+@interface NUNursery (Garden)
 
-- (void)setSandbox:(NUSandbox *)aSandbox;
-
-- (BOOL)open;
-- (void)close;
-
-- (NUNurseryOpenStatus)openStatus;
-- (void)setOpenStatus:(NUNurseryOpenStatus)aStatus;
+- (NUGarden *)makeGarden;
+- (NUGarden *)makeGardenWithGrade:(NUUInt64)aGrade;
 
 @end

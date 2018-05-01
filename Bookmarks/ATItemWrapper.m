@@ -93,21 +93,21 @@
 	return YES;
 }
 
-+ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUSandbox *)aSandbox
++ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUGarden *)aGarden
 {
 	[aCharacter addOOPIvarWithName:@"item"];
 }
 
-- (void)encodeWithAliaser:(NUAliaser *)aChildminder
+- (void)encodeWithAliaser:(NUAliaser *)anAliaser
 {
-    [aChildminder encodeObject:[self item]];
+    [anAliaser encodeObject:[self item]];
 }
 
-- (id)initWithAliaser:(NUAliaser *)aChildminder
+- (id)initWithAliaser:(NUAliaser *)anAliaser
 {
     [super init];
     
-    [self setItem:[aChildminder decodeObjectReally]];
+    [self setItem:[anAliaser decodeObjectReally]];
     
     return self;
 }

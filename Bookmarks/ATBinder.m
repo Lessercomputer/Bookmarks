@@ -51,23 +51,23 @@
 
 @implementation ATBinder (Coding)
 
-+ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUSandbox *)aSandbox
++ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUGarden *)aGarden
 {
     [aCharacter addOOPIvarWithName:@"children"];
 }
 
-- (void)encodeWithAliaser:(NUAliaser *)aChildminder
+- (void)encodeWithAliaser:(NUAliaser *)anAliaser
 {
-    [super encodeWithAliaser:aChildminder];
+    [super encodeWithAliaser:anAliaser];
     
-    [aChildminder encodeObject:children];
+    [anAliaser encodeObject:children];
 }
 
-- (id)initWithAliaser:(NUAliaser *)aChildminder
+- (id)initWithAliaser:(NUAliaser *)anAliaser
 {
-    [super initWithAliaser:aChildminder];
+    [super initWithAliaser:anAliaser];
     
-    NUSetIvar(&children, [aChildminder decodeObject]);
+    NUSetIvar(&children, [anAliaser decodeObject]);
         
     return self;
 }
@@ -351,7 +351,7 @@
 {
     [anItems makeObjectsPerformSelector:@selector(addBinder:) withObject:self];
     [[self children] insertObjects:anItems atIndexes:anIndexes];
-    [[[self bell] sandbox] markChangedObject:[self children]];
+    [[[self bell] garden] markChangedObject:[self children]];
 }
 
 - (void)remove:(id)anItem
@@ -364,7 +364,7 @@
 {
     [[self atIndexes:anIndexes] makeObjectsPerformSelector:@selector(removeBinder:) withObject:self];
     [[self children] removeObjectsAtIndexes:anIndexes];
-    [[[self bell] sandbox] markChangedObject:[self children]];
+    [[[self bell] garden] markChangedObject:[self children]];
 }
 
 @end
@@ -392,7 +392,7 @@
 - (void)setChildren:(NSMutableArray *)aChildren
 {
     NUSetIvar(&children, aChildren);
-    [[[self bell] sandbox] markChangedObject:self];
+    [[[self bell] garden] markChangedObject:self];
 }
 
 @end

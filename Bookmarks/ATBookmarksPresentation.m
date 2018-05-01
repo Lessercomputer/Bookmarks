@@ -43,6 +43,21 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 	return self;
 }
 
+- (instancetype)retain
+{
+    return [super retain];
+}
+
+- (oneway void)release
+{
+    [super release];
+}
+
+- (instancetype)autorelease
+{
+    return [super autorelease];
+}
+
 - (void)dealloc
 {
 #ifdef DEBUG
@@ -66,7 +81,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 	return YES;
 }
 
-+ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUSandbox *)aSandbox
++ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUGarden *)aGarden
 {
 	[aCharacter addOOPIvarWithName:@"presentationID"];
     [aCharacter addOOPIvarWithName:@"bookmarksHome"];
@@ -74,24 +89,24 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
     [aCharacter addOOPIvarWithName:@"selectionForBinders"];
 }
 
-- (void)encodeWithAliaser:(NUAliaser *)aChildminder
+- (void)encodeWithAliaser:(NUAliaser *)anAliaser
 {
-    [aChildminder encodeObject:presentationID];
-    [aChildminder encodeObject:bookmarksHome];
-    [aChildminder encodeObject:root];
-    [aChildminder encodeObject:binderWrappers];
+    [anAliaser encodeObject:presentationID];
+    [anAliaser encodeObject:bookmarksHome];
+    [anAliaser encodeObject:root];
+    [anAliaser encodeObject:binderWrappers];
 }
 
-- (id)initWithAliaser:(NUAliaser *)aChildminder
+- (id)initWithAliaser:(NUAliaser *)anAliaser
 {
     [super init];
     
-    NUSetIvar(&presentationID, [aChildminder decodeObject]);
-//    NUSetIvar(&bookmarks, [aChildminder decodeObjectReally]);
-    [self setBookmarksHome:[aChildminder decodeObject]];
-//    NUSetIvar(&root, [aChildminder decodeObject]);
-    [self setRoot:[aChildminder decodeObjectReally]];
-    NUSetIvar(&binderWrappers, [aChildminder decodeObject]);
+    NUSetIvar(&presentationID, [anAliaser decodeObject]);
+//    NUSetIvar(&bookmarks, [anAliaser decodeObjectReally]);
+    [self setBookmarksHome:[anAliaser decodeObject]];
+//    NUSetIvar(&root, [anAliaser decodeObject]);
+    [self setRoot:[anAliaser decodeObjectReally]];
+    NUSetIvar(&binderWrappers, [anAliaser decodeObject]);
     
     return self;
 }
@@ -152,8 +167,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bookmarksWillOrDidEditItem:) name:ATBookmarksDidEditItemNotification object:[aBookmarksHome bookmarks]];
     }
     
-    [bookmarksHome autorelease];
-    bookmarksHome = [aBookmarksHome retain];
+    bookmarksHome = aBookmarksHome;
 }
 
 - (ATBookmarksHome *)bookmarksHome
@@ -1002,7 +1016,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
     
     [[self binderWrappers] removeObjectsInRange:NSMakeRange(aColumn, [self binderCount] - aColumn)];
     
-    [[[self bell] sandbox] markChangedObject:[self binderWrappers]];
+    [[[self bell] garden] markChangedObject:[self binderWrappers]];
 }
 
 - (void)addBinderWrapper:(ATBinderWrapper *)aBinderWrapper
@@ -1017,7 +1031,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
     [[self binderWrappers] addObject:aBinderWrapper];
 //    [aBinderWrapper setItemsIsChanged:YES];
     
-    [[[self bell] sandbox] markChangedObject:[self binderWrappers]];
+    [[[self bell] garden] markChangedObject:[self binderWrappers]];
 }
 
 - (void)reloadItemsAt:(NSUInteger)aColumn
@@ -1044,7 +1058,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 {
     [self setBinderWrappers:binderWrappersBeforeDragging];
     [self setBinderWrappersForDragging:nil];
-    [[[self bell] sandbox] markChangedObject:self];
+    [[[self bell] garden] markChangedObject:self];
 }
 
 - (void)discardBinderWrappersForDragging
@@ -1397,7 +1411,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
 		NSLog(@"NSDragOperationDelete");
 	if ([info draggingSourceOperationMask] & NSDragOperationEvery)
 		NSLog(@"NSDragOperationEvery");
-	if ([info draggingSourceOperationMask] & NSDragOperationNone)
+	if ([info draggingSourceOperationMask] == NSDragOperationNone)
 		NSLog(@"NSDragOperationNone");
 }
 

@@ -7,17 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-@class ATBookmarksPresentation;
+@class ATBookmarksHome, ATBookmarksPresentation;
 
 @interface ATBookmarksBrowserController : NSViewController
 {
     NSBrowser *browser;
+    ATBookmarksHome *bookmarksHome;
     ATBookmarksPresentation *bookmarksPresentaion;
     NSUInteger disableCountOfUpdating;
 }
 
 - (NSBrowser *)browser;
 - (void)setBrowser:(NSBrowser *)aBrowser;
+
+- (ATBookmarksHome *)bookmarksHome;
+- (void)setBookmarksHome:(ATBookmarksHome *)aBookmarksHome;
 
 - (ATBookmarksPresentation *)bookmarksPresentation;
 - (void)setBookmarksPresentation:(ATBookmarksPresentation *)aBookmarksPresentation;

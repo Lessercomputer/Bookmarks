@@ -24,13 +24,6 @@
 	return self;
 }
 
-- (void)dealloc
-{
-	[editorController setContent:nil];
-	
-	[super dealloc];
-}
-
 @end
 
 @implementation ATInspectorWindowController (Accessing)

@@ -23,20 +23,23 @@
     NSDictionary *windowSettings;
     ATDocumentPreferences *preferences;
     NUNursery *nursery;
-    NUBranchNurseryAssociation *nurseryAssociation;
-    NUSandbox *baseSandbox;
+    NUGarden *garden;
+    NUGarden *baseGarden;
 }
 
 + (id)bookmarksHome;
 
-- (ATBookmarksPresentation *)newBookmarksPresentation;
+- (ATBookmarksPresentation *)makeBookmarksPresentation;
+- (void)addBookmarksPresentation:(ATBookmarksPresentation *)aPresentation;
+- (void)removeBookmarksPresentaion:(ATBookmarksPresentation *)aPresentation;
 
 - (NSNumber *)newBookmarksPresentationID;
+
+- (void)invalidate;
 
 @end
 
 @interface ATBookmarksHome (Coding) <NUCoding>
-- (NUSandbox *)sandbox;
 @end
 
 @interface ATBookmarksHome (Accessing)
@@ -45,7 +48,7 @@
 - (void)setBookmarks:(ATBookmarks *)aBookmarks;
 
 - (NUNursery *)nursery;
-- (NUBranchNurseryAssociation *)nurseryAssociation;
+- (NUGarden *)garden;
 - (ATIDPool *)bookmarksPresentationIDPool;
 - (NSMutableArray *)bookmarksPresentations;
 - (NSDictionary *)windowSettings;
@@ -58,9 +61,9 @@
 @interface ATBookmarksHome (Private)
 
 - (void)setNursery:(NUNursery *)aNursery;
-- (void)setNurseryAssociation:(NUBranchNurseryAssociation *)anAssociation;
+- (void)setGarden:(NUGarden *)aGarden;
 - (void)setBookmarksPresentationIDPool:(ATIDPool *)aPool;
 - (void)setBookmarksPresentations:(NSMutableArray *)aPresentations;
-- (void)setBaseSandbox:(NUSandbox *)aSandbox;
+- (void)setbaseGarden:(NUGarden *)aGarden;
 
 @end

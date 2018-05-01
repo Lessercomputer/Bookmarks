@@ -10,6 +10,7 @@
 #import <Cocoa/Cocoa.h>
 
 @class NUNursery;
+@class NUGarden;
 @class ATBookmarks;
 @class ATBookmarksPresentation;
 @class ATFirefoxHTMLBookmarksImporter;
@@ -24,6 +25,7 @@
 @interface ATBookmarksDocument : NSDocument
 {
     ATBookmarksHome *bookmarksHome;
+    NUGarden *garden;
 	int windowIndex;
 	NSMutableArray *importers;
 	NSString *savedWindowFrame;

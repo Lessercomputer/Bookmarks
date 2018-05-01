@@ -6,9 +6,15 @@
 //  Copyright 2011 Nursery-Framework. All rights reserved.
 //
 
+#import <Foundation/NSObjCRuntime.h>
+#import <Foundation/NSObject.h>
+
 #import <Nursery/NUTypes.h>
 #import <Nursery/NUCoding.h>
 #import <Nursery/NUMovingUp.h>
+
+@class NSString, NSMutableArray, NSMutableSet, NSRecursiveLock;
+@class NUBell, NUIvar, NUCharacter, NUGarden, NUCoder;
 
 extern const NUObjectFormat NUFixedIvars;
 extern const NUObjectFormat NUIndexedIvars;
@@ -18,17 +24,17 @@ extern const NUObjectFormat NUIndexedBytes;
 extern NSString *NUCharacterIvarAlreadyExistsException;
 extern NSString *NUCharacterInvalidObjectFormatException;
 
-@class NUBell, NUIvar, NUCharacter, NUSandbox, NUCoder;
-
 @protocol NUCharacter
 
-+ (BOOL)automaticallyEstablishCharacter;
-+ (NUCharacter *)characterOn:(NUSandbox *)aSandbox;
-+ (NUCharacter *)establishCharacterOn:(NUSandbox *)aSandbox;
-+ (NUCharacter *)createCharacterOn:(NUSandbox *)aSandbox;
-+ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUSandbox *)aSandbox;
-+ (NSString *)CharacterNameOn:(NUSandbox *)aSandbox;
++ (NUCharacter *)characterOn:(NUGarden *)aGarden;
++ (NUCharacter *)establishCharacterOn:(NUGarden *)aGarden;
++ (NUCharacter *)createCharacterOn:(NUGarden *)aGarden;
++ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUGarden *)aGarden;
++ (NSString *)CharacterNameOn:(NUGarden *)aGarden;
 - (Class)classForNursery;
+
+@optional
++ (BOOL)automaticallyEstablishCharacter;
 
 @end
 
@@ -63,7 +69,6 @@ extern NSString *NUCharacterInvalidObjectFormatException;
 - (id)initWithName:(NSString *)aName super:(NUCharacter *)aSuper;
 
 - (NUCharacter *)superCharacter;
-- (void)setSuperCharacter:(NUCharacter *)aSuper;
 
 - (NUObjectFormat)format;
 - (void)setFormat:(NUObjectFormat)aFormat;
@@ -72,10 +77,8 @@ extern NSString *NUCharacterInvalidObjectFormatException;
 - (void)setVersion:(NUUInt32)aVersion;
 
 - (NSString *)name;
-- (void)setName:(NSString *)aName;
 
 - (NSMutableArray *)ivars;
-- (void)setIvars:(NSMutableArray *)anIvars;
 
 - (void)addOOPIvarWithName:(NSString *)aName;
 - (void)addInt8IvarWithName:(NSString *)aName;
@@ -97,7 +100,6 @@ extern NSString *NUCharacterInvalidObjectFormatException;
 - (void)addIvarWithName:(NSString *)aName type:(NUIvarType)aType;
 - (void)addIvar:(NUIvar *)anIvar;
 
-- (void)setAllOOPIvars:(NSArray *)anOOPIvars;
 - (NSArray *)allOOPIvars;
 - (NSUInteger)allOOPIvarsCount;
 - (NUIvar *)ivarInAllOOPIvarsAt:(NSUInteger)anIndex;
@@ -106,7 +108,6 @@ extern NSString *NUCharacterInvalidObjectFormatException;
 - (NSArray *)copyAllIvars;
 - (NSArray *)allIvars;
 - (NSDictionary *)allIvarDictionary;
-- (void)setAllIvars:(NSArray *)anIvars;
 - (NSArray *)getAllIvars;
 - (NSDictionary *)allIvarDictionaryFrom:(NSArray *)anIvars;
 
@@ -117,7 +118,6 @@ extern NSString *NUCharacterInvalidObjectFormatException;
 - (NSArray *)ancestors;
 
 - (NSMutableSet *)subCharacters;
-- (void)setSubCharacters:(NSMutableSet *)aSubCharacters;
 
 - (void)addSubCharacter:(NUCharacter *)aCharacter;
 - (void)removeSubCharacter:(NUCharacter *)aCharacter;
@@ -132,7 +132,6 @@ extern NSString *NUCharacterInvalidObjectFormatException;
 
 - (NSString *)fullName;
 - (NSString *)getFullName;
-- (void)setFullName:(NSString *)aFullName;
 
 - (Class)targetClass;
 - (void)setTargetClass:(Class)aClass;

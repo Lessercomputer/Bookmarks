@@ -15,7 +15,7 @@
 	return YES;
 }
 
-+ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUSandbox *)aSandbox
++ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUGarden *)aGarden
 {
     [aCharacter addOOPIvarWithName:@"localizableTitle"];
     [aCharacter addOOPIvarWithName:@"selector"];
@@ -54,20 +54,20 @@
     return aCopy;
 }
 
-- (void)encodeWithAliaser:(NUAliaser *)aChildminder
+- (void)encodeWithAliaser:(NUAliaser *)anAliaser
 {
-    [aChildminder encodeObject:localizableTitle];
-    [aChildminder encodeObject:NSStringFromSelector(selector)];
-    [aChildminder encodeBOOL:isEnabled];
+    [anAliaser encodeObject:localizableTitle];
+    [anAliaser encodeObject:NSStringFromSelector(selector)];
+    [anAliaser encodeBOOL:isEnabled];
 }
 
-- (id)initWithAliaser:(NUAliaser *)aChildminder
+- (id)initWithAliaser:(NUAliaser *)anAliaser
 {
     if (self = [super init])
     {
-        NUSetIvar(&localizableTitle, [aChildminder decodeObject]);
-        selector = NSSelectorFromString([aChildminder decodeObjectReally]);
-        isEnabled = [aChildminder decodeBOOL];
+        NUSetIvar(&localizableTitle, [anAliaser decodeObject]);
+        selector = NSSelectorFromString([anAliaser decodeObjectReally]);
+        isEnabled = [anAliaser decodeBOOL];
     }
     
     return self;

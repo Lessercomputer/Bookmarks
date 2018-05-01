@@ -64,7 +64,7 @@
 	return YES;
 }
 
-+ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUSandbox *)aSandbox
++ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUGarden *)aGarden
 {    
     [aCharacter addUInt64IvarWithName:@"itemID"];
     [aCharacter addOOPIvarWithName:@"binders"];
@@ -73,24 +73,24 @@
     [aCharacter addOOPIvarWithName:@"addDate"];
 }
 
-- (void)encodeWithAliaser:(NUAliaser *)aChildminder
+- (void)encodeWithAliaser:(NUAliaser *)anAliaser
 {
-    [aChildminder encodeUInt64:[self itemID]];
-    [aChildminder encodeObject:binders];
-    [aChildminder encodeObject:name];
-    [aChildminder encodeObject:comment];
-    [aChildminder encodeObject:addDate];
+    [anAliaser encodeUInt64:[self itemID]];
+    [anAliaser encodeObject:binders];
+    [anAliaser encodeObject:name];
+    [anAliaser encodeObject:comment];
+    [anAliaser encodeObject:addDate];
 }
 
-- (id)initWithAliaser:(NUAliaser *)aChildminder
+- (id)initWithAliaser:(NUAliaser *)anAliaser
 {
     [super init];
     
-    itemID = [aChildminder decodeUInt64];
-    NUSetIvar(&binders, [aChildminder decodeObject]);
-    NUSetIvar(&name, [aChildminder decodeObject]);
-    NUSetIvar(&comment, [aChildminder decodeObject]);
-    NUSetIvar(&addDate, [aChildminder decodeObject]);
+    itemID = [anAliaser decodeUInt64];
+    NUSetIvar(&binders, [anAliaser decodeObject]);
+    NUSetIvar(&name, [anAliaser decodeObject]);
+    NUSetIvar(&comment, [anAliaser decodeObject]);
+    NUSetIvar(&addDate, [anAliaser decodeObject]);
     
     return self;
 }
@@ -144,7 +144,7 @@
 - (void)setComment:(NSString *)aComment
 {
     NUSetIvar(&comment, aComment);
-    [[[self bell] sandbox] markChangedObject:self];
+    [[[self bell] garden] markChangedObject:self];
 }
 
 - (NSDate *)addDate
@@ -155,7 +155,7 @@
 - (void)setAddDate:(NSDate *)aDate
 {
     NUSetIvar(&addDate, aDate);
-    [[[self bell] sandbox] markChangedObject:self];
+    [[[self bell] garden] markChangedObject:self];
 }
 
 - (id)itemFor:(NSUInteger)anID
@@ -268,7 +268,7 @@
 	{        
 		[self setValuesForKeysWithDictionary:aChangedValues];
 		
-        [[[self bell] sandbox] markChangedObject:self];
+        [[[self bell] garden] markChangedObject:self];
 
 		return anOldValues;
 	}
@@ -349,25 +349,25 @@
 - (void)setItemID:(NSUInteger)anID
 {
 	itemID = anID;
-    [[[self bell] sandbox] markChangedObject:self];
+    [[[self bell] garden] markChangedObject:self];
 }
 
 - (void)addBinder:(ATBinder *)aBinder
 {
 	[[self binders] addObject:aBinder];
-    [[[self bell] sandbox] markChangedObject:[self binders]];
+    [[[self bell] garden] markChangedObject:[self binders]];
 }
 
 - (void)removeBinder:(ATBinder *)aBinder
 {
 	[[self binders] removeObject:aBinder];
-    [[[self bell] sandbox] markChangedObject:[self binders]];
+    [[[self bell] garden] markChangedObject:[self binders]];
 }
 
 - (void)setBinders:(NSMutableSet *)aBinders
 {
     NUSetIvar(&binders, aBinders);
-//    [[[self bell] sandbox] markChangedObject:[self binders]];
+//    [[[self bell] garden] markChangedObject:[self binders]];
 }
 
 @end

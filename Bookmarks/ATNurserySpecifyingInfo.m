@@ -16,8 +16,6 @@
     self = [super init];
     if (self) {
         hostName = @"";
-        nurseryAssociationName = NUDefaultMainBranchAssociation;
-        useDefaultNurseryAssociationName = YES;
         nurseryName = @"";
     }
     return self;
@@ -32,34 +30,6 @@
 {
     [hostName autorelease];
     hostName = [aName copy];
-    
-    [self updateNurseryURL];
-}
-
-- (NSString *)nurseryAssociationName
-{
-    return nurseryAssociationName;
-}
-
-- (void)setNurseryAssociationName:(NSString *)aName
-{
-    [nurseryAssociationName autorelease];
-    nurseryAssociationName = [aName copy];
-    
-    [self updateNurseryURL];
-}
-
-- (BOOL)useDefaultNurseryAssociationName
-{
-    return useDefaultNurseryAssociationName;
-}
-
-- (void)setUseDefaultNurseryAssociationName:(BOOL)aUseFlag
-{
-    useDefaultNurseryAssociationName = aUseFlag;
-    
-    if (useDefaultNurseryAssociationName)
-        [self setNurseryAssociationName:NUDefaultMainBranchAssociation];
 }
 
 - (NSString *)nurseryName
@@ -69,28 +39,17 @@
 
 - (void)setNurseryName:(NSString *)aName
 {
+    [self willChangeValueForKey:@"nurseryName"];
+    
     [nurseryName autorelease];
     nurseryName = [aName copy];
     
-    [self updateNurseryURL];
+    [self didChangeValueForKey:@"nurseryName"];
 }
 
 - (NSURL *)nurseryURL
 {
-    return nurseryURL;
-}
-
-- (void)updateNurseryURL
-{
-    [self setNurseryURL:[NUNurseryAssociation URLWithHostName:hostName associationName:nurseryAssociationName nurseryName:nurseryName]];
-}
-
-- (void)setNurseryURL:(NSURL *)aURL
-{
-    [self willChangeValueForKey:@"nurseryURL"];
-    [nurseryURL autorelease];
-    nurseryURL = [aURL copy];
-    [self didChangeValueForKey:@"nurseryURL"];
+    return [[[NSURL alloc] initWithScheme:@"nursery" host:[self hostName] path:[self nurseryName]] autorelease];
 }
 
 @end

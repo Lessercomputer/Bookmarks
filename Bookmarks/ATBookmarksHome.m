@@ -33,40 +33,66 @@
     return self;
 }
 
+- (instancetype)retain
+{
+    return [super retain];
+}
+
+- (oneway void)release
+{
+    [super release];
+}
+
+- (instancetype)autorelease
+{
+    return [super autorelease];
+}
+
 - (void)dealloc
 {
-    [bookmarks close];
+    NSLog(@"dealloc:%@", self);
+
+    [bookmarksPresentations release];
     [bookmarks release];
     [bookmarksPresentationIDPool release];
-    [bookmarksPresentations release];
     [windowSettings release];
     [preferences release];
-    [baseSandbox close];
-    [baseSandbox release];
-    [nursery close];
-    [nursery release];
-    [nurseryAssociation close];
-    [nurseryAssociation release];
     
     [super dealloc];
 }
 
-- (ATBookmarksPresentation *)newBookmarksPresentation
+- (ATBookmarksPresentation *)makeBookmarksPresentation
 {
     ATBookmarksPresentation *aPresentation = [[[ATBookmarksPresentation alloc] initWithBookmarksHome:self] autorelease];
     
     [aPresentation setPresentationID:[self newBookmarksPresentationID]];
-    [[self bookmarksPresentations] addObject:aPresentation];
-    [[self sandbox] markChangedObject:[self bookmarksPresentations]];
     
     return aPresentation;
+}
+
+- (void)addBookmarksPresentation:(ATBookmarksPresentation *)aPresentation
+{
+    [[self bookmarksPresentations] addObject:aPresentation];
+    [[self garden] markChangedObject:[self bookmarksPresentations]];
+}
+
+- (void)removeBookmarksPresentaion:(ATBookmarksPresentation *)aPresentation
+{
+    [[self bookmarksPresentations] removeObject:aPresentation];
 }
 
 - (NSNumber *)newBookmarksPresentationID
 {
     NSNumber *aNumber = [NSNumber numberWithUnsignedLong:[[self bookmarksPresentationIDPool] newID]];
-    [[self sandbox] markChangedObject:[self bookmarksPresentationIDPool]];
+    [[self garden] markChangedObject:[self bookmarksPresentationIDPool]];
     return aNumber;
+}
+
+- (void)invalidate
+{
+    [[self bookmarks] close];
+    [self setGarden:nil];
+    [self setNursery:nil];
 }
 
 @end
@@ -78,7 +104,7 @@
 	return YES;
 }
 
-+ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUSandbox *)aSandbox
++ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUGarden *)aGarden
 {
     [aCharacter addOOPIvarWithName:@"bookmarks"];
     [aCharacter addOOPIvarWithName:@"bookmarksPresentationIDPool"];
@@ -86,22 +112,22 @@
     [aCharacter addOOPIvarWithName:@"preferences"];
 }
 
-- (void)encodeWithAliaser:(NUAliaser *)aChildminder
+- (void)encodeWithAliaser:(NUAliaser *)anAliaser
 {
-    [aChildminder encodeObject:bookmarks];
-    [aChildminder encodeObject:bookmarksPresentationIDPool];
-    [aChildminder encodeObject:windowSettings];
-    [aChildminder encodeObject:preferences];
+    [anAliaser encodeObject:bookmarks];
+    [anAliaser encodeObject:bookmarksPresentationIDPool];
+    [anAliaser encodeObject:windowSettings];
+    [anAliaser encodeObject:preferences];
 }
 
-- (id)initWithAliaser:(NUAliaser *)aChildminder
+- (id)initWithAliaser:(NUAliaser *)anAliaser
 {
     [super init];
     
-    NUSetIvar(&bookmarks, [aChildminder decodeObject]);
-    NUSetIvar(&bookmarksPresentationIDPool, [aChildminder decodeObject]);
-    NUSetIvar(&windowSettings, [aChildminder decodeObject]);
-    NUSetIvar(&preferences, [aChildminder decodeObject]);
+    NUSetIvar(&bookmarks, [anAliaser decodeObject]);
+    NUSetIvar(&bookmarksPresentationIDPool, [anAliaser decodeObject]);
+    NUSetIvar(&windowSettings, [anAliaser decodeObject]);
+    NUSetIvar(&preferences, [anAliaser decodeObject]);
     
     return self;
 }
@@ -116,11 +142,6 @@
     bell = anOOP;
 }
 
-- (NUSandbox *)sandbox
-{
-    return [[self bell] sandbox];
-}
-
 @end
 
 @implementation ATBookmarksHome (Accessing)
@@ -130,15 +151,15 @@
     return nursery;
 }
 
--(NUBranchNurseryAssociation *)nurseryAssociation
+- (NUGarden *)garden
 {
-    return nurseryAssociation;
+    return garden;
 }
 
 - (void)setBookmarks:(ATBookmarks *)aBookmarks
 {    
     NUSetIvar(&bookmarks, aBookmarks);
-    [[self sandbox] markChangedObject:self];
+    [[self garden] markChangedObject:self];
 }
 
 - (ATBookmarks *)bookmarks
@@ -164,7 +185,7 @@
 - (void)setWindowSettings:(NSDictionary *)aDictionary
 {
     NUSetIvar(&windowSettings, aDictionary);
-    [[self sandbox] markChangedObject:self];
+    [[self garden] markChangedObject:self];
 }
 
 - (ATDocumentPreferences *)preferences
@@ -178,7 +199,6 @@
 
 - (void)setNursery:(NUNursery *)aNursery
 {
-    [nursery close];
     [nursery release];
     nursery = [aNursery retain];
 
@@ -186,38 +206,33 @@
     if ([nursery isMainBranch])
         [(NUMainBranchNursery *)nursery setBackups:YES];
 #endif
-    
-    if ([[nursery sandbox] root] != self)
-    {
-        [[nursery sandbox] setRoot:self];
-//        [bookmarks autorelease];
-//        bookmarks = nil;
-    }
 }
 
--(void)setNurseryAssociation:(NUBranchNurseryAssociation *)anAssociation
+- (void)setGarden:(NUGarden *)aGarden
 {
-    [nurseryAssociation close];
-    [nurseryAssociation release];
-    nurseryAssociation = [anAssociation retain];
+    [garden release];
+    garden = [aGarden retain];
+    
+    if ([aGarden root] != self)
+        [aGarden setRoot:self];
 }
 
 - (void)setBookmarksPresentationIDPool:(ATIDPool *)aPool
 {
     NUSetIvar(&bookmarksPresentationIDPool, aPool);
-    [[self sandbox] markChangedObject:self];
+    [[self garden] markChangedObject:self];
 }
 
 - (void)setBookmarksPresentations:(NSMutableArray *)aPresentations;
 {
     NUSetIvar(&bookmarksPresentations, aPresentations);
-    [[self sandbox] markChangedObject:self];
+    [[self garden] markChangedObject:self];
 }
 
-- (void)setBaseSandbox:(NUSandbox *)aSandbox
+- (void)setbaseGarden:(NUGarden *)aGarden
 {
-    [baseSandbox autorelease];
-    baseSandbox = [aSandbox retain];
+    [baseGarden autorelease];
+    baseGarden = [aGarden retain];
 }
 
 @end

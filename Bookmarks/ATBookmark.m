@@ -73,7 +73,7 @@
 
 @implementation ATBookmark (Coding)
 
-+ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUSandbox *)aSandbox
++ (void)defineCharacter:(NUCharacter *)aCharacter on:(NUGarden *)aGarden
 {    
     [aCharacter addOOPIvarWithName:@"url"];
     [aCharacter addOOPIvarWithName:@"iconData"];
@@ -82,26 +82,26 @@
     [aCharacter addOOPIvarWithName:@"lastModifiedDate"];
 }
 
-- (void)encodeWithAliaser:(NUAliaser *)aChildminder
+- (void)encodeWithAliaser:(NUAliaser *)anAliaser
 {
-    [super encodeWithAliaser:aChildminder];
+    [super encodeWithAliaser:anAliaser];
     
-    [aChildminder encodeObject:url];
-    [aChildminder encodeObject:iconData];
-    [aChildminder encodeObject:iconDataType];
-    [aChildminder encodeObject:lastVisitDate];
-    [aChildminder encodeObject:lastModifiedDate];
+    [anAliaser encodeObject:url];
+    [anAliaser encodeObject:iconData];
+    [anAliaser encodeObject:iconDataType];
+    [anAliaser encodeObject:lastVisitDate];
+    [anAliaser encodeObject:lastModifiedDate];
 }
 
-- (id)initWithAliaser:(NUAliaser *)aChildminder
+- (id)initWithAliaser:(NUAliaser *)anAliaser
 {
-    [super initWithAliaser:aChildminder];
+    [super initWithAliaser:anAliaser];
     
-    NUSetIvar(&url, [aChildminder decodeObject]);
-    NUSetIvar(&iconData, [aChildminder decodeObject]);
-    NUSetIvar(&iconDataType, [aChildminder decodeObject]);
-    NUSetIvar(&lastVisitDate, [aChildminder decodeObject]);
-    NUSetIvar(&lastModifiedDate, [aChildminder decodeObject]);
+    NUSetIvar(&url, [anAliaser decodeObject]);
+    NUSetIvar(&iconData, [anAliaser decodeObject]);
+    NUSetIvar(&iconDataType, [anAliaser decodeObject]);
+    NUSetIvar(&lastVisitDate, [anAliaser decodeObject]);
+    NUSetIvar(&lastModifiedDate, [anAliaser decodeObject]);
     
     return self;
 }
@@ -115,7 +115,7 @@
     [self willChangeValueForKey:@"url"];
     NUSetIvar(&url, aUrl);
     [self didChangeValueForKey:@"url"];
-    [[[self bell] sandbox] markChangedObject:self];
+    [[[self bell] garden] markChangedObject:self];
 }
 
 - (NSURL *)url
@@ -148,7 +148,7 @@
     if (!iconData)
         [self setIcon:nil];
     
-    [[[self bell] sandbox] markChangedObject:self];
+    [[[self bell] garden] markChangedObject:self];
 }
 
 - (NSString *)iconDataType
@@ -159,7 +159,7 @@
 - (void)setIconDataType:(NSString *)aType
 {
     NUSetIvar(&iconDataType, aType);
-    [[[self bell] sandbox] markChangedObject:self];
+    [[[self bell] garden] markChangedObject:self];
 }
 
 - (NSImage *)icon
@@ -188,7 +188,7 @@
 - (void)setLastVisitDate:(NSDate *)aDate
 {
     NUSetIvar(&lastVisitDate, aDate);
-    [[[self bell] sandbox] markChangedObject:self];
+    [[[self bell] garden] markChangedObject:self];
 }
 
 - (NSDate *)lastModifiedDate
@@ -199,7 +199,7 @@
 - (void)setLastModifiedDate:(NSDate *)aDate
 {
     NUSetIvar(&lastModifiedDate, aDate);
-    [[[self bell] sandbox] markChangedObject:self];
+    [[[self bell] garden] markChangedObject:self];
 }
 
 + (NSArray *)editableValueKeys
