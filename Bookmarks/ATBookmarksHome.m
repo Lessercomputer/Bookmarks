@@ -88,11 +88,11 @@
     return aNumber;
 }
 
-- (void)invalidate
+- (void)close
 {
     [[self bookmarks] close];
-    [self setGarden:nil];
     [self setNursery:nil];
+    [self setGarden:nil];
 }
 
 @end

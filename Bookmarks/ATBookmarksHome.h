@@ -35,7 +35,7 @@
 
 - (NSNumber *)newBookmarksPresentationID;
 
-- (void)invalidate;
+- (void)close;
 
 @end
 

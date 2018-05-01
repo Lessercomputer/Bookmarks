@@ -100,7 +100,6 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
     
     [self setDraggingSourceBinder:nil];
     [self setDraggingItemIndexes:nil];
-    [self releaseItems];
 	[self setRoot:nil];
     [self setIDPool:nil];
     [self setItemLibrary:nil];
@@ -284,6 +283,7 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 -(void)close
 {
 	[[self undoManager] removeAllActions];
+    [self releaseItems];
 }
 
 @end

@@ -89,7 +89,7 @@
             [self setBookmarksHome:aNurseryRoot];
             [self bookmarksHome];
             
-//            [[self bookmarksHome] setNursery:aNursery];
+            [[self bookmarksHome] setNursery:aNursery];
             [[self bookmarksHome] setGarden:aGarden];
 //            [[self bookmarksHome] setbaseGarden:[aNursery createSandboxWithGrade:[[aNursery garden] grade]]];
             [self bookmarks];
@@ -370,7 +370,7 @@
 {
     [self cancelWebIconLoaderIfNeeded];
 
-    [[self bookmarksHome] invalidate];
+    [[self bookmarksHome] close];
 
     [super close];
 }
