@@ -10,15 +10,11 @@
 
 @interface ATNurserySpecifyingInfo : NSObject
 {
-    NSString *hostName;
-    NSString *nurseryName;
+    NSString *serviceName;
 }
 
-- (NSString *)hostName;
-- (void)setHostName:(NSString *)aName;
-
-- (NSString *)nurseryName;
-- (void)setNurseryName:(NSString *)aName;
+- (NSString *)serviceName;
+- (void)setServiceName:(NSString *)aName;
 
 - (NSURL *)nurseryURL;
 

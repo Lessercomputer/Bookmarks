@@ -15,41 +15,29 @@
 {
     self = [super init];
     if (self) {
-        hostName = @"";
-        nurseryName = @"";
+        serviceName = @"";
     }
     return self;
 }
 
-- (NSString *)hostName
+- (NSString *)serviceName
 {
-    return hostName;
+    return serviceName;
 }
 
-- (void)setHostName:(NSString *)aName
+- (void)setServiceName:(NSString *)aName
 {
-    [hostName autorelease];
-    hostName = [aName copy];
-}
-
-- (NSString *)nurseryName
-{
-    return nurseryName;
-}
-
-- (void)setNurseryName:(NSString *)aName
-{
-    [self willChangeValueForKey:@"nurseryName"];
+    [self willChangeValueForKey:@"serviceName"];
     
-    [nurseryName autorelease];
-    nurseryName = [aName copy];
+    [serviceName autorelease];
+    serviceName = [aName copy];
     
-    [self didChangeValueForKey:@"nurseryName"];
+    [self didChangeValueForKey:@"serviceName"];
 }
 
 - (NSURL *)nurseryURL
 {
-    return [[[NSURL alloc] initWithScheme:@"nursery" host:[self hostName] path:[self nurseryName]] autorelease];
+    return [NSURL URLWithString:[NSString stringWithFormat:@"nursery://%@", [self serviceName]]];
 }
 
 @end

@@ -25,6 +25,7 @@
     [super init];
     
     [self setNursery:[NUMainBranchNursery nurseryWithContentsOfFile:nil]];
+    [self setGarden:[[self nursery] makeGarden]];
     bookmarksPresentationIDPool = [[ATIDPool idPool] retain];
     bookmarksPresentations = [[NSMutableArray array] retain];
     bookmarks = [ATBookmarks new];

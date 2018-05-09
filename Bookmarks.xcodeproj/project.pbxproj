@@ -124,11 +124,9 @@
 
 /* Begin PBXFileReference section */
 		610022DE19BAA1C900B38B51 /* bkmn.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = bkmn.icns; sourceTree = "<group>"; };
-		6102291A19CF0CBB003A1FA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ATDocumentPreferencesWindow.xib; sourceTree = "<group>"; };
 		6102291D19CF0D2B003A1FA7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ATDocumentPreferencesWindow.strings; sourceTree = "<group>"; };
 		6107D02E19CB981500BC3562 /* ATApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATApplication.h; sourceTree = "<group>"; };
 		6107D02F19CB981500BC3562 /* ATApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATApplication.m; sourceTree = "<group>"; };
-		6117F37E191DB9AF00CE4D3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ATBinderInspectorWindow.xib; sourceTree = "<group>"; };
 		611FA35619433D4800D416B3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		611FA35719433D4800D416B3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ATBookmarksWindow.strings; sourceTree = "<group>"; };
 		611FA35819433D4800D416B3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ATNewBookmarkWindow.strings; sourceTree = "<group>"; };
@@ -155,7 +153,6 @@
 		612ED5F91955B6F500218D5D /* ATMenuItemDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMenuItemDescription.m; sourceTree = "<group>"; };
 		612ED5FB1955BC4F00218D5D /* ATDocumentPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATDocumentPreferencesWindowController.h; path = Bookmarks/ATDocumentPreferencesWindowController.h; sourceTree = "<group>"; };
 		612ED5FC1955BC4F00218D5D /* ATDocumentPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATDocumentPreferencesWindowController.m; path = Bookmarks/ATDocumentPreferencesWindowController.m; sourceTree = "<group>"; };
-		61309F0D1B61D8E5007D39C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Bookmarks/Base.lproj/ATNurserySpecifyingWindow.xib; sourceTree = "<group>"; };
 		61309F141B61EF4B007D39C1 /* ATNurserySpecifyingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATNurserySpecifyingWindowController.h; path = Bookmarks/ATNurserySpecifyingWindowController.h; sourceTree = "<group>"; };
 		61309F151B61EF4B007D39C1 /* ATNurserySpecifyingWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATNurserySpecifyingWindowController.m; path = Bookmarks/ATNurserySpecifyingWindowController.m; sourceTree = "<group>"; };
 		61309F171B61F49B007D39C1 /* ATNurserySpecifyingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATNurserySpecifyingInfo.h; sourceTree = "<group>"; };
@@ -273,13 +270,6 @@
 		6158CE741915C00000BD8BA1 /* ATQuotedPrintableDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATQuotedPrintableDecoder.m; sourceTree = "<group>"; };
 		6158CE751915C00000BD8BA1 /* ATBase64Processor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ATBase64Processor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		6158CE761915C00000BD8BA1 /* ATBase64Processor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ATBase64Processor.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		6158CE7C1915C3FD00BD8BA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/ATNewBinderWindow.nib; sourceTree = "<group>"; };
-		6158CE7F1915C40D00BD8BA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/ATBookmarksWindow.nib; sourceTree = "<group>"; };
-		6158CE821915C41700BD8BA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/ATNewBookmarkWindow.nib; sourceTree = "<group>"; };
-		6158CE851915C42300BD8BA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/ATFirefoxBookmarksImporter.nib; sourceTree = "<group>"; };
-		6158CE881915C42D00BD8BA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/ATWebIconLoaderWindow.nib; sourceTree = "<group>"; };
-		6158CE8B1915C43500BD8BA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/MainMenu.nib; sourceTree = "<group>"; };
-		6158CE8E1915C44800BD8BA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ATBookmarkInspectorWindow.xib; sourceTree = "<group>"; };
 		615AA5AD19BB179200813B5D /* bkmn.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = bkmn.iconset; sourceTree = "<group>"; };
 		6164685E1943EDC100D9D50C /* ATChromeBookmarksImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATChromeBookmarksImporter.h; sourceTree = "<group>"; };
 		6164685F1943EDC100D9D50C /* ATChromeBookmarksImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATChromeBookmarksImporter.m; sourceTree = "<group>"; };
@@ -293,6 +283,16 @@
 		61D3A35519302ACA008A200C /* ATJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATJSONParser.h; sourceTree = "<group>"; };
 		61D3A35619302ACA008A200C /* ATJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATJSONParser.m; sourceTree = "<group>"; };
 		B8906A8C200F5BAA00C15C36 /* Nursery.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nursery.framework; path = Frameworks/Nursery.framework; sourceTree = "<group>"; };
+		B8AD52A3209B395500E1C7CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ATDocumentPreferencesWindow.xib; sourceTree = "<group>"; };
+		B8AD52A4209B395800E1C7CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/ATBookmarksWindow.nib; sourceTree = "<group>"; };
+		B8AD52A5209B395A00E1C7CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/ATFirefoxBookmarksImporter.nib; sourceTree = "<group>"; };
+		B8AD52A6209B395B00E1C7CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ATBookmarkInspectorWindow.xib; sourceTree = "<group>"; };
+		B8AD52A7209B395D00E1C7CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/ATNewBookmarkWindow.nib; sourceTree = "<group>"; };
+		B8AD52A8209B395F00E1C7CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/ATNewBinderWindow.nib; sourceTree = "<group>"; };
+		B8AD52A9209B396000E1C7CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ATBinderInspectorWindow.xib; sourceTree = "<group>"; };
+		B8AD52AA209B396200E1C7CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		B8AD52AB209B396300E1C7CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/ATWebIconLoaderWindow.nib; sourceTree = "<group>"; };
+		B8AD52AE209B3AC300E1C7CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Bookmarks/Base.lproj/ATNurserySpecifyingWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -666,8 +666,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 				ja,
+				Base,
 			);
 			mainGroup = 6158CD691915A90100BD8BA1;
 			productRefGroup = 6158CD731915A90100BD8BA1 /* Products */;
@@ -810,8 +810,8 @@
 		6117F37F191DB9AF00CE4D3D /* ATBinderInspectorWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6117F37E191DB9AF00CE4D3D /* Base */,
 				611FA35B19433D4900D416B3 /* ja */,
+				B8AD52A9209B396000E1C7CB /* ja */,
 			);
 			name = ATBinderInspectorWindow.xib;
 			path = Bookmarks;
@@ -820,8 +820,8 @@
 		612ED5F219550E4900218D5D /* ATDocumentPreferencesWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6102291A19CF0CBB003A1FA7 /* Base */,
 				6102291D19CF0D2B003A1FA7 /* ja */,
+				B8AD52A3209B395500E1C7CB /* ja */,
 			);
 			name = ATDocumentPreferencesWindow.xib;
 			path = Bookmarks;
@@ -830,7 +830,7 @@
 		61309F0C1B61D8E5007D39C1 /* ATNurserySpecifyingWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				61309F0D1B61D8E5007D39C1 /* Base */,
+				B8AD52AE209B3AC300E1C7CB /* Base */,
 			);
 			name = ATNurserySpecifyingWindow.xib;
 			sourceTree = "<group>";
@@ -862,8 +862,8 @@
 		6158CE7D1915C3FD00BD8BA1 /* ATNewBinderWindow.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6158CE7C1915C3FD00BD8BA1 /* Base */,
 				611FA35919433D4900D416B3 /* ja */,
+				B8AD52A8209B395F00E1C7CB /* ja */,
 			);
 			name = ATNewBinderWindow.nib;
 			path = Bookmarks;
@@ -872,8 +872,8 @@
 		6158CE801915C40D00BD8BA1 /* ATBookmarksWindow.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6158CE7F1915C40D00BD8BA1 /* Base */,
 				611FA35719433D4800D416B3 /* ja */,
+				B8AD52A4209B395800E1C7CB /* ja */,
 			);
 			name = ATBookmarksWindow.nib;
 			path = Bookmarks;
@@ -882,8 +882,8 @@
 		6158CE831915C41700BD8BA1 /* ATNewBookmarkWindow.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6158CE821915C41700BD8BA1 /* Base */,
 				611FA35819433D4800D416B3 /* ja */,
+				B8AD52A7209B395D00E1C7CB /* ja */,
 			);
 			name = ATNewBookmarkWindow.nib;
 			path = Bookmarks;
@@ -892,8 +892,8 @@
 		6158CE861915C42300BD8BA1 /* ATFirefoxBookmarksImporter.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6158CE851915C42300BD8BA1 /* Base */,
 				611FA35D19433D4900D416B3 /* ja */,
+				B8AD52A5209B395A00E1C7CB /* ja */,
 			);
 			name = ATFirefoxBookmarksImporter.nib;
 			path = Bookmarks;
@@ -902,8 +902,8 @@
 		6158CE891915C42D00BD8BA1 /* ATWebIconLoaderWindow.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6158CE881915C42D00BD8BA1 /* Base */,
 				611FA35C19433D4900D416B3 /* ja */,
+				B8AD52AB209B396300E1C7CB /* ja */,
 			);
 			name = ATWebIconLoaderWindow.nib;
 			path = Bookmarks;
@@ -912,8 +912,8 @@
 		6158CE8C1915C43500BD8BA1 /* MainMenu.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6158CE8B1915C43500BD8BA1 /* Base */,
 				611FA35619433D4800D416B3 /* ja */,
+				B8AD52AA209B396200E1C7CB /* ja */,
 			);
 			name = MainMenu.nib;
 			path = Bookmarks;
@@ -922,8 +922,8 @@
 		6158CE8F1915C44800BD8BA1 /* ATBookmarkInspectorWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6158CE8E1915C44800BD8BA1 /* Base */,
 				611FA35A19433D4900D416B3 /* ja */,
+				B8AD52A6209B395B00E1C7CB /* ja */,
 			);
 			name = ATBookmarkInspectorWindow.xib;
 			path = Bookmarks;
