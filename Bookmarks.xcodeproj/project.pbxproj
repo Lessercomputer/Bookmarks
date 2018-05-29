@@ -94,8 +94,8 @@
 		61BD51741AEBED0400245AFE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6158CE9A1915C91600BD8BA1 /* Localizable.strings */; };
 		61CA324A1B0B87D7005632AE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6158CD7E1915A90100BD8BA1 /* InfoPlist.strings */; };
 		61D3A35719302ACA008A200C /* ATJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D3A35619302ACA008A200C /* ATJSONParser.m */; };
-		B8906A8D200F5BAA00C15C36 /* Nursery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8906A8C200F5BAA00C15C36 /* Nursery.framework */; };
-		B8906A8E200F5BAA00C15C36 /* Nursery.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8906A8C200F5BAA00C15C36 /* Nursery.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B85FD57920BCD63000004E69 /* Nursery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B85FD57820BCD63000004E69 /* Nursery.framework */; };
+		B85FD57A20BCD63000004E69 /* Nursery.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B85FD57820BCD63000004E69 /* Nursery.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,7 +115,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B8906A8E200F5BAA00C15C36 /* Nursery.framework in Embed Frameworks */,
+				B85FD57A20BCD63000004E69 /* Nursery.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,7 +282,7 @@
 		61B0DA26199CFB4A00D4FFA6 /* ATContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATContent.h; sourceTree = "<group>"; };
 		61D3A35519302ACA008A200C /* ATJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATJSONParser.h; sourceTree = "<group>"; };
 		61D3A35619302ACA008A200C /* ATJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATJSONParser.m; sourceTree = "<group>"; };
-		B8906A8C200F5BAA00C15C36 /* Nursery.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nursery.framework; path = Frameworks/Nursery.framework; sourceTree = "<group>"; };
+		B85FD57820BCD63000004E69 /* Nursery.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nursery.framework; sourceTree = "<group>"; };
 		B8AD52A3209B395500E1C7CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ATDocumentPreferencesWindow.xib; sourceTree = "<group>"; };
 		B8AD52A4209B395800E1C7CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/ATBookmarksWindow.nib; sourceTree = "<group>"; };
 		B8AD52A5209B395A00E1C7CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/ATFirefoxBookmarksImporter.nib; sourceTree = "<group>"; };
@@ -301,7 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6158CD761915A90100BD8BA1 /* Cocoa.framework in Frameworks */,
-				B8906A8D200F5BAA00C15C36 /* Nursery.framework in Frameworks */,
+				B85FD57920BCD63000004E69 /* Nursery.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,7 +354,7 @@
 		6158CD691915A90100BD8BA1 = {
 			isa = PBXGroup;
 			children = (
-				B8906A8C200F5BAA00C15C36 /* Nursery.framework */,
+				B85FD57820BCD63000004E69 /* Nursery.framework */,
 				6158CD7B1915A90100BD8BA1 /* Bookmarks */,
 				6158CD9C1915A90200BD8BA1 /* BookmarksTests */,
 				6158CD741915A90100BD8BA1 /* Frameworks */,
@@ -1045,7 +1045,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bookmarks/Bookmarks-Prefix.pch";
 				GCC_WARN_UNDECLARED_SELECTOR = NO;
@@ -1055,7 +1055,7 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				INFOPLIST_FILE = "Bookmarks/Bookmarks-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks/ @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.nursery-framework.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1068,7 +1068,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bookmarks/Bookmarks-Prefix.pch";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -1079,7 +1079,7 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				INFOPLIST_FILE = "Bookmarks/Bookmarks-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks/ @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.nursery-framework.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
