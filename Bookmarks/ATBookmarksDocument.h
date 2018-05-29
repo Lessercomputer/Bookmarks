@@ -66,7 +66,7 @@
 - (IBAction)importBookmarksFromFirefox:(id)sender;
 - (IBAction)importBookmarksFromChrome:(id)sender;
 
-- (IBAction)kidnap:(id)sender;
+- (IBAction)GC:(id)sender;
 
 @end
 

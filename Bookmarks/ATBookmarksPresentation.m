@@ -488,7 +488,7 @@ NSString *ATBookmarksPresentationDidChangeNotification = @"ATBookmarksPresentati
              || (anAction == @selector(openSelectedBookmarksWithChromeWithNewTabs:))
              || (anAction == @selector(openSelectedBookmarksWithFirefoxWithNewTabs:)))
 		return [self anyBookmarkWithURLIsSelected];
-    else if (anAction == @selector(kidnap:))
+    else if (anAction == @selector(GC:))
         return YES;
 	else
 		return NO;

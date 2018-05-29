@@ -10,7 +10,7 @@
     ATNurserySpecifyingWindowController *nurserySpecifyingWindowController;
 }
 
-- (IBAction)openBookmarksThroughNurseryAssociation:(id)sender;
+- (IBAction)openBookmarksUsingNurseryNetService:(id)sender;
 
 #ifdef DEBUG
 - (IBAction)logResponderChain:(id)sender;

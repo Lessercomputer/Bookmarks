@@ -876,14 +876,14 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
 
 @end
 
-@implementation ATBookmarks (Kidnapping)
+@implementation ATBookmarks (GC)
 
-- (void)kidnapWithRoots:(NSArray *)aRoots
+- (void)GCWithRoots:(NSArray *)aRoots
 {
     @autoreleasepool
     {
         NSMutableSet *aVisitedItems = [NSMutableSet setWithObject:[self root]];
-        NSMutableArray *anItemsToKidnap = [NSMutableArray array];
+        NSMutableArray *anItemsToGC = [NSMutableArray array];
         ATBookmarksEnumerator *anEnumerator = nil;
         ATItem *anItem = nil;
         
@@ -893,7 +893,6 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
             while (anItem = [anEnumerator nextObject])
                 [aVisitedItems addObject:anItem];
         }
-
  
         @autoreleasepool
         {
@@ -904,13 +903,13 @@ NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType = @"ATBookmark
         
         [[self itemLibrary] enumerateKeysAndObjectsUsingBlock:^(NSNumber *aKey, ATItem *anItem, BOOL *aStop) {
             if (![aVisitedItems containsObject:anItem])
-                [anItemsToKidnap addObject:anItem];
+                [anItemsToGC addObject:anItem];
         }];
         
         [self bookmarksWillChange];
         
-        [anItemsToKidnap enumerateObjectsUsingBlock:^(ATItem *anItem, NSUInteger idx, BOOL *stop) {
-            [anItem removeToKidnap];
+        [anItemsToGC enumerateObjectsUsingBlock:^(ATItem *anItem, NSUInteger idx, BOOL *stop) {
+            [anItem removeToGC];
             [[self itemLibrary] removeObjectForKey:[anItem numberWithItemID]];
         }];
         

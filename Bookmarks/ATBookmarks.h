@@ -184,9 +184,9 @@ extern NSString *ATBookmarksItemsPropertyListRepresentaionPasteBoardType;
 
 @end
 
-@interface ATBookmarks (Kidnapping)
+@interface ATBookmarks (GC)
 
-- (void)kidnapWithRoots:(NSArray *)aRoots;
+- (void)GCWithRoots:(NSArray *)aRoots;
 
 @end
 

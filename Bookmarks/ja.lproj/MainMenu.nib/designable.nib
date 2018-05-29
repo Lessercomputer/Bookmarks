@@ -29,9 +29,9 @@
                             <action selector="openWindowForCurrentBinder:" target="-1" id="250"/>
                         </connections>
                     </menuItem>
-                    <menuItem title="Nursery Net Services 経由で開く..." keyEquivalent="O" id="M8o-Gc-E9j">
+                    <menuItem title="Nursery Net Servicesを使用して開く..." keyEquivalent="O" id="M8o-Gc-E9j">
                         <connections>
-                            <action selector="openBookmarksThroughNurseryAssociation:" target="-1" id="W7C-gm-AdZ"/>
+                            <action selector="openBookmarksUsingNurseryNetService:" target="-1" id="MLw-Wt-CYS"/>
                         </connections>
                     </menuItem>
                     <menuItem title="選択項目のitemIDをログ" id="251">
@@ -59,10 +59,10 @@
                     </menuItem>
                     <menuItem title="レスポンダーチェインをログ" id="224"/>
                     <menuItem title="現在のファーストレスポンダーをログ" id="226"/>
-                    <menuItem title="Kidnap" id="KCF-Wm-Lh3">
+                    <menuItem title="GC" id="KCF-Wm-Lh3">
                         <modifierMask key="keyEquivalentModifierMask"/>
                         <connections>
-                            <action selector="kidnap:" target="-1" id="VxM-fT-IZU"/>
+                            <action selector="GC:" target="-1" id="E1E-JT-Z55"/>
                         </connections>
                     </menuItem>
                     <menuItem title="例外を発生させる" id="nah-8B-l4W">

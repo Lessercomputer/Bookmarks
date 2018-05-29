@@ -41,7 +41,7 @@ void ATUncaughtExceptionHandler(NSException *anException)
 	return NO;
 }
 
--(void)openBookmarksThroughNurseryAssociation:(id)sender
+-(void)openBookmarksUsingNurseryNetService:(id)sender
 {
     if (!nurserySpecifyingWindowController)
         nurserySpecifyingWindowController = [ATNurserySpecifyingWindowController new];

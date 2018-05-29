@@ -50,7 +50,7 @@
         [[self bookmarksHome] setWindowSettings:[self windowSettingsForNursery]];
         
 #ifdef DEBUG
-        [[self bookmarks] kidnapWithRoots:[self rootBindersForBookmarksPresentation]];
+        [[self bookmarks] GCWithRoots:[self rootBindersForBookmarksPresentation]];
 #endif
         
         NUFarmOutStatus aFarmOutStatus = [[[self bookmarksHome] garden] farmOut];
@@ -117,7 +117,7 @@
 - (NSData *)dataRepresentationOfType:(NSString *)aType
 {
 #ifdef DEBUG
-    [[self bookmarks] kidnapWithRoots:[self rootBindersForBookmarksPresentation]];
+    [[self bookmarks] GCWithRoots:[self rootBindersForBookmarksPresentation]];
 #endif
     
 	NSMutableDictionary *aPlist = [[self bookmarks] propertyListRepresentation];
@@ -485,9 +485,9 @@
     [self importBookmarksUsingImporter:[ATChromeBookmarksImporter importer]];
 }
 
-- (void)kidnap:(id)sender
+- (void)GC:(id)sender
 {
-    [[self bookmarks] kidnapWithRoots:[self rootBindersForBookmarksPresentation]];
+    [[self bookmarks] GCWithRoots:[self rootBindersForBookmarksPresentation]];
 }
 
 @end

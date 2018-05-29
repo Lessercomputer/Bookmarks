@@ -333,9 +333,9 @@
 
 @end
 
-@implementation ATItem (Kidnapping)
+@implementation ATItem (GC)
 
-- (void)removeToKidnap
+- (void)removeToGC
 {
     NSArray *aBinders = [[[self binders] copy] autorelease];
     [aBinders enumerateObjectsUsingBlock:^(ATBinder *aBinder, NSUInteger idx, BOOL *stop) {

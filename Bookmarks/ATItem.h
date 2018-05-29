@@ -107,9 +107,9 @@
 
 @end
 
-@interface ATItem (Kidnapping)
+@interface ATItem (GC)
 
-- (void)removeToKidnap;
+- (void)removeToGC;
 
 @end
 
