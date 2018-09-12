@@ -9,12 +9,13 @@
 #import <Nursery/NUTypes.h>
 #import <Nursery/NUComparator.h>
 #import <Nursery/NUCoding.h>
+#import <Nursery/NUMovingUp.h>
 
-@class NUBTree, NUBell;
+@class NUBPlusTree, NUBell;
 
 @interface NULibrary : NSObject
 {
-    NUBTree *tree;
+    NUBPlusTree *tree;
     NUBell *bell;
 }
 
@@ -53,3 +54,8 @@
 @interface NULibrary (Coding) <NUCoding>
 @end
 
+@interface NULibrary (MovingUp) <NUMovingUp>
+
+- (void)moveUp;
+
+@end

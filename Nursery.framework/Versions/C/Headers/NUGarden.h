@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/NSLock.h>
+
 #import <Nursery/NUTypes.h>
+#import <Nursery/NUCharacter.h>
 
 typedef enum NUFarmOutStatus {
     NUFarmOutStatusSucceeded = 0,
@@ -16,9 +18,10 @@ typedef enum NUFarmOutStatus {
 } NUFarmOutStatus;
 
 @class NSMutableDictionary, NSMutableIndexSet;
-@class NUNursery, NUNurseryRoot, NUObjectWrapper, NUBell, NUAliaser, NUGradeSeeker, NUMutableDictionary, NUU64ODictionary;
+@class NUNursery, NUNurseryRoot, NUObjectWrapper, NUBell, NUAliaser, NUGardenSeeker, NUMutableDictionary, NUU64ODictionary;
 
 extern NSString * const NUObjectLoadingException;
+extern NSString * const NUGardenFarmingOutForbiddenException;
 
 @interface NUGarden : NSObject
 {
@@ -26,32 +29,35 @@ extern NSString * const NUObjectLoadingException;
     NUUInt64 grade;
     NSMutableIndexSet *retainedGrades;
     NUNurseryRoot *root;
-	NUMutableDictionary *characters;
+    NUMutableDictionary *characters;
+    NSMutableDictionary *nameWithVersionKeyedCharacters;
     NUObjectWrapper *keyObject;
     NSMutableDictionary *objectToBellDictionary;
-	NUBell *keyBell;
+    NUBell *keyBell;
     NUU64ODictionary *bells;
-	NUU64ODictionary *changedObjects;
-	NUAliaser *aliaser;
-    BOOL usesGradeSeeker;
-    NUGradeSeeker *gradeSeeker;
+    NUU64ODictionary *changedObjects;
+    NUAliaser *aliaser;
+    BOOL usesGardenSeeker;
+    NUGardenSeeker *gardenSeeker;
     NSRecursiveLock *lock;
     NUUInt64 gardenID;
     BOOL isInMoveUp;
     BOOL retainNursery;
+    NSMutableArray *characterTargetClassResolvers;
+    BOOL isFarmingOutForbidden;
 }
 @end
 
 @interface NUGarden (InitializingAndRelease)
 
 + (id)gardenWithNursery:(NUNursery *)aNursery;
-+ (id)gardenWithNursery:(NUNursery *)aNursery usesGradeSeeker:(BOOL)aUsesGradeSeeker;
-+ (id)gardenWithNursery:(NUNursery *)aNursery grade:(NUUInt64)aGrade usesGradeSeeker:(BOOL)aUsesGradeSeeker;
-+ (id)gardenWithNursery:(NUNursery *)aNursery usesGradeSeeker:(BOOL)aUsesGradeSeeker retainNursery:(BOOL)aRetainFlag;
-+ (id)gardenWithNursery:(NUNursery *)aNursery grade:(NUUInt64)aGrade usesGradeSeeker:(BOOL)aUsesGradeSeeker retainNursery:(BOOL)aRetainFlag;
++ (id)gardenWithNursery:(NUNursery *)aNursery usesGardenSeeker:(BOOL)aUsesGardenSeeker;
++ (id)gardenWithNursery:(NUNursery *)aNursery grade:(NUUInt64)aGrade usesGardenSeeker:(BOOL)aUsesGardenSeeker;
++ (id)gardenWithNursery:(NUNursery *)aNursery usesGardenSeeker:(BOOL)aUsesGardenSeeker retainNursery:(BOOL)aRetainFlag;
++ (id)gardenWithNursery:(NUNursery *)aNursery grade:(NUUInt64)aGrade usesGardenSeeker:(BOOL)aUsesGardenSeeker retainNursery:(BOOL)aRetainFlag;
 
-- (id)initWithNursery:(NUNursery *)aNursery usesGradeSeeker:(BOOL)aUsesGradeSeeker retainNursery:(BOOL)aRetainFlag;
-- (id)initWithNursery:(NUNursery *)aNursery grade:(NUUInt64)aGrade usesGradeSeeker:(BOOL)aUsesGradeSeeker retainNursery:(BOOL)aRetainFlag;
+- (id)initWithNursery:(NUNursery *)aNursery usesGardenSeeker:(BOOL)aUsesGardenSeeker retainNursery:(BOOL)aRetainFlag;
+- (id)initWithNursery:(NUNursery *)aNursery grade:(NUUInt64)aGrade usesGardenSeeker:(BOOL)aUsesGardenSeeker retainNursery:(BOOL)aRetainFlag;
 
 @end
 
@@ -65,10 +71,19 @@ extern NSString * const NUObjectLoadingException;
 
 @end
 
+@interface NUGarden (ResolvingCharacterTargetClass)
+
+- (void)addCharacterTargetClassResolver:(id <NUCharacterTargetClassResolving>)aTargetClassResolver;
+- (void)removeCharacterTargetClassResolver:(id <NUCharacterTargetClassResolving>)aTargetClassResolver;
+
+@end
+
 @interface NUGarden (SaveAndLoad)
 
 - (void)moveUp;
+- (void)moveUpWithPreventingReleaseOfCurrentGrade;
 - (void)moveUpTo:(NUUInt64)aGrade;
+- (void)moveUpTo:(NUUInt64)aGrade preventReleaseOfCurrentGrade:(BOOL)aPreventFlag;
 
 - (void)moveUpObject:(id)anObject;
 
@@ -77,6 +92,8 @@ extern NSString * const NUObjectLoadingException;
 @end
 
 @interface NUGarden (ObjectState)
+
+- (BOOL)objectIsChanged:(id)anObject;
 
 - (void)markChangedObject:(id)anObject;
 - (void)unmarkChangedObject:(id)anObject;

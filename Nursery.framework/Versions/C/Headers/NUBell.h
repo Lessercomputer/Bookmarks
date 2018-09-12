@@ -10,17 +10,19 @@
 
 #import "NUTypes.h"
 
+extern NSString *NUInvalidatedObjectException;
+
 @class NUGarden;
 
 
 @interface NUBell : NSObject <NSCopying>
 {
-	NUBellBall ball;
+    NUBellBall ball;
     NUUInt64 gradeAtCallFor;
-    NUUInt64 gradeForSeeker;
+    NUUInt64 gradeForGardenSeeker;
 	NUGarden *garden;
     BOOL isLoaded;
-	id object;
+    id object;
 }
 
 + (id)bellWithBall:(NUBellBall)aBall;
@@ -42,6 +44,11 @@
 - (BOOL)isEqualToBell:(NUBell *)anOOP;
 
 - (void)markChanged;
+- (void)unmarkChanged;
+
+- (BOOL)gradeIsUnmatched;
+
+- (BOOL)isInvalidated;
 
 @end
 

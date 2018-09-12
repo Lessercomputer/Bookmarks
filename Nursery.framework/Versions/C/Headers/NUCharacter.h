@@ -13,7 +13,7 @@
 #import <Nursery/NUCoding.h>
 #import <Nursery/NUMovingUp.h>
 
-@class NSString, NSMutableArray, NSMutableSet, NSRecursiveLock;
+@class NSString, NSMutableArray, NSSet, NSMutableSet, NSRecursiveLock;
 @class NUBell, NUIvar, NUCharacter, NUGarden, NUCoder;
 
 extern const NUObjectFormat NUFixedIvars;
@@ -30,11 +30,17 @@ extern NSString *NUCharacterInvalidObjectFormatException;
 + (NUCharacter *)establishCharacterOn:(NUGarden *)aGarden;
 + (NUCharacter *)createCharacterOn:(NUGarden *)aGarden;
 + (void)defineCharacter:(NUCharacter *)aCharacter on:(NUGarden *)aGarden;
-+ (NSString *)CharacterNameOn:(NUGarden *)aGarden;
++ (NSString *)characterNameOn:(NUGarden *)aGarden;
 - (Class)classForNursery;
 
 @optional
 + (BOOL)automaticallyEstablishCharacter;
+
+@end
+
+@protocol NUCharacterTargetClassResolving
+
+- (BOOL)resolveTargetClassOrCoderForCharacter:(NUCharacter *)aCharacter onGarden:(NUGarden *)aGarden;
 
 @end
 
@@ -52,7 +58,7 @@ extern NSString *NUCharacterInvalidObjectFormatException;
     NUCoder *coder;
 	BOOL needsComputeBasicSize;
 	NUUInt64 basicSize;
-	NSString *fullName;
+	NSString *inheritanceName;
 	BOOL isMutable;
 	NSArray *allOOPIvars;
 	NSArray *allIvars;
@@ -63,11 +69,6 @@ extern NSString *NUCharacterInvalidObjectFormatException;
     NSRecursiveLock *lock;
 }
 
-+ (id)character;
-+ (id)characterWithName:(NSString *)aName super:(NUCharacter *)aSuper;
-
-- (id)initWithName:(NSString *)aName super:(NUCharacter *)aSuper;
-
 - (NUCharacter *)superCharacter;
 
 - (NUObjectFormat)format;
@@ -77,8 +78,13 @@ extern NSString *NUCharacterInvalidObjectFormatException;
 - (void)setVersion:(NUUInt32)aVersion;
 
 - (NSString *)name;
+- (NSString *)nameWithVersion;
+- (NSString *)inheritanceNameWithVersion;
 
-- (NSMutableArray *)ivars;
+- (NSArray *)copyIvars;
+- (NSArray *)copyAllIvars;
+- (NSArray *)copyAncestors;
+- (NSSet *)copySubCharacters;
 
 - (void)addOOPIvarWithName:(NSString *)aName;
 - (void)addInt8IvarWithName:(NSString *)aName;
@@ -99,39 +105,6 @@ extern NSString *NUCharacterInvalidObjectFormatException;
 
 - (void)addIvarWithName:(NSString *)aName type:(NUIvarType)aType;
 - (void)addIvar:(NUIvar *)anIvar;
-
-- (NSArray *)allOOPIvars;
-- (NSUInteger)allOOPIvarsCount;
-- (NUIvar *)ivarInAllOOPIvarsAt:(NSUInteger)anIndex;
-- (NSArray *)getAllOOPIvars;
-
-- (NSArray *)copyAllIvars;
-- (NSArray *)allIvars;
-- (NSDictionary *)allIvarDictionary;
-- (NSArray *)getAllIvars;
-- (NSDictionary *)allIvarDictionaryFrom:(NSArray *)anIvars;
-
-- (NUIvar *)ivarInAllIvarsAt:(NSUInteger)anIndex;
-
-- (NUUInt64)ivarOffsetForName:(NSString *)aName;
-
-- (NSArray *)ancestors;
-
-- (NSMutableSet *)subCharacters;
-
-- (void)addSubCharacter:(NUCharacter *)aCharacter;
-- (void)removeSubCharacter:(NUCharacter *)aCharacter;
-
-- (void)addToSuperCharacter;
-- (void)removeFromSuperCharacter;
-
-- (NUUInt64)basicSize;
-- (NUUInt64)computeBasicSize;
-- (void)computeIvarOffset;
-- (NUUInt64)indexedIvarOffset;
-
-- (NSString *)fullName;
-- (NSString *)getFullName;
 
 - (Class)targetClass;
 - (void)setTargetClass:(Class)aClass;
@@ -159,8 +132,6 @@ extern NSString *NUCharacterInvalidObjectFormatException;
 - (BOOL)isIndexedBytes;
 
 - (BOOL)containsIvarWithName:(NSString *)aName;
-
-- (void)moveUp;
 
 @end
 
