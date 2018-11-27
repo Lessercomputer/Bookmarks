@@ -13,7 +13,9 @@ The source code and menu's SEL and so on are English.However, the UI language is
 
 ## Known Issues
 
-Bookmark app may crash when bookmark or binder is dragged and dropped in recent macOS.
+Bookmarks app may crash when bookmark or binder is dragged and dropped in recent macOS.
+
+Bug fixes are welcome
 
 ## macOS support
 macOS (10.8 or higher)
