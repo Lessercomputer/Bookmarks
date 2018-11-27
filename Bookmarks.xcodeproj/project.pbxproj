@@ -652,7 +652,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = AT;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Pedophilia;
 				TargetAttributes = {
 					6158CD951915A90200BD8BA1 = {
