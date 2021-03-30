@@ -135,5 +135,7 @@
 			</dict>
 		</dict>
 	</array>
+    <key>NSAppleEventsUsageDescription</key>
+    <string>Please give Bookmarks access to Web browser via Apple Script.</string>
 </dict>
 </plist>

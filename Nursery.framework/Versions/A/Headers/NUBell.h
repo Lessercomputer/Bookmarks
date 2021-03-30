@@ -17,12 +17,12 @@ extern NSString *NUInvalidatedObjectException;
 
 @interface NUBell : NSObject <NSCopying>
 {
-    NUBellBall ball;
+	NUBellBall ball;
     NUUInt64 gradeAtCallFor;
     NUUInt64 gradeForGardenSeeker;
 	NUGarden *garden;
     BOOL isLoaded;
-    id object;
+	id object;
 }
 
 + (id)bellWithBall:(NUBellBall)aBall;

@@ -19,12 +19,12 @@ extern NSString *NUAliaserCannotDecodeObjectException;
 
 @interface NUAliaser : NSObject
 {
-    NUGarden *garden;
-    NSMutableArray *contexts;
-    NSMutableArray *roots;
-    NUQueue *objectsToEncode;
+	NUGarden *garden;
+	NSMutableArray *contexts;
+	NSMutableArray *roots;
+	NUQueue *objectsToEncode;
     NSMutableArray *encodedPupils;
-    NUIndexArray *rootOOPs;
+	NUIndexArray *rootOOPs;
 }
 @end
 
