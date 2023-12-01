@@ -1,3 +1,7 @@
+> [!WARNING]
+> This repository is currently not maintained.
+> The main features were added between 2005 and 2014.
+
 # Bookmarks
 Bookmarks is a little bookmark management app using Nursery framework.
 
